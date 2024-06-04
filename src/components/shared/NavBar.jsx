@@ -1,5 +1,9 @@
 import Image from "next/image";
 import logo from "../../assets/images/vogal.png";
+import { CiSearch } from "react-icons/ci";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { CiHeart } from "react-icons/ci";
+import { CiShoppingCart } from "react-icons/ci";
 
 const NavBar = () => {
   return (
@@ -51,7 +55,7 @@ const NavBar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 uppercase font-medium text-[12px] text-[#111111]">
+          <ul className="menu menu-horizontal px-1 uppercase font-semibold text-[12px] text-[#111111]">
             <li>
               <a>Home</a>
             </li>
@@ -79,7 +83,28 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <ul className="flex gap-4">
+            <li className="text-xl">
+              <a href="">
+                <CiSearch />
+              </a>
+            </li>
+            <li className="text-xl">
+              <a href="">
+                <MdOutlineAccountCircle />
+              </a>
+            </li>
+            <li className="text-xl">
+              <a href="">
+                <CiHeart />
+              </a>
+            </li>
+            <li className="text-xl">
+              <a href="">
+                <CiShoppingCart />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
