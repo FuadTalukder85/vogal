@@ -13,7 +13,7 @@ const Banner = () => {
             <b className="text-7xl">Luxury Brands</b>
             <p className="text-7xl">Without Labels</p>
           </h3>
-          <button className="mt-7 bg-[#333333] text-white py-3 px-9 rounded-md uppercase">
+          <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
             Shop Now
           </button>
         </div>
