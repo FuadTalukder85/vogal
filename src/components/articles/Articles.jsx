@@ -8,7 +8,7 @@ const Articles = () => {
   return (
     <div className="bg-[#F7F7F7] mt-10">
       <div className="max-w-[1300px] mx-auto py-16">
-        <h5 className="text-3xl font-semibold text-center">News & Articles</h5>
+        <h5 className="text-2xl font-medium text-center">News & Articles</h5>
         <div className="flex gap-5 mt-7">
           <div className="bg-white">
             <Image src={articleImg1} alt="articleImg1"></Image>

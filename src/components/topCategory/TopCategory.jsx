@@ -7,7 +7,7 @@ import Image from "next/image";
 const TopCategory = () => {
   return (
     <div className="max-w-[1300px] mx-auto">
-      <h5 className="text-3xl font-semibold text-center mt-14">
+      <h5 className="text-2xl font-medium text-center mt-14">
         Explore Top Categories
       </h5>
       <div className="flex gap-3 mt-7">

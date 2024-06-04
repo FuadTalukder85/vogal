@@ -7,7 +7,7 @@ import explore4 from "../../assets/images/exploreImg/explore4.png";
 const MoreExplore = () => {
   return (
     <div className="max-w-[1300px] mx-auto mt-24">
-      <h5 className="text-3xl font-semibold text-center">
+      <h5 className="text-2xl font-medium text-center">
         There,s More to Explore
       </h5>
 
