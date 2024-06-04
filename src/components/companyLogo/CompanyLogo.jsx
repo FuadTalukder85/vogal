@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const CompanyLogo = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 flex gap-5">
+    <div className="max-w-[1300px] mx-auto mt-16 flex gap-5">
       <div>
         <Image
           className="border border-[#EFEDEC]"
