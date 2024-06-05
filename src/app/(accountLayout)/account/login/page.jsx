@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { useLoginUsersMutation } from "../../../../redux/features/auth/authApi";
 import Cookies from "js-cookie";
 import { verifyToken } from "../../../utils/VerifyToken";
 
 const LoginForm = () => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm();
   const [loggedUser] = useLoginUsersMutation();
 
@@ -24,7 +25,6 @@ const LoginForm = () => {
       dispatch(setUser({ user: user, token: res.token }));
       localStorage.setItem("token", token);
       Cookies.set("refreshToken", token);
-      nagivate(from, { replace: true });
     } catch (error) {
       console.log(error);
     }

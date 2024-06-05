@@ -4,8 +4,17 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 
 const NavBar = () => {
+  // const dispatch = useAppDispatch();
+  // const user = useAppSelector(useCurrentUser);
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <div className="max-w-[1300px] mx-auto">
       <div className="navbar bg-base-100">

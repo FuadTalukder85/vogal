@@ -24,7 +24,5 @@ const authSlice = createSlice({
 export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;
-
-// Exporting selectors
-export const selectToken = (state) => state.auth.token;
-export const selectUser = (state) => state.auth.user;
+export const useCurrentToken = (state) => state.auth.token;
+export const useCurrentUser = (state) => state.auth.user;
