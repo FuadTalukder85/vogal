@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 import { useEffect } from "react";
 
-const TopSeller = () => {
+const NewArrivals = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -22,11 +22,13 @@ const TopSeller = () => {
 
   return (
     <div className="max-w-[1300px] mx-auto mt-24">
-      <h5 className="text-2xl font-medium text-center">Top Seller</h5>
-
+      <h5 className="text-2xl font-medium text-center">New Arrivals</h5>
+      <p className="text-sm text-black text-center">
+        We have your occasion covered
+      </p>
       <div className="grid grid-cols-12 gap-5 mt-10">
         {/* card */}
-        {data?.slice(0, 4).map((product, index) => (
+        {data?.slice(0, 8).map((product, index) => (
           <div key={index} className="col-span-3 relative overflow-hidden">
             <Image
               src={product.firstImg}
@@ -76,4 +78,4 @@ const TopSeller = () => {
   );
 };
 
-export default TopSeller;
+export default NewArrivals;

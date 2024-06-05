@@ -6,12 +6,14 @@ import CompanyLogo from "../../components/companyLogo/CompanyLogo";
 import TopSeller from "../../components/topSeller/TopSeller";
 import Articles from "../../components/articles/Articles";
 import CustomerService from "../../components/customerService/CustomerService";
+import NewArrivals from "../../components/newArrivals/NewArrivals";
 
 const HomePage = () => {
   return (
     <div>
       <Banner></Banner>
       <TopCategory></TopCategory>
+      <NewArrivals></NewArrivals>
       <MoreExplore></MoreExplore>
       <CompanyLogo></CompanyLogo>
       <TopSeller></TopSeller>
