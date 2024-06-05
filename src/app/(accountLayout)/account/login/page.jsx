@@ -13,6 +13,7 @@ const LoginForm = () => {
     //   console.error("Registration failed:", error);
     // }
   };
+
   return (
     <div className="hero bg-base-200 mt-28 max-w-screen-lg mx-auto">
       <div className="hero-content flex-col">

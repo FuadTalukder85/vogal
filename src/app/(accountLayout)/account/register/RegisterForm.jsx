@@ -1,16 +1,18 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { useRegisterUsersMutation } from "../../../../redux/features/auth/authApi";
 
 const RegisterForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+  const [users] = useRegisterUsersMutation();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    // try {
-    //   await users(data);
-    // } catch (error) {
-    //   console.error("Registration failed:", error);
-    // }
+    try {
+      await users(data).unwrap();
+      reset();
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
   return (
     <div className="hero bg-base-200 mt-28">
