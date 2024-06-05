@@ -1,17 +1,33 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useLoginUsersMutation } from "../../../../redux/features/auth/authApi";
+import Cookies from "js-cookie";
+import { verifyToken } from "../../../utils/VerifyToken";
 
 const LoginForm = () => {
-  const { register, handleSubmit } = useForm();
+  // const dispatch = useAppDispatch();
+  const { register, handleSubmit, reset } = useForm();
+  const [loggedUser] = useLoginUsersMutation();
 
   const onSubmit = async (data) => {
-    console.log(data);
-    // try {
-    //   await users(data);
-    // } catch (error) {
-    //   console.error("Registration failed:", error);
-    // }
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+    try {
+      const res = await loggedUser(userInfo).unwrap();
+      reset();
+      const user = verifyToken(res.token);
+
+      const { token } = res;
+      dispatch(setUser({ user: user, token: res.token }));
+      localStorage.setItem("token", token);
+      Cookies.set("refreshToken", token);
+      nagivate(from, { replace: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
