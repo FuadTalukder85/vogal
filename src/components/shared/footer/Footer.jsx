@@ -8,7 +8,7 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-[#F5F5F5] pt-16">
       <div className="max-w-[1300px] mx-auto grid grid-cols-12 gap-20">
         <div className="col-span-4">
           <a className="btn btn-ghost text-xl">

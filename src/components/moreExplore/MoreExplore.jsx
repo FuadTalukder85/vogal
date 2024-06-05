@@ -12,41 +12,55 @@ const MoreExplore = () => {
       </h5>
 
       <div className="flex gap-5 mt-10">
-        <div className="relative">
-          <Image src={explore1} alt="explore1"></Image>
+        <div className="relative overflow-hidden">
+          <Image
+            className="hover:scale-110 transition-all duration-500"
+            src={explore1}
+            alt="explore1"
+          ></Image>
           <div className="flex justify-center">
-            <button className="absolute top-96 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
+            <button className="absolute bottom-8 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
               Women
             </button>
           </div>
         </div>
-        <div>
-          <div className="relative">
-            <Image src={explore2} alt="explore2"></Image>
+
+        <div className="relative overflow-hidden">
+          <Image
+            className="hover:scale-110 transition-all duration-500"
+            src={explore2}
+            alt="explore2"
+          ></Image>
+          <div className="flex justify-center">
+            <button className="absolute bottom-8 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
+              Men
+            </button>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="relative overflow-hidden">
+            <Image
+              className="hover:scale-110 transition-all duration-500"
+              src={explore3}
+              alt="explore3"
+            ></Image>
             <div className="flex justify-center">
-              <button className="absolute top-96 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
-                Men
+              <button className="absolute bottom-8 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
+                Shoes
               </button>
             </div>
           </div>
-        </div>
-        <div>
-          <div className="">
-            <div className="relative">
-              <Image src={explore3} alt="explore3"></Image>
-              <div className="flex justify-center">
-                <button className="absolute top-28 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
-                  Shoes
-                </button>
-              </div>
-            </div>
-            <div className="relative mt-5">
-              <Image src={explore4} alt="explore4"></Image>
-              <div className="flex justify-center">
-                <button className="absolute top-28 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
-                  Accessories
-                </button>
-              </div>
+          <div className="relative mt-5 overflow-hidden">
+            <Image
+              className="hover:scale-110 transition-all duration-500"
+              src={explore4}
+              alt="explore4"
+            ></Image>
+            <div className="flex justify-center">
+              <button className="absolute bottom-8 mt-7 bg-white text-[#333333] py-3 px-8 text-sm rounded-md uppercase">
+                Accessories
+              </button>
             </div>
           </div>
         </div>
