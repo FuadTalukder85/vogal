@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import logo from "../../assets/images/vogal.png";
 import { CiSearch } from "react-icons/ci";
@@ -6,10 +7,11 @@ import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
+import Link from "next/link";
 
 const NavBar = () => {
-  // const dispatch = useAppDispatch();
-  // const user = useAppSelector(useCurrentUser);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(useCurrentUser);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -17,6 +19,7 @@ const NavBar = () => {
 
   return (
     <div className="max-w-[1300px] mx-auto">
+      <checkPage></checkPage>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -99,7 +102,7 @@ const NavBar = () => {
               </a>
             </li>
             <li className="text-xl">
-              <a href="">
+              <a className="cursor-pointer">
                 <MdOutlineAccountCircle />
               </a>
             </li>
@@ -112,6 +115,20 @@ const NavBar = () => {
               <a href="">
                 <CiShoppingCart />
               </a>
+            </li>
+            <li className="text-[#00715D] font-bold">
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="border-2 border-[#FFB606] px-6 py-2 rounded-lg"
+                >
+                  Logout
+                </button>
+              ) : (
+                <button className="border-2 border-[#FFB606] px-6 py-2 rounded-lg">
+                  <Link href="/account/login">Login</Link>
+                </button>
+              )}
             </li>
           </ul>
         </div>
