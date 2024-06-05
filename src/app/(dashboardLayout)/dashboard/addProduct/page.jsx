@@ -35,7 +35,6 @@ const AddProducts = () => {
                   </label>
                   <input
                     type="text"
-                    min={1}
                     {...register("title", { required: true })}
                     placeholder="Title here"
                     className="input input-bordered"
@@ -50,8 +49,7 @@ const AddProducts = () => {
                   </label>
                   <input
                     type="tag"
-                    min={1}
-                    {...register("tag", { required: true })}
+                    {...register("tag")}
                     placeholder="Best selling/sale..."
                     className="input input-bordered"
                   />
@@ -68,7 +66,6 @@ const AddProducts = () => {
                   </label>
                   <input
                     type="text"
-                    min={1}
                     {...register("firstImg", { required: true })}
                     placeholder="First image here"
                     className="input input-bordered"
@@ -85,7 +82,6 @@ const AddProducts = () => {
                   </label>
                   <input
                     type="secongImg"
-                    min={1}
                     {...register("secongImg", { required: true })}
                     placeholder="Second image here"
                     className="input input-bordered"
@@ -123,7 +119,7 @@ const AddProducts = () => {
                   <input
                     type="number"
                     min={1}
-                    {...register("discount", { required: true })}
+                    {...register("discount")}
                     placeholder="discount"
                     className="input input-bordered"
                   />
