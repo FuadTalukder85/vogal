@@ -16,8 +16,9 @@ const NewArrivals = () => {
   }, [refetch]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="text-center">Loading...</p>;
   }
+
   // console.log(data);
 
   return (
@@ -30,21 +31,24 @@ const NewArrivals = () => {
         {/* card */}
         {data?.slice(0, 8).map((product, index) => (
           <div key={index} className="col-span-3 relative overflow-hidden">
-            <Image
-              src={product.firstImg}
-              alt="topSeller1"
-              width={500}
-              height={500}
-            ></Image>
-
-            <div className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition-all duration-700">
+            {product?.firstImg && (
               <Image
-                className=""
-                src={product.secondImg}
-                alt="topSeller1"
+                src={product.firstImg}
+                alt={product.title || "Product Image"}
                 width={500}
                 height={500}
-              ></Image>
+              />
+            )}
+
+            <div className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition-all duration-700">
+              {product?.secondImg && (
+                <Image
+                  src={product.secondImg}
+                  alt={product.title || "Product Image"}
+                  width={500}
+                  height={500}
+                />
+              )}
               <div className="flex justify-center">
                 <ul className="flex gap-2 justify-center absolute bottom-3">
                   <li className="bg-white text-lg font-semibold p-2 rounded-full">
@@ -61,14 +65,14 @@ const NewArrivals = () => {
             </div>
 
             <h5 className="text-md text-center mt-4">
-              <p>{product.title}</p>
-              {product.discount ? (
+              <p>{product?.title}</p>
+              {product?.discount ? (
                 <p className="mt-2 flex justify-center gap-2">
-                  <span className="line-through">${product.discount}</span>
-                  <span className="text-[#e22515]">${product.price}</span>
+                  <span className="line-through">${product?.discount}</span>
+                  <span className="text-[#e22515]">${product?.price}</span>
                 </p>
               ) : (
-                <p className="mt-2">${product.price}</p>
+                <p className="mt-2">${product?.price}</p>
               )}
             </h5>
           </div>

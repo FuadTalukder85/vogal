@@ -70,20 +70,24 @@ const AllProduct = () => {
                   <div className="flex items-center gap-3">
                     <div className="avatar gap-5">
                       <div className="mask mask-squircle">
-                        <Image
-                          src={product?.firstImg}
-                          alt="product"
-                          width={40}
-                          height={40}
-                        />
+                        {product?.firstImg && (
+                          <Image
+                            src={product.firstImg}
+                            alt={product.title || "Product Image"}
+                            width={40}
+                            height={40}
+                          />
+                        )}
                       </div>
                       <div className="mask mask-squircle">
-                        <Image
-                          src={product?.secondImg}
-                          alt="product"
-                          width={40}
-                          height={40}
-                        />
+                        {product?.secondImg && (
+                          <Image
+                            src={product.secondImg}
+                            alt={product.title || "Product Image"}
+                            width={40}
+                            height={40}
+                          />
+                        )}
                       </div>
                     </div>
                   </div>

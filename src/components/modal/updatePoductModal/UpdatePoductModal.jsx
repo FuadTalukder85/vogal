@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form";
 
 const UpdatePoductModal = ({ onClose, productId }) => {
   const { data: product } = useGetSingleProductQuery(productId ?? "");
-  const [productData, { isSuccess }] = useUpdateProductMutation(undefined);
+  const [updateProduct, { isSuccess }] = useUpdateProductMutation();
+
   const {
     register,
     handleSubmit,
@@ -17,7 +18,7 @@ const UpdatePoductModal = ({ onClose, productId }) => {
 
   const onSubmit = async (data) => {
     try {
-      await productData({ id: productId || "", body: data });
+      await updateProduct({ id: productId || "", body: data });
       if (isSuccess) {
         toast.success("Product is updated");
         onClose();
@@ -25,8 +26,8 @@ const UpdatePoductModal = ({ onClose, productId }) => {
     } catch (error) {
       console.error("Update product failed:", error);
     }
+    console.log(data);
   };
-  console.log(product);
 
   return (
     <div className="fixed top-0 left-0 backdrop-blur-[1px] w-full mx-auto">
@@ -96,12 +97,12 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                     <span className="label-text">Second Image *</span>
                   </label>
                   <input
-                    type="secongImg"
-                    {...register("secongImg", { required: true })}
+                    type="secondImg"
+                    {...register("secondImg", { required: true })}
                     defaultValue={product?.secondImg}
                     className="input input-bordered"
                   />
-                  {errors.secongImg && (
+                  {errors.secondImg && (
                     <small className="text-red-500 ">
                       Second image is required
                     </small>
@@ -161,7 +162,7 @@ const UpdatePoductModal = ({ onClose, productId }) => {
               </div>
               <div className="form-control mt-6">
                 <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
-                  Add Product
+                  Update Product
                 </button>
               </div>
             </form>

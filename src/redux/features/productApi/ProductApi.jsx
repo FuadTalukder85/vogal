@@ -8,6 +8,7 @@ const ProductApi = baseApi.injectEndpoints({
         method: "POST",
         body: addProduct,
       }),
+      providesTags: ["products"],
     }),
     getProducts: builder.query({
       query: () => ({
