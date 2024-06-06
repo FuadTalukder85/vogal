@@ -25,7 +25,7 @@ const TopCategory = () => {
             Spring Forward!
           </h5>
           <div className="flex justify-center">
-            <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase ">
+            <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase ">
               Discover More
             </button>
           </div>
@@ -44,7 +44,7 @@ const TopCategory = () => {
             Bold Moves
           </h5>
           <div className="flex justify-center">
-            <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
+            <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
               Discover More
             </button>
           </div>

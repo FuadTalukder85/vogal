@@ -5,21 +5,25 @@ import { CiSearch } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
+import { useAppSelector } from "../../redux/hooks";
+import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
-  const dispatch = useAppDispatch();
   const user = useAppSelector(useCurrentUser);
+  const router = useRouter();
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleOnclick = () => {
+    if (user) {
+      router.push("/account");
+    } else {
+      router.push("/account/login");
+    }
   };
 
   return (
     <div className="max-w-[1300px] mx-auto">
-      <checkPage></checkPage>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -43,92 +47,61 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
+              <li>Item 1</li>
               <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
+                Parent
                 <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
+                  <li>Submenu 1</li>
+                  <li>Submenu 2</li>
                 </ul>
               </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              <li>Item 3</li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">
+
+          <Link href="/">
             <Image src={logo} alt="logo" height={32}></Image>
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 uppercase font-semibold text-[12px] text-[#111111]">
+          <ul className="menu menu-horizontal px-1 uppercase font-medium text-xs text-[#111111]">
             <li>
-              <a>Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a>Shop</a>
+              {" "}
+              <Link href="/">Shop</Link>
             </li>
             <li>
-              <a>Products</a>
+              <Link href="/">Features</Link>
             </li>
             <li>
-              <a>Features</a>
+              <Link href="/">Deal zone</Link>
             </li>
             <li>
-              <a>Deal zone</a>
+              <Link href="/">Pages</Link>
             </li>
             <li>
-              <a>Pages</a>
+              <Link href="/">Blog</Link>
             </li>
             <li>
-              <a>Blog</a>
-            </li>
-            <li>
-              <a>Buy now</a>
+              <Link href="/">Buy now</Link>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           <ul className="flex gap-4">
             <li className="text-xl">
-              <a href="">
-                <CiSearch />
-              </a>
+              <CiSearch />
+            </li>
+            <li onClick={handleOnclick} className="text-xl cursor-pointer">
+              <MdOutlineAccountCircle />
             </li>
             <li className="text-xl">
-              <a className="cursor-pointer">
-                <MdOutlineAccountCircle />
-              </a>
+              <CiHeart />
             </li>
             <li className="text-xl">
-              <a href="">
-                <CiHeart />
-              </a>
-            </li>
-            <li className="text-xl">
-              <a href="">
-                <CiShoppingCart />
-              </a>
-            </li>
-            <li className="text-[#00715D] font-bold">
-              {user ? (
-                <button
-                  onClick={handleLogout}
-                  className="border-2 border-[#FFB606] px-6 py-2 rounded-lg"
-                >
-                  Logout
-                </button>
-              ) : (
-                <button className="border-2 border-[#FFB606] px-6 py-2 rounded-lg">
-                  <Link href="/account/login">Login</Link>
-                </button>
-              )}
+              <CiShoppingCart />
             </li>
           </ul>
         </div>

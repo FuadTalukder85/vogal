@@ -6,8 +6,10 @@ import { setUser } from "../../../../redux/features/auth/authSlice";
 import { useLoginUsersMutation } from "../../../../redux/features/auth/authApi";
 import Cookies from "js-cookie";
 import { verifyToken } from "../../../utils/VerifyToken";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm();
   const [loggedUser] = useLoginUsersMutation();
@@ -21,11 +23,11 @@ const LoginForm = () => {
       const res = await loggedUser(userInfo).unwrap();
       reset();
       const user = verifyToken(res.token);
-
       const { token } = res;
       dispatch(setUser({ user: user, token: res.token }));
       localStorage.setItem("token", token);
       Cookies.set("refreshToken", token);
+      router.push("/account");
       // console.log(user);
     } catch (error) {
       console.log(error);
