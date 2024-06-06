@@ -30,7 +30,7 @@ const UpdatePoductModal = ({ onClose, productId }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 backdrop-blur-[1px] w-full mx-auto">
+    <div className="fixed top-36 left-0 backdrop-blur-[1px] w-full mx-auto">
       <div className="my-10">
         <div className="">
           <div className="card md:w-[50%] mx-auto bg-[#EAFFFC]">
