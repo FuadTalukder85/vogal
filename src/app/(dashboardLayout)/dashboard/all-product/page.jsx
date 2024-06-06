@@ -1,16 +1,21 @@
 "use client";
 import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
-import { useGetProductsQuery } from "../../../../redux/features/productApi/ProductApi";
+import {
+  useGetProductsQuery,
+  useRemoveProductMutation,
+} from "../../../../redux/features/productApi/ProductApi";
 import UpdatePoductModal from "../../../../components/modal/updatePoductModal/UpdatePoductModal";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const AllProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [editById, setEditById] = useState(null);
 
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
+  const [removeProduct] = useRemoveProductMutation();
   useEffect(() => {
     const intervalId = setInterval(() => {
       refetch();
@@ -24,6 +29,32 @@ const AllProduct = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you want to delete this product?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          removeProduct(id);
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your product has been deleted.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error deleting product:", error);
+        }
+      }
+    });
+  };
 
   // console.log(data);
   return (
@@ -113,8 +144,8 @@ const AllProduct = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="flex items-center justify-center text-[#E85363] text-4xl">
-                    <AiFillDelete />
+                  <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
+                    <AiFillDelete onClick={() => handleDelete(product?._id)} />
                   </div>
                 </td>
               </tr>

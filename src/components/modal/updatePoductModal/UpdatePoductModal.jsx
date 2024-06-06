@@ -5,6 +5,7 @@ import {
   useUpdateProductMutation,
 } from "../../../redux/features/productApi/ProductApi";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const UpdatePoductModal = ({ onClose, productId }) => {
   const { data: product } = useGetSingleProductQuery(productId ?? "");
@@ -19,6 +20,13 @@ const UpdatePoductModal = ({ onClose, productId }) => {
   const onSubmit = async (data) => {
     try {
       await updateProduct({ id: productId || "", body: data });
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product has been Updated",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       if (isSuccess) {
         toast.success("Product is updated");
         onClose();

@@ -18,7 +18,7 @@ const TopSeller = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="max-w-[1300px] mx-auto mt-24">
@@ -26,7 +26,7 @@ const TopSeller = () => {
 
       <div className="grid grid-cols-12 gap-5 mt-10">
         {/* card */}
-        {data?.slice(0, 4).map((product, index) => (
+        {data?.slice(1, 5).map((product, index) => (
           <div key={index} className="col-span-3 relative overflow-hidden">
             {product?.firstImg && (
               <Image
