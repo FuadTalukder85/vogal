@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const SliderOne = () => {
   return (
-    <div className="max-w-[1300px] relative mx-auto md:flex gap-28 items-center justify-between text-black overflow-hidden">
+    <div className="max-w-[1300px] relative mx-auto md:flex items-center justify-between text-black overflow-hidden">
       <div>
         <Image src={bannerImg1} alt="bannerImg1" height={950} />
       </div>

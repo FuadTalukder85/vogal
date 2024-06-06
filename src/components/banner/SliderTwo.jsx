@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const SliderOne = () => {
   return (
     <div className="bg-[#F7F7F7]">
-      <div className="max-w-[1300px] relative mx-auto md:flex gap-28 items-center justify-between text-black overflow-hidden">
+      <div className="max-w-[1300px] relative mx-auto md:flex items-center justify-between text-black overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
