@@ -6,12 +6,11 @@ import explore4 from "../../assets/images/exploreImg/explore4.png";
 
 const MoreExplore = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-24">
+    <div className="max-w-[1300px] mx-auto mt-10 md:mt-24 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">
         There,s More to Explore
       </h5>
-
-      <div className="flex gap-5 mt-10">
+      <div className="md:flex gap-5 mt-10">
         <div className="relative overflow-hidden">
           <Image
             className="hover:scale-110 transition-all duration-500"
@@ -24,8 +23,7 @@ const MoreExplore = () => {
             </button>
           </div>
         </div>
-
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden mt-5 md:mt-0">
           <Image
             className="hover:scale-110 transition-all duration-500"
             src={explore2}
@@ -37,8 +35,7 @@ const MoreExplore = () => {
             </button>
           </div>
         </div>
-
-        <div className="">
+        <div className="hidden md:block">
           <div className="relative overflow-hidden">
             <Image
               className="hover:scale-110 transition-all duration-500"

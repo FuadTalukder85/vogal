@@ -35,13 +35,12 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="hero bg-base-200 mt-28 max-w-screen-lg mx-auto">
+    <div className="hero bg-base-200 md:mt-28 mb-10 md:max-w-screen-lg mx-auto">
       <div className="hero-content flex-col">
-        {/* lg:flex-row-reverse */}
         <div className="text-center">
           <span className="text-2xl font-medium text-black">My Account</span>
         </div>
-        <div className="flex gap-10 mt-10">
+        <div className="md:flex gap-10 md:mt-10">
           <div className="card shrink-0 bg-base-100 border border-[#EFEDEC] p-10">
             <h5 className="text-2xl font-medium text-black">Login</h5>
             <p className="mt-5 text-xs">
@@ -56,7 +55,7 @@ const LoginForm = () => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="input order border-[#EFEDEC] text-xs w-96"
+                  className="input order border-[#EFEDEC] text-xs md:w-96"
                   {...register("email")}
                 />
               </div>

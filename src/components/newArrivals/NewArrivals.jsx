@@ -22,7 +22,7 @@ const NewArrivals = () => {
   // console.log(data);
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-24">
+    <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">New Arrivals</h5>
       <p className="text-sm text-black text-center">
         We have your occasion covered
@@ -30,7 +30,10 @@ const NewArrivals = () => {
       <div className="grid grid-cols-12 gap-5 mt-10">
         {/* card */}
         {data?.slice(0, 8).map((product, index) => (
-          <div key={index} className="col-span-3 relative overflow-hidden">
+          <div
+            key={index}
+            className="col-span-6 md:col-span-3 relative overflow-hidden"
+          >
             {product?.firstImg && (
               <Image
                 src={product.firstImg}

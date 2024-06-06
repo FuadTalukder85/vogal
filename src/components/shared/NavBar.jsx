@@ -45,17 +45,29 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#F7F7F7] rounded-box w-36"
             >
-              <li>Item 1</li>
-              <li>
-                Parent
-                <ul className="p-2">
-                  <li>Submenu 1</li>
-                  <li>Submenu 2</li>
-                </ul>
+              <li className="text-[#e22515]">
+                <Link href="/">Home</Link>
               </li>
-              <li>Item 3</li>
+              <li className="text-[#e22515]">
+                <Link href="/">Shop</Link>
+              </li>
+              <li className="text-[#e22515]">
+                <Link href="/">Features</Link>
+              </li>
+              <li className="text-[#e22515]">
+                <Link href="/">Deal zone</Link>
+              </li>
+              <li className="text-[#e22515]">
+                <Link href="/">Pages</Link>
+              </li>
+              <li className="text-[#e22515]">
+                <Link href="/">Blog</Link>
+              </li>
+              <li className="text-[#e22515]">
+                <Link href="/">Buy now</Link>
+              </li>
             </ul>
           </div>
 

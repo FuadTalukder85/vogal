@@ -15,7 +15,7 @@ const RegisterForm = () => {
     }
   };
   return (
-    <div className="hero bg-base-200 mt-28">
+    <div className="hero bg-base-200 md:mt-28">
       <div className="hero-content flex-col">
         {/* lg:flex-row-reverse */}
         <div className="text-center">
@@ -25,12 +25,12 @@ const RegisterForm = () => {
         </div>
         <div className="card shrink-0 w-full max-w-fit bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="flex gap-10">
+            <div className="md:flex gap-10">
               <div className="form-control">
                 <input
                   type="text"
                   placeholder="First name"
-                  className="input order border-[#EFEDEC] text-xs w-56"
+                  className="input order border-[#EFEDEC] text-xs md:w-56"
                   {...register("firstName")}
                 />
               </div>
@@ -38,7 +38,7 @@ const RegisterForm = () => {
                 <input
                   type="text"
                   placeholder="Last name"
-                  className="input order border-[#EFEDEC] text-xs w-56"
+                  className="input order border-[#EFEDEC] text-xs md:w-56"
                   {...register("lastName")}
                 />
               </div>

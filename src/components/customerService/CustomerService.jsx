@@ -7,9 +7,9 @@ import icon4 from "../../assets/images/icons/icon4.png";
 
 const CustomerService = () => {
   return (
-    <div className="bg-[#1F1F1F] py-6">
-      <div className="max-w-[1300px] mx-auto grid grid-cols-4">
-        <div className="col-span-1">
+    <div className="bg-[#1F1F1F] p-5 py-6">
+      <div className="max-w-[1300px] mx-auto grid gap-5 grid-cols-4">
+        <div className="col-span-2 md:col-span-1">
           <div className="flex gap-5">
             <Image className="h-8" src={icon1} alt="icon1"></Image>
             <h5 className="text-white text-sm">
@@ -18,7 +18,7 @@ const CustomerService = () => {
             </h5>
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 md:col-span-1">
           <div className="flex gap-5">
             <Image className="h-8" src={icon2} alt="icon1"></Image>
             <h5 className="text-white text-sm">
@@ -27,7 +27,7 @@ const CustomerService = () => {
             </h5>
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 md:col-span-1">
           <div className="flex gap-5">
             <Image className="h-8" src={icon3} alt="icon1"></Image>
             <h5 className="text-white text-sm">
@@ -36,7 +36,7 @@ const CustomerService = () => {
             </h5>
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 md:col-span-1">
           <div className="flex gap-5">
             <Image className="h-8" src={icon4} alt="icon1"></Image>
             <h5 className="text-white text-sm">

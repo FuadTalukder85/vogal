@@ -38,13 +38,13 @@ const UpdatePoductModal = ({ onClose, productId }) => {
   };
 
   return (
-    <div className="fixed top-36 left-0 backdrop-blur-[1px] w-full mx-auto">
-      <div className="my-10">
+    <div className="fixed top-0 md:top-36 left-0 backdrop-blur-[1px] w-full mx-auto">
+      <div className="md:my-10">
         <div className="">
           <div className="card md:w-[50%] mx-auto bg-[#EAFFFC]">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="flex justify-between">
-                <h1 className="text-center text-4xl mb-5">Update product</h1>
+                <h1 className="text-center md:text-4xl mb-5">Update product</h1>
                 <button
                   onClick={onClose}
                   className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase "

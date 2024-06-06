@@ -58,7 +58,7 @@ const AllProduct = () => {
 
   // console.log(data);
   return (
-    <div className="p-10">
+    <div className="p-3 md:p-10">
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

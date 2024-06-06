@@ -8,13 +8,13 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className="bg-[#F5F5F5] pt-16">
-      <div className="max-w-[1300px] mx-auto grid grid-cols-12 gap-20">
-        <div className="col-span-4">
+    <div className="bg-[#F5F5F5] p-5 md:pt-16">
+      <div className="max-w-[1300px] mx-auto grid grid-cols-12 gap-5 md:gap-20">
+        <div className="col-span-12 md:col-span-4">
           <a className="btn btn-ghost text-xl">
             <Image src={logo} alt="logo" height={52}></Image>
           </a>
-          <p className="mt-5 text-sm pr-20">
+          <p className="mt-5 text-sm md:pr-20">
             Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut
             aliquip ex ea commodo consequat.Ut enim ad minim veniam,quis nostrud
             exercitation
@@ -37,7 +37,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-6 md:col-span-2">
           <h5 className="font-semibold text-sm uppercase">Information</h5>
           <ul className="mt-5">
             <li className="mt-2 text-sm">Latest News</li>
@@ -48,7 +48,7 @@ const Footer = () => {
             <li className="mt-2 text-sm">Contact us</li>
           </ul>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-6 md:col-span-2">
           <h5 className="font-semibold text-sm uppercase">Customer Service</h5>
           <ul className="mt-5">
             <li className="mt-2 text-sm">Privacy Policy</li>
@@ -59,18 +59,18 @@ const Footer = () => {
             <li className="mt-2 text-sm">Customer Service</li>
           </ul>
         </div>
-        <div className="col-span-4">
+        <div className="col-span-12 md:col-span-4">
           <h5 className="font-semibold text-sm uppercase">NEWSLETTER</h5>
           <p className="mt-5 text-sm">
             Enter your email to receive daily news and get 20% off coupon for
             all items. NO spam, we promise
           </p>
-          <fieldset className="form-control w-80 mt-7">
+          <fieldset className="form-control mt-7">
             <div className="join">
               <input
                 type="text"
                 placeholder="Email address"
-                className="input input-bordered join-item"
+                className="input input-bordered join-item md:w-80"
               />
               <button className="btn btn-primary bg-[#1F1F1F] join-item uppercase text-sm">
                 Subscribe

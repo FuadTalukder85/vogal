@@ -6,13 +6,13 @@ import Image from "next/image";
 
 const TopCategory = () => {
   return (
-    <div className="max-w-[1300px] mx-auto">
-      <h5 className="text-2xl font-medium text-center mt-14">
+    <div className="max-w-[1300px] mx-auto p-5 md:p-0">
+      <h5 className="text-2xl font-medium text-center md:mt-14">
         Explore Top Categories
       </h5>
-      <div className="flex gap-3 mt-7">
+      <div className="grid grid-cols-12 gap-5 mt-7">
         {/* first category */}
-        <div>
+        <div className="col-span-12 md:col-span-4">
           <div className="overflow-hidden">
             <Image
               className="hover:scale-110 transition-all duration-500"
@@ -21,7 +21,7 @@ const TopCategory = () => {
               height={600}
             ></Image>
           </div>
-          <h5 className="text-2xl font-semibold text-center mt-5">
+          <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
             Spring Forward!
           </h5>
           <div className="flex justify-center">
@@ -31,7 +31,7 @@ const TopCategory = () => {
           </div>
         </div>
         {/* second category */}
-        <div>
+        <div className="col-span-6 md:col-span-4">
           <div className="overflow-hidden">
             <Image
               className="hover:scale-110 transition-all duration-500"
@@ -40,7 +40,7 @@ const TopCategory = () => {
               height={600}
             ></Image>
           </div>
-          <h5 className="text-2xl font-semibold text-center mt-5">
+          <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
             Bold Moves
           </h5>
           <div className="flex justify-center">
@@ -50,7 +50,7 @@ const TopCategory = () => {
           </div>
         </div>
         {/* third category */}
-        <div>
+        <div className="col-span-6 md:col-span-4">
           <div className="overflow-hidden">
             <Image
               className="hover:scale-110 transition-all duration-500"
@@ -59,7 +59,7 @@ const TopCategory = () => {
               height={600}
             ></Image>
           </div>
-          <h5 className="text-2xl font-semibold text-center mt-5">
+          <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
             Online Exclusive
           </h5>
           <div className="flex justify-center">

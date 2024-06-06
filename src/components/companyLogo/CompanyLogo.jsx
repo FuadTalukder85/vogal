@@ -10,50 +10,50 @@ import Image from "next/image";
 
 const CompanyLogo = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-16 flex gap-5">
-      <div>
+    <div className="max-w-[1300px] mx-auto mt-16 grid grid-cols-12 md:flex gap-5 p-5 md:p-0">
+      <div className="col-span-3">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo1}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-3">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo2}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-3">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo3}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-3">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo4}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-4">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo5}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-4">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo6}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div>
+      <div className="col-span-4">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo7}
