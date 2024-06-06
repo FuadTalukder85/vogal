@@ -18,7 +18,7 @@ const NewArrivals = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="max-w-[1300px] mx-auto mt-24">

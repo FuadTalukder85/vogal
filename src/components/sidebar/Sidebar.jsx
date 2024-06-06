@@ -9,9 +9,9 @@ const Sidebar = () => {
           Dashboard Home
         </button>
       </Link>
-      <Link href="/dashboard/all-products" className="">
+      <Link href="/dashboard/all-product" className="">
         <button className="bg-[#40B884] text-white mt-3 w-full px-10 text-lg py-1 rounded-xl text-left">
-          All Products
+          All Product
         </button>
       </Link>
     </div>

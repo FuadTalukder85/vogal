@@ -1,33 +1,48 @@
 "use client";
-import { useAddProductMutation } from "../../../../redux/features/productApi/ProductApi";
+import { toast } from "sonner";
+import {
+  useGetSingleProductQuery,
+  useUpdateProductMutation,
+} from "../../../redux/features/productApi/ProductApi";
 import { useForm } from "react-hook-form";
 
-const AddProducts = () => {
+const UpdatePoductModal = ({ onClose, productId }) => {
+  const { data: product } = useGetSingleProductQuery(productId ?? "");
+  const [productData, { isSuccess }] = useUpdateProductMutation(undefined);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const [addProduct] = useAddProductMutation();
   const onSubmit = async (data) => {
     try {
-      await addProduct(data);
-      console.log(data);
-      reset();
+      await productData({ id: productId || "", body: data });
+      if (isSuccess) {
+        toast.success("Product is updated");
+        onClose();
+      }
     } catch (error) {
-      console.error("Add product failed:", error);
+      console.error("Update product failed:", error);
     }
   };
+  console.log(product);
 
   return (
-    <div>
+    <div className="fixed top-0 left-0 backdrop-blur-[1px] w-full mx-auto">
       <div className="my-10">
-        <h1 className="text-center text-4xl mb-5">Add product</h1>
         <div className="">
-          <div className="card md:w-[50%] mx-auto bg-base-100">
+          <div className="card md:w-[50%] mx-auto bg-[#EAFFFC]">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <div className="flex justify-between">
+                <h1 className="text-center text-4xl mb-5">Update product</h1>
+                <button
+                  onClick={onClose}
+                  className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase "
+                >
+                  Close
+                </button>
+              </div>
               <div className="md:flex justify-between gap-5">
                 <div className="form-control  w-full">
                   <label className="label">
@@ -36,7 +51,7 @@ const AddProducts = () => {
                   <input
                     type="text"
                     {...register("title", { required: true })}
-                    placeholder="Title here"
+                    defaultValue={product?.title}
                     className="input input-bordered"
                   />
                   {errors.title && (
@@ -50,7 +65,7 @@ const AddProducts = () => {
                   <input
                     type="tag"
                     {...register("tag")}
-                    placeholder="Best selling/sale..."
+                    defaultValue={product?.tag}
                     className="input input-bordered"
                   />
                   {errors.tag && (
@@ -67,7 +82,7 @@ const AddProducts = () => {
                   <input
                     type="text"
                     {...register("firstImg", { required: true })}
-                    placeholder="First image here"
+                    defaultValue={product?.firstImg}
                     className="input input-bordered"
                   />
                   {errors.firstImg && (
@@ -81,12 +96,12 @@ const AddProducts = () => {
                     <span className="label-text">Second Image *</span>
                   </label>
                   <input
-                    type="secondImg"
-                    {...register("secondImg", { required: true })}
-                    placeholder="Second image here"
+                    type="secongImg"
+                    {...register("secongImg", { required: true })}
+                    defaultValue={product?.secondImg}
                     className="input input-bordered"
                   />
-                  {errors.secondImg && (
+                  {errors.secongImg && (
                     <small className="text-red-500 ">
                       Second image is required
                     </small>
@@ -103,7 +118,7 @@ const AddProducts = () => {
                     type="number"
                     min={1}
                     {...register("price", { required: true })}
-                    placeholder="price"
+                    defaultValue={product?.price}
                     className="input input-bordered"
                   />
                   {errors.price && (
@@ -120,7 +135,7 @@ const AddProducts = () => {
                     type="number"
                     min={1}
                     {...register("discount")}
-                    placeholder="discount"
+                    defaultValue={product?.discount}
                     className="input input-bordered"
                   />
                   {errors.discount && (
@@ -135,7 +150,7 @@ const AddProducts = () => {
                 </label>
                 <input
                   {...register("description", { required: true })}
-                  placeholder="description"
+                  defaultValue={product?.description}
                   className="input input-bordered"
                 />
                 {errors.description && (
@@ -145,7 +160,7 @@ const AddProducts = () => {
                 )}
               </div>
               <div className="form-control mt-6">
-                <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase ">
+                <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
                   Add Product
                 </button>
               </div>
@@ -157,4 +172,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default UpdatePoductModal;
