@@ -51,7 +51,7 @@ const NavBar = () => {
                 <Link href="/">Home</Link>
               </li>
               <li className="text-[#e22515]">
-                <Link href="/">Shop</Link>
+                <Link href="/shop">Shop</Link>
               </li>
               <li className="text-[#e22515]">
                 <Link href="/">Features</Link>
@@ -82,7 +82,7 @@ const NavBar = () => {
             </li>
             <li>
               {" "}
-              <Link href="/">Shop</Link>
+              <Link href="/shop">Shop</Link>
             </li>
             <li>
               <Link href="/">Features</Link>
