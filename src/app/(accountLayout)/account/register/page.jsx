@@ -1,3 +1,4 @@
+"use client";
 import RegisterForm from "../register/RegisterForm";
 
 const RegisterPage = () => {

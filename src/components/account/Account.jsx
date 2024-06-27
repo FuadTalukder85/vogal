@@ -3,11 +3,21 @@ import Link from "next/link";
 import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Account = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(useCurrentUser);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   const handleLogout = () => {
     dispatch(logout());

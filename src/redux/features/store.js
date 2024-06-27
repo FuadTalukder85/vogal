@@ -1,6 +1,8 @@
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../../redux/features/auth/authSlice";
 import productReducer from "../../redux/features/productApi/ProductSLice";
+import { persistStore } from "redux-persist";
 
 import { baseApi } from "../api/baseApi";
 import storage from "redux-persist/lib/storage";
@@ -32,3 +34,9 @@ export const store = configureStore({
       },
     }).concat(baseApi.middleware),
 });
+
+// Create the persistor
+export const persistor = persistStore(store);
+
+// Export the store as well
+export default store;
