@@ -12,6 +12,12 @@ const Account = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    if (!user) {
+      router.push("/account/login");
+    }
+  }, []);
+
+  useEffect(() => {
     setIsClient(true);
   }, []);
 
@@ -21,6 +27,7 @@ const Account = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    localStorage.removeItem("token");
     router.push("/");
   };
   return (
