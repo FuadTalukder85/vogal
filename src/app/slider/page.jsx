@@ -20,7 +20,7 @@ const images = [
 ];
 
 const MyGallery = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   const handleDecrement = () => {
     if (quantity > 1) {

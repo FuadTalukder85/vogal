@@ -1,7 +1,21 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+// import { useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
+import { useCurrentUser } from "../../../redux/features/auth/authSlice";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const DashboardPage = () => {
+  const router = useRouter();
+  const user = useAppSelector(useCurrentUser);
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/account/login");
+    }
+  }, []);
+
   return (
     <div className="p-10">
       <div>
