@@ -9,6 +9,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AboutUs from "../../app/about-us/page";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
@@ -60,18 +61,15 @@ const NavBar = () => {
                 <Link href="/">Deal zone</Link>
               </li>
               <li className="text-[#e22515]">
-                <Link href="/">Pages</Link>
+                <Link href="/about-us">About US</Link>
               </li>
               <li className="text-[#e22515]">
-                <Link href="/">Blog</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/">Buy now</Link>
+                <Link href="/contactUs">Contact US</Link>
               </li>
             </ul>
           </div>
 
-          <Link href="/">
+          <Link href="/" className="relative">
             <Image src={logo} alt="logo" height={32}></Image>
           </Link>
         </div>
@@ -87,17 +85,27 @@ const NavBar = () => {
             <li>
               <Link href="/">Features</Link>
             </li>
-            <li>
-              <Link href="/">Deal zone</Link>
+            <li className="group">
+              <details>
+                <summary>
+                  <Link href="/">
+                    <span>Deal zone</span>
+                  </Link>
+                </summary>
+                <ul className="bg-base-100 rounded-t-none p-2">
+                  <li>
+                    <div className="absolute hidden group-hover:block left-0">
+                      <AboutUs />
+                    </div>
+                  </li>
+                </ul>
+              </details>
             </li>
             <li>
-              <Link href="/">Pages</Link>
+              <Link href="/about-us">About US</Link>
             </li>
             <li>
-              <Link href="/">Blog</Link>
-            </li>
-            <li>
-              <Link href="/">Buy now</Link>
+              <Link href="/contactUs">Contact US</Link>
             </li>
           </ul>
         </div>

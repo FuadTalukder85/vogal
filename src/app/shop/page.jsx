@@ -4,8 +4,9 @@ import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi"
 import { useEffect, useState } from "react";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Image from "next/image";
-import "./shop.css";
 import Link from "next/link";
+import sellImg from "../../assets/images/sell.png";
+import "./shop.css";
 
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -51,6 +52,9 @@ const ShopPage = () => {
                 <li className="mt-3">Best Sellers</li>
                 <li className="mt-3">Accessories</li>
               </ul>
+              <div className="mt-16">
+                <Image src={sellImg} width={280} height={100}></Image>
+              </div>
             </div>
           </div>
           <div className="col-span-9">
