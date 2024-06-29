@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Image from "next/image";
 import "./shop.css";
+import Link from "next/link";
 
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -60,54 +61,56 @@ const ShopPage = () => {
                   key={index}
                   className="col-span-6 md:col-span-4 relative overflow-hidden"
                 >
-                  {product?.firstImg && (
-                    <Image
-                      src={product.firstImg}
-                      alt={product.title || "Product Image"}
-                      width={500}
-                      height={500}
-                    />
-                  )}
-
-                  <div className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition-all duration-700">
-                    {product?.secondImg && (
+                  <Link href={`/shop/${product._id}`}>
+                    {product?.firstImg && (
                       <Image
-                        src={product.secondImg}
+                        src={product.firstImg}
                         alt={product.title || "Product Image"}
                         width={500}
                         height={500}
                       />
                     )}
-                    <div className="flex justify-center">
-                      <ul className="flex gap-2 justify-center absolute bottom-3">
-                        <li className="bg-white text-lg font-semibold p-2 rounded-full">
-                          <CiHeart />
-                        </li>
-                        <li className="bg-white text-lg font-semibold p-2 rounded-full">
-                          <CiShoppingCart />
-                        </li>
-                        <li className="bg-white text-lg font-semibold p-2 rounded-full">
-                          <CiSearch />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
 
-                  <h5 className="text-md text-center mt-4">
-                    <p>{product?.title}</p>
-                    {product?.discount ? (
-                      <p className="mt-2 flex justify-center gap-2">
-                        <span className="line-through">
-                          ${product?.discount}
-                        </span>
-                        <span className="text-[#e22515]">
-                          ${product?.price}
-                        </span>
-                      </p>
-                    ) : (
-                      <p className="mt-2">${product?.price}</p>
-                    )}
-                  </h5>
+                    <div className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition-all duration-700">
+                      {product?.secondImg && (
+                        <Image
+                          src={product.secondImg}
+                          alt={product.title || "Product Image"}
+                          width={500}
+                          height={500}
+                        />
+                      )}
+                      <div className="flex justify-center">
+                        <ul className="flex gap-2 justify-center absolute bottom-3">
+                          <li className="bg-white text-lg font-semibold p-2 rounded-full">
+                            <CiHeart />
+                          </li>
+                          <li className="bg-white text-lg font-semibold p-2 rounded-full">
+                            <CiShoppingCart />
+                          </li>
+                          <li className="bg-white text-lg font-semibold p-2 rounded-full">
+                            <CiSearch />
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <h5 className="text-md text-center mt-4">
+                      <p>{product?.title}</p>
+                      {product?.discount ? (
+                        <p className="mt-2 flex justify-center gap-2">
+                          <span className="line-through">
+                            ${product?.discount}
+                          </span>
+                          <span className="text-[#e22515]">
+                            ${product?.price}
+                          </span>
+                        </p>
+                      ) : (
+                        <p className="mt-2">${product?.price}</p>
+                      )}
+                    </h5>
+                  </Link>
                 </div>
               ))}
             </div>
