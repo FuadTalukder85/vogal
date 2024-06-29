@@ -5,10 +5,11 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-[#F5F5F5] p-5 md:pt-16">
+    <div className="bg-[#F5F5F5] p-5 md:pt-28">
       <div className="max-w-[1300px] mx-auto grid grid-cols-12 gap-5 md:gap-20">
         <div className="col-span-12 md:col-span-4">
           <a className="btn btn-ghost text-xl">
@@ -45,7 +46,9 @@ const Footer = () => {
             <li className="mt-2 text-sm">My Account</li>
             <li className="mt-2 text-sm">My Cart</li>
             <li className="mt-2 text-sm">Orders and Returns</li>
-            <li className="mt-2 text-sm">Contact us</li>
+            <li className="mt-2 text-sm">
+              <Link href="/contactUs">Contact us</Link>
+            </li>
           </ul>
         </div>
         <div className="col-span-6 md:col-span-2">
