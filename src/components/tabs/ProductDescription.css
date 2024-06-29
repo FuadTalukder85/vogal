@@ -1,0 +1,6 @@
+.bullet-point {
+  background-color: #222222;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
