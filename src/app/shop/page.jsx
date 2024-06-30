@@ -52,8 +52,8 @@ const ShopPage = () => {
                 <li className="mt-3">Best Sellers</li>
                 <li className="mt-3">Accessories</li>
               </ul>
-              <div className="mt-16">
-                <Image src={sellImg} width={280} height={100}></Image>
+              <div className="mt-8">
+                <Image src={sellImg} width={260} height={100} alt="img"></Image>
               </div>
             </div>
           </div>

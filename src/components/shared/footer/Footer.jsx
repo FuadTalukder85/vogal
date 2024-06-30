@@ -54,7 +54,9 @@ const Footer = () => {
         <div className="col-span-6 md:col-span-2">
           <h5 className="font-semibold text-sm uppercase">Customer Service</h5>
           <ul className="mt-5">
-            <li className="mt-2 text-sm">Privacy Policy</li>
+            <li className="mt-2 text-sm">
+              <Link href="/privacyPolicy">Privacy Policy</Link>
+            </li>
             <li className="mt-2 text-sm">Terms & Conditions</li>
             <li className="mt-2 text-sm">Shipping & Returns</li>
             <li className="mt-2 text-sm">Helps & FAQs</li>
