@@ -14,7 +14,7 @@ const DashboardPage = () => {
     if (!user) {
       router.push("/account/login");
     }
-  }, []);
+  }, [router, user]);
 
   return (
     <div className="p-10">

@@ -15,7 +15,7 @@ const Account = () => {
     if (!user) {
       router.push("/account/login");
     }
-  }, []);
+  }, [router, user]);
 
   useEffect(() => {
     setIsClient(true);

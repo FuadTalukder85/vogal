@@ -63,7 +63,7 @@ const ProductDescription = () => {
       <ul className="text-sm mt-4">
         <li className="flex gap-3 items-center">
           <p className="bullet-point"></p>
-          <p>Model in Brown is 5’10" and wearing size Small</p>
+          <p>Model in Brown is 5,10 and wearing size Small</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
           <p className="bullet-point"></p>
@@ -71,11 +71,11 @@ const ProductDescription = () => {
         </li>
         <li className="flex gap-3 items-center mt-2">
           <p className="bullet-point"></p>
-          <p>Chest: 28"</p>
+          <p>Chest: 28</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
           <p className="bullet-point"></p>
-          <p>Length: 16"</p>
+          <p>Length: 16</p>
         </li>
       </ul>
       <h5 className="text-lg mt-8">Disclaimer</h5>

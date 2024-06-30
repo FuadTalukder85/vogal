@@ -30,7 +30,7 @@ const AboutUs = () => {
         </p>
         <p className="mt-3 text-sm">
           At Fashion Field, we assure you that your fashion journey will never
-          fade. We're not just a retailer; we're your partners in cultivating an
+          fade. We,re not just a retailer; we,re your partners in cultivating an
           enduring sense of style.
         </p>
         <h5 className="text-xl mt-10">Our Mission</h5>
@@ -55,7 +55,7 @@ const AboutUs = () => {
         </p>
         <p className="mt-3 text-sm">
           In summary, Fashion Field stands as a beacon of innovation and style
-          in Bangladesh's eCommerce arena. With our unwavering dedication to
+          in Bangladesh,s eCommerce arena. With our unwavering dedication to
           quality, we are not just shaping fashion; we are crafting an
           experience that resonates with style-conscious individuals worldwide.
         </p>
