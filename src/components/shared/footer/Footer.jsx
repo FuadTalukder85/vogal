@@ -60,7 +60,9 @@ const Footer = () => {
             <li className="mt-2 text-sm">Terms & Conditions</li>
             <li className="mt-2 text-sm">Shipping & Returns</li>
             <li className="mt-2 text-sm">Helps & FAQs</li>
-            <li className="mt-2 text-sm">Return Policy</li>
+            <li className="mt-2 text-sm">
+              <Link href="/refundPolicy">Refund Policy</Link>
+            </li>
             <li className="mt-2 text-sm">Customer Service</li>
           </ul>
         </div>
