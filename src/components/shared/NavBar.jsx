@@ -9,7 +9,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import AboutUs from "../../app/about-us/page";
+import DealZone from "../../components/dealZone/DealZone";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
@@ -85,21 +85,13 @@ const NavBar = () => {
             <li>
               <Link href="/">Features</Link>
             </li>
-            <li className="group">
-              <details>
-                <summary>
-                  <Link href="/">
-                    <span>Deal zone</span>
-                  </Link>
-                </summary>
-                <ul className="bg-base-100 rounded-t-none p-2">
-                  <li>
-                    <div className="absolute hidden group-hover:block left-0">
-                      <AboutUs />
-                    </div>
-                  </li>
-                </ul>
-              </details>
+            <li className="relative group z-50">
+              <Link href="/">
+                <span>Deal zone</span>
+                <div className="hidden absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
+                  <DealZone></DealZone>
+                </div>
+              </Link>
             </li>
             <li>
               <Link href="/about-us">About US</Link>
