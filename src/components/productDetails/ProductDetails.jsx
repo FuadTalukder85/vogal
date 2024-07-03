@@ -8,9 +8,12 @@ import "react-tabs/style/react-tabs.css";
 import ProductDescription from "../tabs/ProductDescription";
 import Shipping from "../tabs/Shipping";
 import { useAddCartsMutation } from "../../redux/features/cartsApi/CartsApi";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import "./ProductDetails.css";
 import { setCarts } from "../../redux/features/cartsApi/CartsSlice";
+import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const ProductDetails = ({ productDetails }) => {
   const images = [
@@ -27,35 +30,62 @@ const ProductDetails = ({ productDetails }) => {
       thumbnail: productDetails?.firstImg,
     },
   ];
-  const [quantity, setQuantity] = useState(0);
+  const router = useRouter();
+  const [quantity, setQuantity] = useState(1);
   const [currentImg, setCurrentImg] = useState(0);
   const [addCarts] = useAddCartsMutation();
   const dispatch = useAppDispatch();
+  const user = useAppSelector(useCurrentUser);
 
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
-
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
 
+  const totalPrice = quantity * productDetails.price;
+
   const handleCurrentImg = (index) => {
     setCurrentImg(index);
   };
-
   const handleAddTocarts = () => {
-    const { title, price } = productDetails;
-    const cartItem = {
-      title,
-      price,
-      quantity,
-      image: images[currentImg]?.original,
-    };
-    addCarts(cartItem);
-    dispatch(setCarts(cartItem));
+    if (user && user.email) {
+      const { title } = productDetails;
+      const cartItem = {
+        title,
+        totalPrice,
+        quantity,
+        image: images[currentImg]?.original,
+        email: user.email,
+      };
+      addCarts(cartItem);
+      dispatch(setCarts(cartItem));
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setQuantity(1);
+    } else {
+      Swal.fire({
+        title: "Please login",
+        text: "After login you can order the product",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/account/login");
+        }
+      });
+    }
   };
 
   return (
@@ -72,9 +102,7 @@ const ProductDetails = ({ productDetails }) => {
         <div className="col-span-6">
           <div>
             <h3 className="text-2xl font-medium">{productDetails.title}</h3>
-            <p className="text-2xl font-semibold mt-5">
-              ${productDetails.price}.00
-            </p>
+            <p className="text-2xl font-semibold mt-5">${totalPrice}.00</p>
             <p className="font-semibold mt-8">In stock - Ready to ship</p>
             <div className="mt-8">
               <button
