@@ -25,6 +25,8 @@ const ProductDetails = ({ productDetails }) => {
     },
   ];
   const [quantity, setQuantity] = useState(0);
+  const [currentImg, setCurrentImg] = useState(0);
+  console.log(currentImg);
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -35,7 +37,20 @@ const ProductDetails = ({ productDetails }) => {
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
-  console.log(productDetails);
+
+  const handleCurrentImg = (index) => {
+    setCurrentImg(index);
+  };
+
+  const { title, price } = productDetails;
+  const cartItem = {
+    title,
+    price,
+    quantity,
+    image: images[currentImg]?.original,
+  };
+  console.log(cartItem);
+
   return (
     <Container>
       <div className="grid grid-cols-12 mt-10 gap-10 items-center">
@@ -44,6 +59,7 @@ const ProductDetails = ({ productDetails }) => {
             items={images}
             showThumbnails={true}
             thumbnailPosition="left"
+            onSlide={handleCurrentImg}
           />
         </div>
         <div className="col-span-6">
@@ -60,7 +76,6 @@ const ProductDetails = ({ productDetails }) => {
               >
                 -
               </button>
-              {/* <span className="text-2xl border px-5 py-1">{quantity}</span> */}
               <input
                 type="text"
                 value={quantity}
