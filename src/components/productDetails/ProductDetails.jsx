@@ -8,7 +8,9 @@ import "react-tabs/style/react-tabs.css";
 import ProductDescription from "../tabs/ProductDescription";
 import Shipping from "../tabs/Shipping";
 import { useAddCartsMutation } from "../../redux/features/cartsApi/CartsApi";
+import { useAppDispatch } from "../../redux/hooks";
 import "./ProductDetails.css";
+import { setCarts } from "../../redux/features/cartsApi/CartsSlice";
 
 const ProductDetails = ({ productDetails }) => {
   const images = [
@@ -28,6 +30,7 @@ const ProductDetails = ({ productDetails }) => {
   const [quantity, setQuantity] = useState(0);
   const [currentImg, setCurrentImg] = useState(0);
   const [addCarts] = useAddCartsMutation();
+  const dispatch = useAppDispatch();
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -52,6 +55,7 @@ const ProductDetails = ({ productDetails }) => {
       image: images[currentImg]?.original,
     };
     addCarts(cartItem);
+    dispatch(setCarts(cartItem));
   };
 
   return (
