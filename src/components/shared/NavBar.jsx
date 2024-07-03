@@ -10,6 +10,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import DealZone from "../../components/dealZone/DealZone";
+import CartsSidebar from "../sidebar/CartsSidebar";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
@@ -112,9 +113,37 @@ const NavBar = () => {
             <li className="text-xl">
               <CiHeart />
             </li>
-            <li className="text-xl">
-              <CiShoppingCart />
-            </li>
+            {/* Drawer  */}
+            <div className="drawer drawer-end">
+              <input
+                id="my-drawer-4"
+                type="checkbox"
+                className="drawer-toggle"
+              />
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer-4" className="drawer-button">
+                  <li className="text-xl cursor-pointer">
+                    <div className="indicator">
+                      <CiShoppingCart className="me-[8px]"></CiShoppingCart>
+                      <span className="badge badge-sm indicator-item rounded-full text-white font-semibold bg-black p-1">
+                        855
+                      </span>
+                    </div>
+                  </li>
+                </label>
+              </div>
+              <div className="drawer-side z-50">
+                <label
+                  htmlFor="my-drawer-4"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+                ></label>
+                <div className="menu bg-white text-base-content min-h-full w-[480px] p-4">
+                  <CartsSidebar></CartsSidebar>
+                </div>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
