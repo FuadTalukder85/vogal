@@ -7,6 +7,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductDescription from "../tabs/ProductDescription";
 import Shipping from "../tabs/Shipping";
+import { useAddCartsMutation } from "../../redux/features/cartsApi/CartsApi";
 import "./ProductDetails.css";
 
 const ProductDetails = ({ productDetails }) => {
@@ -26,7 +27,7 @@ const ProductDetails = ({ productDetails }) => {
   ];
   const [quantity, setQuantity] = useState(0);
   const [currentImg, setCurrentImg] = useState(0);
-  console.log(currentImg);
+  const [addCarts] = useAddCartsMutation();
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -42,14 +43,16 @@ const ProductDetails = ({ productDetails }) => {
     setCurrentImg(index);
   };
 
-  const { title, price } = productDetails;
-  const cartItem = {
-    title,
-    price,
-    quantity,
-    image: images[currentImg]?.original,
+  const handleAddTocarts = () => {
+    const { title, price } = productDetails;
+    const cartItem = {
+      title,
+      price,
+      quantity,
+      image: images[currentImg]?.original,
+    };
+    addCarts(cartItem);
   };
-  console.log(cartItem);
 
   return (
     <Container>
@@ -88,7 +91,10 @@ const ProductDetails = ({ productDetails }) => {
                 +
               </button>
             </div>
-            <button className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase ">
+            <button
+              onClick={handleAddTocarts}
+              className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase "
+            >
               Add Product
             </button>
           </div>
