@@ -12,7 +12,7 @@ const useCarts = () => {
       if (user && user.email) {
         try {
           const res = await fetch(
-            `http://localhost:5000/carts?email=${user.email}`
+            `http://localhost:5000/carts?email=${user?.email}`
           );
           if (!res.ok) {
             throw new Error("Failed to fetch order carts");
@@ -23,6 +23,8 @@ const useCarts = () => {
           setError(error.message);
           console.error("Error fetching order carts:", error);
         }
+      } else {
+        setCarts([]);
       }
     };
 

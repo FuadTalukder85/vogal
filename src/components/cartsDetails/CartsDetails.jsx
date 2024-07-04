@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const CartsDetails = ({ orderCarts }) => {
+const CartsDetails = ({ carts }) => {
   const [quantity, setQuantity] = useState(1);
-  console.log(orderCarts);
+  // console.log(carts);
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -17,19 +17,19 @@ const CartsDetails = ({ orderCarts }) => {
   return (
     <div>
       <div className="">
-        {orderCarts?.map((carts) => (
+        {carts?.map((cart) => (
           <div
-            key={carts._id}
+            key={cart._id}
             className="grid grid-cols-12 items-center mt-4 bg-base-200 p-3"
           >
             <div className="col-span-4">
-              <Image src={carts.image} alt="img" height={80} width={80}></Image>
+              <Image src={cart.image} alt="img" height={80} width={80}></Image>
             </div>
             <div className="col-span-8">
               <div>
-                <h3 className="text-md font-medium">{carts.title}</h3>
+                <h3 className="text-md font-medium">{cart.title}</h3>
                 <p className="text-md font-semibold mt-3">
-                  ${carts.totalPrice}.00
+                  ${cart.totalPrice}.00
                 </p>
                 <div className="mt-4">
                   <button

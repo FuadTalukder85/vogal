@@ -4,7 +4,7 @@ import logo from "../../assets/images/vogal.png";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { CiHeart } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
   const { carts, error } = useCarts();
+  // console.log(carts);
 
   const handleOnclick = () => {
     if (user) {
@@ -127,7 +128,7 @@ const NavBar = () => {
                 <label htmlFor="my-drawer-4" className="drawer-button">
                   <li className="text-xl cursor-pointer">
                     <div className="indicator">
-                      <CiShoppingCart className="me-[8px]"></CiShoppingCart>
+                      <AiOutlineShoppingCart className="me-[8px]"></AiOutlineShoppingCart>
                       <span className="badge badge-sm indicator-item rounded-full text-white font-semibold bg-black p-1">
                         {carts?.length || 0}
                       </span>
