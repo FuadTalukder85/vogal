@@ -11,10 +11,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import DealZone from "../../components/dealZone/DealZone";
 import CartsSidebar from "../sidebar/CartsSidebar";
+import useCarts from "../hooks/useCarts";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
+  const { carts, error } = useCarts();
 
   const handleOnclick = () => {
     if (user) {
@@ -127,7 +129,7 @@ const NavBar = () => {
                     <div className="indicator">
                       <CiShoppingCart className="me-[8px]"></CiShoppingCart>
                       <span className="badge badge-sm indicator-item rounded-full text-white font-semibold bg-black p-1">
-                        855
+                        {carts?.length || 0}
                       </span>
                     </div>
                   </li>

@@ -18,7 +18,10 @@ const CartsDetails = ({ orderCarts }) => {
     <div>
       <div className="">
         {orderCarts?.map((carts) => (
-          <div className="grid grid-cols-12 items-center mt-4 bg-base-200 p-3">
+          <div
+            key={carts._id}
+            className="grid grid-cols-12 items-center mt-4 bg-base-200 p-3"
+          >
             <div className="col-span-4">
               <Image src={carts.image} alt="img" height={80} width={80}></Image>
             </div>
