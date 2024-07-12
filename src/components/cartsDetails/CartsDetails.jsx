@@ -1,19 +1,34 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CartsDetails = ({ carts }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantities, setQuantities] = useState({});
 
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+  useEffect(() => {
+    const initialQuantities = {};
+    carts.forEach((cart) => {
+      initialQuantities[cart._id] = cart.quantity || 1;
+    });
+    setQuantities(initialQuantities);
+  }, [carts]);
+
+  const handleDecrement = (id) => {
+    if (quantities[id] > 1) {
+      setQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [id]: prevQuantities[id] - 1,
+      }));
     }
   };
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
+
+  const handleIncrement = (id) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [id]: prevQuantities[id] + 1,
+    }));
   };
-  // console.log(carts);
+
   return (
     <div>
       <div className="">
@@ -23,7 +38,7 @@ const CartsDetails = ({ carts }) => {
             className="grid grid-cols-12 items-center mt-4 bg-base-200 p-3"
           >
             <div className="col-span-4">
-              <Image src={cart.image} alt="img" height={80} width={80}></Image>
+              <Image src={cart.image} alt="img" height={80} width={80} />
             </div>
             <div className="col-span-8">
               <div>
@@ -33,18 +48,19 @@ const CartsDetails = ({ carts }) => {
                 </p>
                 <div className="mt-4">
                   <button
-                    onClick={handleDecrement}
+                    onClick={() => handleDecrement(cart._id)}
                     className="text-md border px-5"
                   >
                     -
                   </button>
                   <input
                     type="text"
-                    value={cart.quantity}
+                    value={quantities[cart._id]}
                     className="border w-8 text-md text-center mx-auto"
+                    readOnly
                   />
                   <button
-                    onClick={handleIncrement}
+                    onClick={() => handleIncrement(cart._id)}
                     className="text-md border px-5"
                   >
                     +
@@ -56,7 +72,7 @@ const CartsDetails = ({ carts }) => {
         ))}
 
         <button
-          // onClick={handleAddTocarts}
+          // onClick={handleAddToCarts}
           className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase "
         >
           Proceed to checkout

@@ -55,12 +55,11 @@ const ShopPage = () => {
       selectedCategories.accessories
     ) {
       return (
-        (selectedCategories.men && product.category?.includes("men")) ||
-        (selectedCategories.women && product.category?.includes("women")) ||
+        (selectedCategories.men && product?.category === "men") ||
+        (selectedCategories.women && product?.category === "women") ||
         (selectedCategories["bestSeller"] &&
-          product.category?.includes("bestSeller")) ||
-        (selectedCategories.accessories &&
-          product.category?.includes("accessories"))
+          product?.category === "bestSeller") ||
+        (selectedCategories.accessories && product?.category === "accessories")
       );
     }
     return true;
@@ -115,6 +114,10 @@ const ShopPage = () => {
                     onChange={() => handleCategoryChange("accessories")}
                   />{" "}
                   Accessories
+                </li>
+                <li className="flex items-center gap-3 mt-2">
+                  <input type="checkbox" className="checkbox checkbox-sm" />{" "}
+                  Weekly Deal
                 </li>
               </ul>
               <div className="mt-8">
