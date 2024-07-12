@@ -11,6 +11,13 @@ import "./shop.css";
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   const [isFixed, setIsFixed] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState({
+    men: false,
+    women: false,
+    bestSeller: false,
+    accessories: false,
+  });
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       refetch();
@@ -33,6 +40,32 @@ const ShopPage = () => {
     };
   }, []);
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
+
+  const filteredProducts = data?.filter((product) => {
+    if (
+      selectedCategories.men ||
+      selectedCategories.women ||
+      selectedCategories["bestSeller"] ||
+      selectedCategories.accessories
+    ) {
+      return (
+        (selectedCategories.men && product.category?.includes("men")) ||
+        (selectedCategories.women && product.category?.includes("women")) ||
+        (selectedCategories["bestSeller"] &&
+          product.category?.includes("bestSeller")) ||
+        (selectedCategories.accessories &&
+          product.category?.includes("accessories"))
+      );
+    }
+    return true;
+  });
+
   if (isLoading) {
     return <p className="text-center">Loading...</p>;
   }
@@ -47,10 +80,42 @@ const ShopPage = () => {
             <div className={isFixed ? "fixed top-0 category" : "category"}>
               <h5 className="uppercase font-medium mt-10">Category</h5>
               <ul className="text-sm mt-6">
-                <li className="">Men</li>
-                <li className="mt-3">Women</li>
-                <li className="mt-3">Best Sellers</li>
-                <li className="mt-3">Accessories</li>
+                <li className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={selectedCategories.men}
+                    onChange={() => handleCategoryChange("men")}
+                  />{" "}
+                  Men
+                </li>
+                <li className="flex items-center gap-3 mt-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={selectedCategories.women}
+                    onChange={() => handleCategoryChange("women")}
+                  />{" "}
+                  Women
+                </li>
+                <li className="flex items-center gap-3 mt-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={selectedCategories["best-sellers"]}
+                    onChange={() => handleCategoryChange("best-sellers")}
+                  />{" "}
+                  Best Sellers
+                </li>
+                <li className="flex items-center gap-3 mt-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={selectedCategories.accessories}
+                    onChange={() => handleCategoryChange("accessories")}
+                  />{" "}
+                  Accessories
+                </li>
               </ul>
               <div className="mt-8">
                 <Image src={sellImg} width={260} height={100} alt="img"></Image>
@@ -60,7 +125,7 @@ const ShopPage = () => {
           <div className="col-span-9">
             <div className="grid grid-cols-12 gap-5 mt-10">
               {/* card */}
-              {data?.map((product, index) => (
+              {filteredProducts?.map((product, index) => (
                 <div
                   key={index}
                   className="col-span-6 md:col-span-4 relative overflow-hidden"
