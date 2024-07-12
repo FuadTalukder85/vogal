@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const CartsDetails = ({ carts }) => {
   const [quantity, setQuantity] = useState(1);
-  // console.log(carts);
 
   const handleDecrement = () => {
     if (quantity > 1) {
@@ -14,6 +13,7 @@ const CartsDetails = ({ carts }) => {
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
+  // console.log(carts);
   return (
     <div>
       <div className="">
@@ -40,7 +40,7 @@ const CartsDetails = ({ carts }) => {
                   </button>
                   <input
                     type="text"
-                    value={quantity}
+                    value={cart.quantity}
                     className="border w-8 text-md text-center mx-auto"
                   />
                   <button
