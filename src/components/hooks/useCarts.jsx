@@ -34,7 +34,7 @@ const useCarts = () => {
     return () => clearInterval(intervalId);
   }, [user]);
 
-  return { carts, error };
+  return [carts, error];
 };
 
 export default useCarts;

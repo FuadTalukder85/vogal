@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const CartsDetails = ({ carts }) => {
@@ -71,12 +72,11 @@ const CartsDetails = ({ carts }) => {
           </div>
         ))}
 
-        <button
-          // onClick={handleAddToCarts}
-          className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase "
-        >
-          Proceed to checkout
-        </button>
+        <Link href="/payment">
+          <button className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase ">
+            Proceed to checkout
+          </button>
+        </Link>
       </div>
     </div>
   );

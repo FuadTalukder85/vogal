@@ -16,7 +16,7 @@ import useCarts from "../hooks/useCarts";
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
-  const { carts, error } = useCarts();
+  const [carts, error] = useCarts();
   // console.log(carts);
 
   const handleOnclick = () => {
