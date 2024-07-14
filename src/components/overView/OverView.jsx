@@ -1,9 +1,21 @@
+"use client";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { FcPaid } from "react-icons/fc";
 import { FaCheck } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useGetPaymentsQuery } from "../../redux/features/paymentApi/PaymentApi";
+import { useGetCartsQuery } from "../../redux/features/cartsApi/CartsApi";
 
 const OverView = () => {
+  const { data } = useGetPaymentsQuery();
+  const { data: orderOnCarts } = useGetCartsQuery();
+  const totalPayment = data?.reduce((sum, item) => sum + item.price, 0);
+  const totalOrder = data?.reduce((sum, item) => sum + item.quantity, 0);
+  const orderOnCart = orderOnCarts?.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+  console.log(orderOnCart);
   return (
     <div className="grid grid-cols-5 gap-5">
       <div className="col-span-1 bg-base-300 p-5">
@@ -42,7 +54,7 @@ const OverView = () => {
           <div>
             <p>Orders Paid</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              $15,00.00
+              ${totalPayment}.00
             </p>
           </div>
         </div>
@@ -56,7 +68,7 @@ const OverView = () => {
           <div>
             <p>Total Orders</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              120.00
+              {totalOrder}
             </p>
           </div>
         </div>
@@ -70,7 +82,7 @@ const OverView = () => {
           <div>
             <p>Orders on Cart</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              120.00
+              {orderOnCart}
             </p>
           </div>
         </div>

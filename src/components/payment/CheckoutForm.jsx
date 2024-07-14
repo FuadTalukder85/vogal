@@ -16,6 +16,7 @@ const CheckoutForm = ({ carts, price }) => {
   const [transactionId, setTransactionId] = useState("");
 
   const [addPayments] = useAddPaymentsMutation();
+  console.log(carts);
 
   useEffect(() => {
     console.log(price);
@@ -73,6 +74,9 @@ const CheckoutForm = ({ carts, price }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
+        // image,
+        // firstImg: carts.map((item) => item.firstImg),
+        // secondImg: carts.map((item) => item.secondImg),
         quantity: carts.length,
         cartsId: carts.map((item) => item._id),
         items: carts.map((item) => item.title),

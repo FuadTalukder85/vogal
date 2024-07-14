@@ -8,7 +8,13 @@ const CartsApi = baseApi.injectEndpoints({
         body: addCarts,
       }),
     }),
+    getCarts: builder.query({
+      query: () => ({
+        url: "/carts",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useAddCartsMutation } = CartsApi;
+export const { useAddCartsMutation, useGetCartsQuery } = CartsApi;
