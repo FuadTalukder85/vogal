@@ -10,6 +10,10 @@ const stripePromise = loadStripe(
 );
 
 const Payment = () => {
+  // const stripePromise = loadStripe(
+  //   "pk_test_51NFcc9HiKihjMle8zJVuk4BL9UAeYsK1ITglwbaqFFAQGicflQHHTl27Ryyy8pFAPg2ix4NyIMNhOB4lCz0NrZq5005iFgUWZ1"
+  // );
+
   const [carts, error] = useCarts(); // Destructure to get carts and error
   //   console.log(carts);
 
