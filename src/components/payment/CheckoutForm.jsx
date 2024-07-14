@@ -4,8 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { useAddPaymentsMutation } from "../../redux/features/paymentApi/PaymentApi";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ carts, price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const user = useAppSelector(useCurrentUser);
@@ -13,7 +14,8 @@ const CheckoutForm = ({ price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-  // console.log(user);
+
+  const [addPayments] = useAddPaymentsMutation();
 
   useEffect(() => {
     console.log(price);
@@ -62,10 +64,21 @@ const CheckoutForm = ({ price }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log("payment Intent", paymentIntent);
+    // console.log("payment Intent", paymentIntent);
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+      // Save payment info to the server
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        quantity: carts.length,
+        cartsId: carts.map((item) => item._id),
+        items: carts.map((item) => item.title),
+      };
+
+      addPayments(payment);
     }
   };
 

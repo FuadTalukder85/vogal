@@ -29,7 +29,7 @@ const Payment = () => {
       {error && <div className="error">Error: {error}</div>}
       <div>Total: {total}</div> {/* Display the total price */}
       <Elements stripe={stripePromise}>
-        <CheckoutForm price={total} />
+        <CheckoutForm carts={carts} price={total} />
       </Elements>
     </Container>
   );
