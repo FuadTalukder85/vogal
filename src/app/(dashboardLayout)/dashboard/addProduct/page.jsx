@@ -30,7 +30,7 @@ const AddProducts = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/*  */}
               <div className="md:flex justify-between gap-5">
-                <div className="form-control  w-full">
+                <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">
                       Title <span className="text-red-500 text-lg">*</span>
