@@ -38,7 +38,7 @@ const UpdatePoductModal = ({ onClose, productId }) => {
   };
 
   return (
-    <div className="fixed top-0 md:top-36 left-0 backdrop-blur-[1px] w-full mx-auto">
+    <div className="fixed top-0 md:top-2 left-0 backdrop-blur-[1px] w-full mx-auto">
       <div className="md:my-10">
         <div className="">
           <div className="card md:w-[50%] mx-auto bg-[#EAFFFC]">
@@ -52,16 +52,20 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                   Close
                 </button>
               </div>
+              {/*  */}
               <div className="md:flex justify-between gap-5">
-                <div className="form-control  w-full">
+                <div className="form-control w-full">
                   <label className="label">
-                    <span className="label-text">Title *</span>
+                    <span className="label-text">
+                      Title <span className="text-red-500 text-lg">*</span>
+                    </span>
                   </label>
                   <input
                     type="text"
                     {...register("title", { required: true })}
-                    defaultValue={product?.title}
+                    placeholder="Title here"
                     className="input input-bordered"
+                    defaultValue={product?.title}
                   />
                   {errors.title && (
                     <small className="text-red-500 ">Title is required</small>
@@ -69,30 +73,144 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                 </div>
                 <div className="form-control w-full">
                   <label className="label">
-                    <span className="label-text">Tag *</span>
+                    <span className="label-text">Tag</span>
                   </label>
                   <input
                     type="tag"
                     {...register("tag")}
-                    defaultValue={product?.tag}
+                    placeholder="Best selling/sale..."
                     className="input input-bordered"
+                    defaultValue={product?.tag}
                   />
-                  {errors.tag && (
+                  {/* {errors.tag && (
                     <small className="text-red-500 ">Tag is required</small>
-                  )}
+                  )} */}
                 </div>
               </div>
               {/* Image */}
               <div className="md:flex justify-between gap-5">
                 <div className="form-control  w-full">
                   <label className="label">
-                    <span className="label-text">First Image *</span>
+                    <span className="label-text">
+                      Category <span className="text-red-500 text-lg">*</span>
+                    </span>
+                  </label>
+                  <select
+                    {...register("category", { required: true })}
+                    className="select select-bordered w-full"
+                    defaultValue={product?.category}
+                  >
+                    <option value="" disabled>
+                      Select Category
+                    </option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="bestSeller">Best Sellers</option>
+                    <option value="accessories">Accessories</option>
+                  </select>
+                  {errors.category && (
+                    <small className="text-red-500 ">
+                      Category is required
+                    </small>
+                  )}
+                </div>
+                <div className="form-control  w-full">
+                  <label className="label">
+                    <span className="label-text">
+                      Stock Product{" "}
+                      <span className="text-red-500 text-lg">*</span>
+                    </span>
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    {...register("stockProduct", { required: true })}
+                    placeholder="Stock Product"
+                    className="input input-bordered"
+                    defaultValue={product?.stockProduct}
+                  />
+                  {errors.stockProduct && (
+                    <small className="text-red-500 ">
+                      Stock product is required
+                    </small>
+                  )}
+                </div>
+              </div>
+              {/*  */}
+              <div className="md:flex justify-between gap-5">
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">
+                      Original Price{" "}
+                      <span className="text-red-500 text-lg">*</span>
+                    </span>
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    {...register("originalPrice", { required: true })}
+                    placeholder="Original Price"
+                    className="input input-bordered"
+                    defaultValue={product?.originalPrice}
+                  />
+                  {errors.originalPrice && (
+                    <small className="text-red-500 ">
+                      Original price is required
+                    </small>
+                  )}
+                </div>
+                <div className="form-control  w-full">
+                  <label className="label">
+                    <span className="label-text">
+                      Price <span className="text-red-500 text-lg">*</span>
+                    </span>
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    {...register("price", { required: true })}
+                    placeholder="price"
+                    className="input input-bordered"
+                    defaultValue={product?.price}
+                  />
+                  {errors.price && (
+                    <small className="text-red-500 ">Price is required</small>
+                  )}
+                </div>
+              </div>
+              {/*  */}
+              <div className="md:flex justify-between gap-5">
+                <div className="form-control w-full">
+                  <label className="label">
+                    <span className="label-text">Discount price</span>
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    {...register("discount")}
+                    placeholder="Discount Price"
+                    className="input input-bordered"
+                    defaultValue={product?.discount}
+                  />
+                  {/* {errors.discount && (
+                    <small className="text-red-500 ">
+                      Discount Price is required
+                    </small>
+                  )} */}
+                </div>
+                <div className="form-control  w-full">
+                  <label className="label">
+                    <span className="label-text">
+                      First Image{" "}
+                      <span className="text-red-500 text-lg">*</span>
+                    </span>
                   </label>
                   <input
                     type="text"
                     {...register("firstImg", { required: true })}
-                    defaultValue={product?.firstImg}
+                    placeholder="First image here"
                     className="input input-bordered"
+                    defaultValue={product?.firstImg}
                   />
                   {errors.firstImg && (
                     <small className="text-red-500 ">
@@ -100,15 +218,22 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                     </small>
                   )}
                 </div>
+              </div>
+              {/*  */}
+              <div className="md:flex justify-between gap-5">
                 <div className="form-control w-full">
                   <label className="label">
-                    <span className="label-text">Second Image *</span>
+                    <span className="label-text">
+                      Second Image{" "}
+                      <span className="text-red-500 text-lg">*</span>
+                    </span>
                   </label>
                   <input
                     type="secondImg"
                     {...register("secondImg", { required: true })}
-                    defaultValue={product?.secondImg}
+                    placeholder="Second image here"
                     className="input input-bordered"
+                    defaultValue={product?.secondImg}
                   />
                   {errors.secondImg && (
                     <small className="text-red-500 ">
@@ -116,51 +241,39 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                     </small>
                   )}
                 </div>
-              </div>
-
-              <div className="md:flex justify-between gap-5">
                 <div className="form-control  w-full">
                   <label className="label">
-                    <span className="label-text">Price *</span>
+                    <span className="label-text">
+                      Third Image{" "}
+                      <span className="text-red-500 text-lg">*</span>
+                    </span>
                   </label>
                   <input
-                    type="number"
-                    min={1}
-                    {...register("price", { required: true })}
-                    defaultValue={product?.price}
+                    type="text"
+                    {...register("thirdImg", { required: true })}
+                    placeholder="Third image here"
                     className="input input-bordered"
+                    defaultValue={product?.thirdImg}
                   />
-                  {errors.price && (
+                  {errors.thirdImg && (
                     <small className="text-red-500 ">
-                      Discount price is required
+                      Third image is required
                     </small>
                   )}
                 </div>
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">Discount price *</span>
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    {...register("discount")}
-                    defaultValue={product?.discount}
-                    className="input input-bordered"
-                  />
-                  {errors.discount && (
-                    <small className="text-red-500 ">Price is required</small>
-                  )}
-                </div>
               </div>
-
+              {/*  */}
               <div className="form-control ">
                 <label className="label">
-                  <span className="label-text">Description *</span>
+                  <span className="label-text">
+                    Description <span className="text-red-500 text-lg">*</span>
+                  </span>
                 </label>
                 <input
                   {...register("description", { required: true })}
-                  defaultValue={product?.description}
+                  placeholder="description"
                   className="input input-bordered"
+                  defaultValue={product?.description}
                 />
                 {errors.description && (
                   <small className="text-red-500 ">

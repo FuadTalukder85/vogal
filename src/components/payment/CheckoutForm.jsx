@@ -16,15 +16,24 @@ const CheckoutForm = ({ carts, price }) => {
   const [transactionId, setTransactionId] = useState("");
 
   const [addPayments] = useAddPaymentsMutation();
-  console.log(carts);
+  // console.log(carts);
 
   useEffect(() => {
     console.log(price);
-    axios
-      .post("http://localhost:5000/create-payment-intent", { price })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ price }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.clientSecret);
+        setClientSecret(data.clientSecret);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   }, [price]);
 
