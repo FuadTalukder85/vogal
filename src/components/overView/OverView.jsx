@@ -15,11 +15,11 @@ const OverView = () => {
     (sum, item) => sum + item.quantity,
     0
   );
-  console.log(orderOnCart);
+  // console.log(orderOnCart);
   return (
-    <div className="grid grid-cols-5 gap-5">
-      <div className="col-span-1 bg-base-300 p-5">
-        <div className="flex gap-10 items-center">
+    <div className="grid grid-cols-12 md:grid-cols-5 gap-2 md:gap-5">
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#22C55E] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             <IoBagHandleOutline />
           </p>
@@ -32,8 +32,8 @@ const OverView = () => {
         </div>
       </div>
       {/*  */}
-      <div className="col-span-1 bg-base-300 p-5">
-        <div className="flex gap-10 items-center">
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#FF5200] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             $
           </p>
@@ -46,8 +46,8 @@ const OverView = () => {
         </div>
       </div>
       {/*  */}
-      <div className="col-span-1 bg-base-300 p-5">
-        <div className="flex gap-10 items-center">
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#CBD5E1] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             <FcPaid />
           </p>
@@ -60,8 +60,8 @@ const OverView = () => {
         </div>
       </div>
       {/*  */}
-      <div className="col-span-1 bg-base-300 p-5">
-        <div className="flex gap-10 items-center">
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#eccb45] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             <FaCheck />
           </p>
@@ -74,13 +74,13 @@ const OverView = () => {
         </div>
       </div>
       {/*  */}
-      <div className="col-span-1 bg-base-300 p-5">
-        <div className="flex gap-10 items-center">
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#FD7E15] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             <AiOutlineShoppingCart />
           </p>
           <div>
-            <p>Orders on Cart</p>
+            <p>Order on Cart</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
               {orderOnCart}
             </p>

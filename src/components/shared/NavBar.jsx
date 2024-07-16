@@ -105,7 +105,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end pe-5">
           <ul className="flex gap-4">
             <li className="text-xl">
               <CiSearch />

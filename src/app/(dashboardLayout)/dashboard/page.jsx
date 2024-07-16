@@ -19,16 +19,16 @@ const DashboardPage = () => {
   }, [router, user]);
 
   return (
-    <div className="p-10">
+    <div className="p-5 md:p-10">
       <OverView></OverView>
       <Link href="dashboard/addProduct">
         <button>Add product</button>
       </Link>
-      <div className="grid grid-cols-12 mt-16 gap-10">
-        <div className="col-span-6">
+      <div className="grid grid-cols-12 mt-16 md:gap-10">
+        <div className="col-span-12 md:col-span-6">
           <ActivityOverview></ActivityOverview>
         </div>
-        <div className="col-span-6">
+        <div className="col-span-12 md:col-span-6">
           <Orders></Orders>
         </div>
       </div>
