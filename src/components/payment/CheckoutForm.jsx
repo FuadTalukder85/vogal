@@ -1,6 +1,5 @@
 "use client";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";

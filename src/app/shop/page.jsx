@@ -51,14 +51,13 @@ const ShopPage = () => {
     if (
       selectedCategories.men ||
       selectedCategories.women ||
-      selectedCategories["bestSeller"] ||
+      selectedCategories.bestSeller ||
       selectedCategories.accessories
     ) {
       return (
         (selectedCategories.men && product?.category === "men") ||
         (selectedCategories.women && product?.category === "women") ||
-        (selectedCategories["bestSeller"] &&
-          product?.category === "bestSeller") ||
+        (selectedCategories.bestSeller && product?.category === "bestSeller") ||
         (selectedCategories.accessories && product?.category === "accessories")
       );
     }
@@ -101,8 +100,8 @@ const ShopPage = () => {
                   <input
                     type="checkbox"
                     className="checkbox checkbox-sm"
-                    checked={selectedCategories["best-sellers"]}
-                    onChange={() => handleCategoryChange("best-sellers")}
+                    checked={selectedCategories.bestSeller}
+                    onChange={() => handleCategoryChange("bestSeller")}
                   />{" "}
                   Best Sellers
                 </li>
@@ -115,10 +114,10 @@ const ShopPage = () => {
                   />{" "}
                   Accessories
                 </li>
-                <li className="flex items-center gap-3 mt-2">
+                {/* <li className="flex items-center gap-3 mt-2">
                   <input type="checkbox" className="checkbox checkbox-sm" />{" "}
                   Weekly Deal
-                </li>
+                </li> */}
               </ul>
               <div className="mt-8">
                 <Image src={sellImg} width={260} height={100} alt="img"></Image>
