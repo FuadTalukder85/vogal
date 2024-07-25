@@ -20,6 +20,8 @@ const Payment = () => {
   // Ensure carts is an array and calculate the total price
   const total = carts.reduce((sum, item) => sum + item.totalPrice, 0);
   const price = parseFloat(total.toFixed(2));
+  const quantity = carts.reduce((sum, quantity) => sum + quantity.quantity, 0);
+  // console.log(quantity);
 
   //   console.log(price);
 
@@ -29,7 +31,7 @@ const Payment = () => {
       {error && <div className="error">Error: {error}</div>}
       <div>Total: {total}</div> {/* Display the total price */}
       <Elements stripe={stripePromise}>
-        <CheckoutForm carts={carts} price={total} />
+        <CheckoutForm carts={carts} price={price} quantity={quantity} />
       </Elements>
     </Container>
   );

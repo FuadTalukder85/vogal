@@ -77,13 +77,16 @@ const AllProduct = () => {
               </th>
 
               <th className="md:hidden text-[#333333]">Title</th>
-              <th className="hidden md:table-cell md:text-lg text-[#333333]">
+              <th className="hidden w-56 md:table-cell md:text-lg text-[#333333]">
                 Product Title
               </th>
-              <th className="hidden md:table-cell md:text-lg text-[#333333]">
-                Product ID
+              <th className="hidden md:table-cell md:text-lg text-[#333333] text-center">
+                Original Price
               </th>
-              <th className="md:text-lg text-[#333333]">Price</th>
+              <th className="md:text-lg text-[#333333] text-center">Price</th>
+              <th className="md:text-lg text-[#333333] text-center">
+                Discount
+              </th>
               <th className="md:text-lg text-[#333333] text-center">Update</th>
               <th className="md:text-lg text-[#333333] text-center">Delete</th>
             </tr>
@@ -123,15 +126,14 @@ const AllProduct = () => {
                     </div>
                   </div>
                 </td>
-                <td>
-                  <div>
-                    <div className="md:font-bold">{product?.title}</div>
-                  </div>
+                <td className="md:font-bold">{product?.title}</td>
+                <td className="hidden md:table-cell md:font-bold text-center">
+                  ${product.originalPrice}
                 </td>
-                <td className="hidden md:table-cell md:font-bold">
-                  {product._id}
+                <td className="md:font-bold text-center">${product.price}</td>
+                <td className="hidden md:table-cell md:font-bold text-center">
+                  ${product.discount}
                 </td>
-                <td className="md:font-bold">${product.price}</td>
                 <td className="flex items-center justify-center text-[#E85363] text-4xl">
                   <div className="flex items-center justify-center text-[#E85363] text-4xl">
                     <MdEditSquare

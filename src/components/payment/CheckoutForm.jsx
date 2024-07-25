@@ -5,7 +5,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAddPaymentsMutation } from "../../redux/features/paymentApi/PaymentApi";
 
-const CheckoutForm = ({ carts, price }) => {
+const CheckoutForm = ({ carts, price, quantity }) => {
   const stripe = useStripe();
   const elements = useElements();
   const user = useAppSelector(useCurrentUser);
@@ -15,7 +15,6 @@ const CheckoutForm = ({ carts, price }) => {
   const [transactionId, setTransactionId] = useState("");
 
   const [addPayments] = useAddPaymentsMutation();
-  // console.log(carts);
 
   useEffect(() => {
     console.log(price);
@@ -28,7 +27,7 @@ const CheckoutForm = ({ carts, price }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.clientSecret);
+        // console.log(data.clientSecret);
         setClientSecret(data.clientSecret);
       })
       .catch((error) => {
@@ -82,14 +81,25 @@ const CheckoutForm = ({ carts, price }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
-        // image,
-        // firstImg: carts.map((item) => item.firstImg),
-        // secondImg: carts.map((item) => item.secondImg),
-        quantity: carts.length,
+        quantity,
         cartsId: carts.map((item) => item._id),
-        items: carts.map((item) => item.title),
+        items: {},
       };
+      console.log(item);
+      carts.forEach((item, index) => {
+        const itemKey = `items${(index + 1).toString().padStart(2, "0")}`;
+        const productKey = `product${(index + 1).toString().padStart(2, "0")}`;
+        const quantityKey = `quantity${(index + 1)
+          .toString()
+          .padStart(2, "0")}`;
 
+        payment.items[itemKey] = [
+          {
+            [productKey]: item.title,
+            [quantityKey]: item.quantity,
+          },
+        ];
+      });
       addPayments(payment);
     }
   };

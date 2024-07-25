@@ -80,7 +80,7 @@ const OverView = () => {
             <AiOutlineShoppingCart />
           </p>
           <div>
-            <p>Order on Cart</p>
+            <p>Product on Cart</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
               {orderOnCart}
             </p>
