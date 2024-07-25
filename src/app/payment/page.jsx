@@ -15,7 +15,7 @@ const Payment = () => {
   // );
 
   const [carts, error] = useCarts(); // Destructure to get carts and error
-  //   console.log(carts);
+  // console.log(carts);
 
   // Ensure carts is an array and calculate the total price
   const total = carts.reduce((sum, item) => sum + item.totalPrice, 0);

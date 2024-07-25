@@ -1,21 +1,26 @@
 "use client";
+import { useState, useEffect } from "react";
 import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import {
   useGetProductsQuery,
   useRemoveProductMutation,
 } from "../../../../redux/features/productApi/ProductApi";
 import UpdatePoductModal from "../../../../components/modal/updatePoductModal/UpdatePoductModal";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+
+const ITEMS_PER_PAGE = 8;
 
 const AllProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [editById, setEditById] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   const [removeProduct] = useRemoveProductMutation();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       refetch();
@@ -26,13 +31,10 @@ const AllProduct = () => {
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you want to delete this product?",
+      title: "Are you sure you want to delete this product?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -42,7 +44,7 @@ const AllProduct = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          removeProduct(id);
+          await removeProduct(id);
           refetch();
           Swal.fire({
             title: "Deleted!",
@@ -56,7 +58,23 @@ const AllProduct = () => {
     });
   };
 
-  // console.log(data);
+  // Calculate paginated data
+  const paginatedData =
+    data?.slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
+    ) || [];
+
+  const totalPages = Math.ceil((data?.length || 0) / ITEMS_PER_PAGE);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="p-3 md:p-10">
       <div className="overflow-x-auto">
@@ -68,14 +86,12 @@ const AllProduct = () => {
               <th className="hidden md:table-cell md:text-lg text-[#333333]">
                 SL NO.
               </th>
-
               <th className="hidden md:text-lg text-[#333333]">
                 Product Image
               </th>
               <th className="hidden md:table-cell md:text-lg text-[#333333]">
                 Product Image
               </th>
-
               <th className="md:hidden text-[#333333]">Title</th>
               <th className="hidden w-56 md:table-cell md:text-lg text-[#333333]">
                 Product Title
@@ -92,12 +108,11 @@ const AllProduct = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            {data.map((product, index) => (
+            {paginatedData.map((product, index) => (
               <tr key={product._id}>
                 <th>
                   <label className="text-[#E85363] md:font-bold">
-                    {index + 1}
+                    {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}
                   </label>
                 </th>
                 <td className="hidden md:table-cell">
@@ -135,15 +150,13 @@ const AllProduct = () => {
                   ${product.discount}
                 </td>
                 <td className="flex items-center justify-center text-[#E85363] text-4xl">
-                  <div className="flex items-center justify-center text-[#E85363] text-4xl">
-                    <MdEditSquare
-                      onClick={() => {
-                        setEditById(product?._id);
-                        handleShowModal();
-                      }}
-                      className="cursor-pointer"
-                    />
-                  </div>
+                  <MdEditSquare
+                    onClick={() => {
+                      setEditById(product?._id);
+                      handleShowModal();
+                    }}
+                    className="cursor-pointer"
+                  />
                 </td>
                 <td>
                   <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
@@ -162,6 +175,37 @@ const AllProduct = () => {
             productId={editById}
           />
         )}
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-5 mt-10">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => handlePageChange(currentPage - 1)}
+        >
+          <FaArrowLeft />
+        </button>
+        <ul className="flex gap-2">
+          {[...Array(totalPages).keys()].map((pageNumber) => (
+            <li key={pageNumber}>
+              <button
+                className={`px-4 py-1 rounded-md ${
+                  currentPage === pageNumber + 1
+                    ? "bg-[#E85363] text-white"
+                    : "bg-white text-[#E85363]"
+                }`}
+                onClick={() => handlePageChange(pageNumber + 1)}
+              >
+                {pageNumber + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => handlePageChange(currentPage + 1)}
+        >
+          <FaArrowRight />
+        </button>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAddPaymentsMutation } from "../../redux/features/paymentApi/PaymentApi";
 
 const CheckoutForm = ({ carts, price, quantity }) => {
+  // console.log(carts);
   const stripe = useStripe();
   const elements = useElements();
   const user = useAppSelector(useCurrentUser);
@@ -82,10 +83,11 @@ const CheckoutForm = ({ carts, price, quantity }) => {
         transactionId: paymentIntent.id,
         price,
         quantity,
+        totalProfit,
         cartsId: carts.map((item) => item._id),
         items: {},
       };
-      console.log(item);
+      // console.log(item);
       carts.forEach((item, index) => {
         const itemKey = `items${(index + 1).toString().padStart(2, "0")}`;
         const productKey = `product${(index + 1).toString().padStart(2, "0")}`;

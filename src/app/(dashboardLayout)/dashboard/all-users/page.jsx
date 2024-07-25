@@ -2,16 +2,16 @@
 import { useGetUserQuery } from "../../../../redux/features/auth/authApi";
 const AllUsers = () => {
   const { data } = useGetUserQuery();
-  console.log(data);
+  // console.log(data);
   return (
-    <div>
+    <div className="p-3 md:p-10">
       <h5 className="text-2xl font-semibold">All Users</h5>
       <div className="overflow-x-auto mt-3">
         <table className="table">
           {/* head */}
           <thead>
             <tr className="">
-              <th className="md:text-lg text-[#333333]">*</th>
+              <th className="md:text-lg text-[#333333]">SL</th>
               <th className="md:text-lg text-[#333333]">Name</th>
               <th className="md:text-lg text-[#333333]">Email</th>
               <th className="md:text-lg text-[#333333]">Action</th>
