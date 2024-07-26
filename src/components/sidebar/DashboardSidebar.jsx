@@ -19,13 +19,13 @@ const DashboardSidebar = () => {
             </p>
           </Link>
         </li>
-        <li className="mt-2">
+        {/* <li className="mt-2">
           <Link href="/dashboard/all-product" className="mt-2">
             <p className="bg-white text-[#333333] mt-1 w-full text-md px-5 rounded-xl text-left hover:bg-[#40B884] hover:text-white transition-all duration-700">
               Total Order
             </p>
           </Link>
-        </li>
+        </li> */}
         <li className="mt-2">
           <Link href="/dashboard/all-users" className="mt-2">
             <p className="bg-white text-[#333333] mt-1 w-full text-md px-5 rounded-xl text-left hover:bg-[#40B884] hover:text-white transition-all duration-700">

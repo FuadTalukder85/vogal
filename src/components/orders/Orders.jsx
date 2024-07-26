@@ -1,7 +1,8 @@
-import Image from "next/image";
-import Imgg from "../../assets/images/dealZoneImg/dealzone01.png";
+import { useGetPaymentsQuery } from "../../redux/features/paymentApi/PaymentApi";
+import { FaRegEye } from "react-icons/fa";
 
 const Orders = () => {
+  const { data } = useGetPaymentsQuery();
   return (
     <div>
       <h5 className="text-2xl font-semibold">Orders</h5>
@@ -10,118 +11,29 @@ const Orders = () => {
           {/* head */}
           <thead>
             <tr className="">
-              <th className="md:text-lg text-[#333333]">Product</th>
-              <th className="md:text-lg text-[#333333]">Price</th>
-              <th className="md:text-lg text-[#333333]">Delivery Date</th>
+              <th className="md:text-lg text-[#333333]">SL *</th>
+              <th className="md:text-lg text-[#333333]">Ordered Email</th>
+              <th className="md:text-lg text-[#333333] text-center">Price</th>
+              <th className="md:text-lg text-[#333333] text-center">
+                Quantity
+              </th>
+              <th className="md:text-lg text-[#333333] text-center">
+                View Details
+              </th>
             </tr>
           </thead>
-          <tbody>
-            {/* row 1 */}
-            <tr>
-              <td className="">
-                <div className="flex items-center gap-3">
-                  <div className="avatar gap-5">
-                    <div className="mask mask-squircle">
-                      <Image
-                        src={Imgg}
-                        alt={Imgg || "Image"}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">Everyday Tube Top Ribbed</div>
-                  </div>
-                </div>
-              </td>
-              <td className="">$200</td>
-              <td className="">18 Nov 2023</td>
-            </tr>
-            <tr>
-              <td className="">
-                <div className="flex items-center gap-3">
-                  <div className="avatar gap-5">
-                    <div className="mask mask-squircle">
-                      <Image
-                        src={Imgg}
-                        alt={Imgg || "Image"}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">Everyday Tube Top Ribbed</div>
-                  </div>
-                </div>
-              </td>
-              <td className="">$200</td>
-              <td className="">18 Nov 2023</td>
-            </tr>
-            <tr>
-              <td className="">
-                <div className="flex items-center gap-3">
-                  <div className="avatar gap-5">
-                    <div className="mask mask-squircle">
-                      <Image
-                        src={Imgg}
-                        alt={Imgg || "Image"}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">Everyday Tube Top Ribbed</div>
-                  </div>
-                </div>
-              </td>
-              <td className="">$200</td>
-              <td className="">18 Nov 2023</td>
-            </tr>
-            <tr>
-              <td className="">
-                <div className="flex items-center gap-3">
-                  <div className="avatar gap-5">
-                    <div className="mask mask-squircle">
-                      <Image
-                        src={Imgg}
-                        alt={Imgg || "Image"}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">Everyday Tube Top Ribbed</div>
-                  </div>
-                </div>
-              </td>
-              <td className="">$200</td>
-              <td className="">18 Nov 2023</td>
-            </tr>
-            <tr>
-              <td className="">
-                <div className="flex items-center gap-3">
-                  <div className="avatar gap-5">
-                    <div className="mask mask-squircle">
-                      <Image
-                        src={Imgg}
-                        alt={Imgg || "Image"}
-                        width={30}
-                        height={30}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="">Everyday Tube Top Ribbed</div>
-                  </div>
-                </div>
-              </td>
-              <td className="">$200</td>
-              <td className="">18 Nov 2023</td>
-            </tr>
+          <tbody className="text-lg">
+            {data?.slice(0, 5).map((payments, index) => (
+              <tr>
+                <td className="font-semibold">{index + 1}.</td>
+                <td className="">{payments.email}</td>
+                <td className="text-center">${payments.price}.00</td>
+                <td className="text-center">{payments.quantity}</td>
+                <td className="flex items-center justify-center text-2xl cursor-pointer hover:text-[#FD7E15]">
+                  <FaRegEye />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

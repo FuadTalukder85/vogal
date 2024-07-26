@@ -11,21 +11,34 @@ import {
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
 const Charts = () => {
-  const { data: item } = useGetProductsQuery();
+  const { data: items, isLoading } = useGetProductsQuery();
 
-  // Transform the fetched data
-  const chartData = item?.map((product) => ({
-    name: product.category, // Use category as the name for X-axis
-    quantity: product.stockProduct, // Use quantity for the bar chart
-    price: product.price,
-  }));
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Aggregate data by category
+  const aggregatedData = items?.reduce((acc, product) => {
+    const existingCategory = acc.find((item) => item.name === product.category);
+    if (existingCategory) {
+      existingCategory.quantity += Number(product.stockProduct);
+      // existingCategory.price += Number(product.price);
+    } else {
+      acc.push({
+        name: product.category,
+        StockProducts: Number(product.stockProduct),
+        // price: Number(product.price),
+      });
+    }
+    return acc;
+  }, []);
 
   return (
     <ComposedChart
       className="mt-10"
       width={1400}
       height={400}
-      data={chartData}
+      data={aggregatedData}
       margin={{
         top: 20,
         right: 20,
@@ -38,10 +51,8 @@ const Charts = () => {
       <YAxis />
       <Tooltip />
       <Legend />
-      {/* <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" /> */}
-      <Bar dataKey="quantity" barSize={20} fill="#413ea0" />
-      <Line type="monotone" dataKey="price" stroke="#ff7300" />
-      {/* <Scatter dataKey="cnt" fill="red" /> */}
+      <Bar dataKey="StockProducts" barSize={20} fill="#413ea0" />
+      <Line type="monotone" dataKey="StockProducts" stroke="#ff7300" />
     </ComposedChart>
   );
 };
