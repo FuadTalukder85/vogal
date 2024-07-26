@@ -6,7 +6,7 @@ import dealZone04 from "../../assets/images/dealZoneImg/dealzone04.png";
 import dealZone05 from "../../assets/images/dealZoneImg/dealzone05.png";
 import Image from "next/image";
 
-const DealZone = () => {
+const Trending = () => {
   return (
     <Container>
       <div className="grid grid-cols-5 gap-10 pt-20">
@@ -30,4 +30,4 @@ const DealZone = () => {
   );
 };
 
-export default DealZone;
+export default Trending;

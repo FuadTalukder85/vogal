@@ -9,7 +9,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import DealZone from "../../components/dealZone/DealZone";
+import Trending from "../../components/trending/Trending";
 import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
 
@@ -62,7 +62,7 @@ const NavBar = () => {
                 <Link href="/">Features</Link>
               </li>
               <li className="text-[#e22515]">
-                <Link href="/">Deal zone</Link>
+                <Link href="/">Trending</Link>
               </li>
               <li className="text-[#e22515]">
                 <Link href="/about-us">About US</Link>
@@ -91,9 +91,9 @@ const NavBar = () => {
             </li>
             <li className="relative group z-50">
               <Link href="/">
-                <span>Deal zone</span>
+                <span>Trending</span>
                 <div className="hidden absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
-                  <DealZone></DealZone>
+                  <Trending></Trending>
                 </div>
               </Link>
             </li>

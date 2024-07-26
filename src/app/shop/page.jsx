@@ -14,6 +14,7 @@ const ShopPage = () => {
   const [selectedCategories, setSelectedCategories] = useState({
     men: false,
     women: false,
+    partyDress: false,
     bestSeller: false,
     accessories: false,
   });
@@ -51,12 +52,14 @@ const ShopPage = () => {
     if (
       selectedCategories.men ||
       selectedCategories.women ||
+      selectedCategories.partyDress ||
       selectedCategories.bestSeller ||
       selectedCategories.accessories
     ) {
       return (
         (selectedCategories.men && product?.category === "men") ||
         (selectedCategories.women && product?.category === "women") ||
+        (selectedCategories.partyDress && product?.category === "partyDress") ||
         (selectedCategories.bestSeller && product?.category === "bestSeller") ||
         (selectedCategories.accessories && product?.category === "accessories")
       );
@@ -95,6 +98,15 @@ const ShopPage = () => {
                     onChange={() => handleCategoryChange("women")}
                   />{" "}
                   Women
+                </li>
+                <li className="flex items-center gap-3 mt-2">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm"
+                    checked={selectedCategories.partyDress}
+                    onChange={() => handleCategoryChange("partyDress")}
+                  />{" "}
+                  Party Dress
                 </li>
                 <li className="flex items-center gap-3 mt-2">
                   <input
