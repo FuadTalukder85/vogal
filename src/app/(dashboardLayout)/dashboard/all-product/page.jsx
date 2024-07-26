@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { MdEditSquare } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { CiSearch } from "react-icons/ci";
 import {
   useGetProductsQuery,
   useRemoveProductMutation,
@@ -10,6 +11,7 @@ import {
 import UpdatePoductModal from "../../../../components/modal/updatePoductModal/UpdatePoductModal";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const ITEMS_PER_PAGE = 8;
 
@@ -72,12 +74,33 @@ const AllProduct = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="text-center mt-5">Loading...</p>;
   }
 
   return (
     <div className="p-3 md:p-10">
-      <div className="overflow-x-auto">
+      <div className="flex justify-between px-4">
+        <div>
+          <button className="border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
+            Stock Products : 250
+          </button>
+          <button className="ms-5 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
+            <Link href="/dashboard/addProduct">Add Products</Link>
+          </button>
+        </div>
+        <div className="flex items-center pe-10">
+          <input
+            type="text"
+            className="py-3 px-5 pe-16 rounded-s-md focus:outline-none"
+            placeholder="Search by title..."
+          />
+          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-e-md cursor-pointer">
+            {" "}
+            <CiSearch />
+          </span>
+        </div>
+      </div>
+      <div className="overflow-x-auto clear-start mt-10">
         <table className="table">
           {/* head */}
           <thead>

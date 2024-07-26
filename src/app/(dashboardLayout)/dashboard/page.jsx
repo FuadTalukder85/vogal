@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import OverView from "../../../components/overView/OverView";
 import Orders from "../../../components/orders/Orders";
 import ActivityOverview from "../../../components/activityOverview/ActivityOverview";
-import Link from "next/link";
+import Charts from "../../../components/charts/Charts";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -21,9 +21,7 @@ const DashboardPage = () => {
   return (
     <div className="p-5 md:p-10">
       <OverView></OverView>
-      <Link href="dashboard/addProduct">
-        <button>Add product</button>
-      </Link>
+      <Charts></Charts>
       <div className="grid grid-cols-12 mt-16 md:gap-10">
         <div className="col-span-12 md:col-span-6">
           <ActivityOverview></ActivityOverview>

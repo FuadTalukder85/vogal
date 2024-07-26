@@ -5,11 +5,18 @@ import { FaCheck } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useGetPaymentsQuery } from "../../redux/features/paymentApi/PaymentApi";
 import { useGetCartsQuery } from "../../redux/features/cartsApi/CartsApi";
+import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
 const OverView = () => {
+  const { data: products } = useGetProductsQuery();
+  // console.log(products);
   const { data } = useGetPaymentsQuery();
   const { data: orderOnCarts } = useGetCartsQuery();
+  const stockProduct = Number(
+    products?.reduce((sum, item) => sum + (Number(item?.stockProduct) || 0), 0)
+  );
   const totalPayment = data?.reduce((sum, item) => sum + item.price, 0);
+  const totalIncome = data?.reduce((sum, item) => sum + item.totalProfit, 0);
   const totalOrder = data?.reduce((sum, item) => sum + item.quantity, 0);
   const orderOnCart = orderOnCarts?.reduce(
     (sum, item) => sum + item.quantity,
@@ -20,13 +27,27 @@ const OverView = () => {
     <div className="grid grid-cols-12 md:grid-cols-5 gap-2 md:gap-5">
       <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
         <div className="flex gap-2 md:gap-10 items-center">
+          <p className="bg-[#CBD5E1] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
+            <FcPaid />
+          </p>
+          <div>
+            <p>Stock Products</p>
+            <p className="text-[#333333] text-xl font-bold hover:text-red-600">
+              {stockProduct}
+            </p>
+          </div>
+        </div>
+      </div>
+      {/*  */}
+      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
+        <div className="flex gap-2 md:gap-10 items-center">
           <p className="bg-[#22C55E] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
             <IoBagHandleOutline />
           </p>
           <div>
             <p>Total Sale</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              $45,00.00
+              ${totalPayment}.00
             </p>
           </div>
         </div>
@@ -40,21 +61,7 @@ const OverView = () => {
           <div>
             <p>Total Income</p>
             <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              $25,00.00
-            </p>
-          </div>
-        </div>
-      </div>
-      {/*  */}
-      <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
-        <div className="flex gap-2 md:gap-10 items-center">
-          <p className="bg-[#CBD5E1] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">
-            <FcPaid />
-          </p>
-          <div>
-            <p>Orders Paid</p>
-            <p className="text-[#333333] text-xl font-bold hover:text-red-600">
-              ${totalPayment}.00
+              ${totalIncome}.00
             </p>
           </div>
         </div>

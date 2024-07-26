@@ -86,7 +86,7 @@ const NewArrivals = () => {
       </div>
       <div className="flex justify-center mt-10">
         <Link href="/shop">
-          <button className="mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase ">
+          <button className="mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
             Discover More
           </button>
         </Link>

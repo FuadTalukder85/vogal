@@ -17,6 +17,10 @@ const CheckoutForm = ({ carts, price, quantity }) => {
 
   const [addPayments] = useAddPaymentsMutation();
 
+  const totalProfits = carts?.map((profits) => profits.totalProfit);
+  const totalProfit = totalProfits.reduce((item, sum) => item + sum, 0);
+  // console.log(totalProfit);
+
   useEffect(() => {
     console.log(price);
     fetch("http://localhost:5000/create-payment-intent", {
