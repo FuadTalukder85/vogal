@@ -105,8 +105,10 @@ const UpdatePoductModal = ({ onClose, productId }) => {
                     </option>
                     <option value="men">Men</option>
                     <option value="women">Women</option>
-                    <option value="bestSeller">Best Sellers</option>
+                    <option value="jewellery">Jewellery</option>
+                    <option value="partyDress">Party Dress</option>
                     <option value="accessories">Accessories</option>
+                    <option value="bestSeller">Best Sellers</option>
                   </select>
                   {errors.category && (
                     <small className="text-red-500 ">

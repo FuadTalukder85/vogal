@@ -89,10 +89,10 @@ const NavBar = () => {
             <li>
               <Link href="/">Features</Link>
             </li>
-            <li className="relative group z-50">
+            <li className="relative group">
               <Link href="/">
                 <span>Trending</span>
-                <div className="hidden absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
+                <div className="hidden z-50 absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
                   <Trending></Trending>
                 </div>
               </Link>

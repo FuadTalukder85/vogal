@@ -14,6 +14,26 @@ const Trending = () => {
     <Container>
       <div className="grid grid-cols-5 gap-10 pt-16 px-8">
         <div className="col-span-1">
+          <Link href="/trending/men">
+            <div className="relative py-2">
+              <Image src={dealZone03} alt="img" width={200} height={100} />
+              <p className="absolute bottom-5 left-11 text-center bg-slate-500 text-white py-1 px-2 rounded-md">
+                Men
+              </p>
+            </div>
+          </Link>
+        </div>
+        <div className="col-span-1">
+          <Link href="/trending/women">
+            <div className="relative py-2">
+              <Image src={dealZone05} alt="img" width={200} height={100} />
+              <p className="absolute bottom-5 left-11 text-center bg-slate-500 text-white py-1 px-2 rounded-md">
+                Women
+              </p>
+            </div>
+          </Link>
+        </div>
+        <div className="col-span-1">
           <Link href="/trending/jewellery">
             <div className="relative py-2">
               <Image src={dealZone01} alt="img" width={200} height={100} />
@@ -24,16 +44,24 @@ const Trending = () => {
           </Link>
         </div>
         <div className="col-span-1">
-          <Image src={dealZone02} alt="img" width={200} height={100} />
+          <Link href="/trending/partyDress">
+            <div className="relative py-2">
+              <Image src={dealZone02} alt="img" width={200} height={100} />
+              <p className="absolute bottom-5 left-11 text-center bg-slate-500 text-white py-1 px-2 rounded-md">
+                Party Dress
+              </p>
+            </div>
+          </Link>
         </div>
         <div className="col-span-1">
-          <Image src={dealZone03} alt="img" width={200} height={100} />
-        </div>
-        <div className="col-span-1">
-          <Image src={dealZone04} alt="img" width={200} height={100} />
-        </div>
-        <div className="col-span-1">
-          <Image src={dealZone05} alt="img" width={200} height={100} />
+          <Link href="/trending/accessories">
+            <div className="relative py-2">
+              <Image src={dealZone04} alt="img" width={200} height={100} />
+              <p className="absolute bottom-5 left-11 text-center bg-slate-500 text-white py-1 px-2 rounded-md">
+                Accessories
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </Container>
