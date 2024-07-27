@@ -5,16 +5,16 @@ const AllUsers = () => {
   // console.log(data);
   return (
     <div className="p-3 md:p-10">
-      <h5 className="text-2xl font-semibold">All Users</h5>
-      <div className="overflow-x-auto mt-3">
+      <h5 className="text-xl font-semibold">All Users</h5>
+      <div className="overflow-x-auto mt-3 bg-white p-5">
         <table className="table">
           {/* head */}
           <thead>
             <tr className="">
-              <th className="md:text-lg text-[#333333]">SL</th>
-              <th className="md:text-lg text-[#333333]">Name</th>
-              <th className="md:text-lg text-[#333333]">Email</th>
-              <th className="md:text-lg text-[#333333]">Action</th>
+              <th className="md:text-[14px] text-[#333333]">SL</th>
+              <th className="md:text-[14px] text-[#333333]">Name</th>
+              <th className="md:text-[14px] text-[#333333]">Email</th>
+              <th className="md:text-[14px] text-[#333333]">Action</th>
             </tr>
           </thead>
           <tbody>

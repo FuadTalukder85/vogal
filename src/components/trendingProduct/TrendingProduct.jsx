@@ -8,27 +8,25 @@ const TrendingProduct = () => {
   );
 
   return (
-    <div className="bg-white p-5">
+    <div className="bg-white px-5 py-2">
       <h5 className="text-xl">Trending Product</h5>
       <hr className="bg-[#FF8042] py-[1.5px] w-[180px]" />
       <div className="overflow-x-auto mt-3 bg-white">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-[18px]">
-              <th className="text-[#333333] font-extralight">SL *</th>
-              <th className="text-[#333333] font-extralight">Product Image</th>
-              <th className="text-[#333333] font-extralight">Product Title</th>
-              <th className="text-[#333333] font-extralight text-center">
+            <tr>
+              <th className="md:text-[14px] text-[#333333]">SL *</th>
+              <th className="md:text-[14px] text-[#333333]">Product Image</th>
+              <th className="md:text-[14px] text-[#333333]">Product Title</th>
+              <th className="md:text-[14px] text-[#333333] text-center">
                 Price
               </th>
-              <th className="text-[#333333] font-extralight text-center">
-                Quantity
-              </th>
+              <th className="text-[#333333] text-center">Quantity</th>
             </tr>
           </thead>
 
-          <tbody className="text-lg">
+          <tbody>
             {trendingProduct?.slice(0, 3).map((trending, index) => (
               <tr>
                 <td className="font-semibold">{index + 1}.</td>

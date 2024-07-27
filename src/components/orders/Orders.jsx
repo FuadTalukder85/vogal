@@ -11,21 +11,21 @@ const Orders = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-[18px]">
-              <th className="font-extralight text-[#333333]">SL *</th>
-              <th className="font-extralight text-[#333333]">Ordered Email</th>
-              <th className="font-extralight text-[#333333] text-center">
+            <tr>
+              <th className="md:text-[14px] text-[#333333]">SL *</th>
+              <th className="md:text-[14px] text-[#333333]">Ordered Email</th>
+              <th className="md:text-[14px] text-[#333333] text-center">
                 Price
               </th>
-              <th className="font-extralight text-[#333333] text-center">
+              <th className="md:text-[14px] text-[#333333] text-center">
                 Quantity
               </th>
-              <th className="md:text-lg text-[#333333] text-center">
+              <th className="md:text-[14px] text-[#333333] text-center">
                 View Details
               </th>
             </tr>
           </thead>
-          <tbody className="text-lg">
+          <tbody>
             {data?.slice(0, 5).map((payments, index) => (
               <tr>
                 <td className="font-semibold">{index + 1}.</td>
