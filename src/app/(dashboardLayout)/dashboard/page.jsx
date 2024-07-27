@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import OverView from "../../../components/overView/OverView";
 import Orders from "../../../components/orders/Orders";
-import ActivityOverview from "../../../components/activityOverview/ActivityOverview";
+import TrendingProduct from "../../../components/trendingProduct/TrendingProduct";
 import Charts from "../../../components/charts/Charts";
 import PieChart from "../../../components/pieChart/PieChart";
 
@@ -26,9 +26,9 @@ const DashboardPage = () => {
         <Charts></Charts>
         <PieChart></PieChart>
       </div>
-      <div className="grid grid-cols-12 mt-16 md:gap-10">
+      <div className="grid grid-cols-12 mt-16 md:gap-16">
         <div className="col-span-12 md:col-span-6">
-          <ActivityOverview></ActivityOverview>
+          <TrendingProduct></TrendingProduct>
         </div>
         <div className="col-span-12 md:col-span-6">
           <Orders></Orders>

@@ -12,11 +12,11 @@ import {
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
 const Charts = () => {
-  const { data: items, isLoading } = useGetProductsQuery();
+  const { data: items } = useGetProductsQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   // Aggregate data by category
   const aggregatedData = items?.reduce((acc, product) => {

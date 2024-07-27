@@ -3,20 +3,12 @@ import dynamic from "next/dynamic";
 import { PieChart, Pie, Cell } from "recharts";
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
-// const data = [
-//   { name: "Group A", value: 400 },
-//   { name: "Group B", value: 300 },
-//   { name: "Group C", value: 300 },
-//   { name: "Group D", value: 200 },
-//   { name: "Group E", value: 600 },
-// ];
-
 const PieCharts = () => {
-  const { data: items, isLoading } = useGetProductsQuery();
+  const { data: items } = useGetProductsQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  //   if (isLoading) {
+  //     return <div>Loading...</div>;
+  //   }
 
   // Aggregate data by category
   const aggregatedData = items?.reduce((acc, product) => {

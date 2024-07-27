@@ -4,17 +4,20 @@ import { FaRegEye } from "react-icons/fa";
 const Orders = () => {
   const { data } = useGetPaymentsQuery();
   return (
-    <div>
-      <h5 className="text-2xl font-semibold">Orders</h5>
+    <div className="bg-white p-5">
+      <h5 className="text-xl">Orders</h5>
+      <hr className="bg-[#FF8042] py-[1.5px] w-[150px]" />
       <div className="overflow-x-auto mt-3">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="">
-              <th className="md:text-lg text-[#333333]">SL *</th>
-              <th className="md:text-lg text-[#333333]">Ordered Email</th>
-              <th className="md:text-lg text-[#333333] text-center">Price</th>
-              <th className="md:text-lg text-[#333333] text-center">
+            <tr className="text-[18px]">
+              <th className="font-extralight text-[#333333]">SL *</th>
+              <th className="font-extralight text-[#333333]">Ordered Email</th>
+              <th className="font-extralight text-[#333333] text-center">
+                Price
+              </th>
+              <th className="font-extralight text-[#333333] text-center">
                 Quantity
               </th>
               <th className="md:text-lg text-[#333333] text-center">
