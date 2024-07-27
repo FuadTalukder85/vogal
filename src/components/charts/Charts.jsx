@@ -1,3 +1,4 @@
+"use client";
 import {
   ComposedChart,
   Line,
@@ -22,12 +23,10 @@ const Charts = () => {
     const existingCategory = acc.find((item) => item.name === product.category);
     if (existingCategory) {
       existingCategory.quantity += Number(product.stockProduct);
-      // existingCategory.price += Number(product.price);
     } else {
       acc.push({
         name: product.category,
         StockProducts: Number(product.stockProduct),
-        // price: Number(product.price),
       });
     }
     return acc;
@@ -36,7 +35,7 @@ const Charts = () => {
   return (
     <ComposedChart
       className="mt-10"
-      width={1400}
+      width={1000}
       height={400}
       data={aggregatedData}
       margin={{

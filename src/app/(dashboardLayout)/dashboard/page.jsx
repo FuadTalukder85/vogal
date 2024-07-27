@@ -7,6 +7,7 @@ import OverView from "../../../components/overView/OverView";
 import Orders from "../../../components/orders/Orders";
 import ActivityOverview from "../../../components/activityOverview/ActivityOverview";
 import Charts from "../../../components/charts/Charts";
+import PieChart from "../../../components/pieChart/PieChart";
 
 const DashboardPage = () => {
   const router = useRouter();
@@ -21,7 +22,10 @@ const DashboardPage = () => {
   return (
     <div className="p-5 md:p-10">
       <OverView></OverView>
-      <Charts></Charts>
+      <div className="flex items-center gap-10">
+        <Charts></Charts>
+        <PieChart></PieChart>
+      </div>
       <div className="grid grid-cols-12 mt-16 md:gap-10">
         <div className="col-span-12 md:col-span-6">
           <ActivityOverview></ActivityOverview>
