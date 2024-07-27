@@ -116,8 +116,11 @@ const AllProduct = () => {
                 Product Image
               </th>
               <th className="md:hidden text-[#333333]">Title</th>
-              <th className="hidden w-56 md:table-cell md:text-lg text-[#333333]">
+              <th className="hidden w-64 md:table-cell md:text-lg text-[#333333]">
                 Product Title
+              </th>
+              <th className="hidden md:table-cell md:text-lg text-[#333333] text-center">
+                Category
               </th>
               <th className="hidden md:table-cell md:text-lg text-[#333333] text-center">
                 Original Price
@@ -165,6 +168,9 @@ const AllProduct = () => {
                   </div>
                 </td>
                 <td className="md:font-bold">{product?.title}</td>
+                <td className="md:font-bold text-center">
+                  {product?.category}
+                </td>
                 <td className="hidden md:table-cell md:font-bold text-center">
                   ${product.originalPrice}
                 </td>

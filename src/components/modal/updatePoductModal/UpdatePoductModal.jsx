@@ -34,7 +34,7 @@ const UpdatePoductModal = ({ onClose, productId }) => {
     } catch (error) {
       console.error("Update product failed:", error);
     }
-    console.log(data);
+    // console.log(data);
   };
 
   return (
