@@ -1,35 +1,45 @@
 "use client";
+import Container from "../../components/container/Container";
+import LookBook from "../../components/lookBook/LookBook";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
-import Container from "../../../../components/container/Container";
 import Link from "next/link";
 import Image from "next/image";
-import { useGetProductsQuery } from "../../../../redux/features/productApi/ProductApi";
-import "./women.css";
+import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
+import "./features.css";
 
-const Women = () => {
+const FeaturesPage = () => {
   const { data, isLoading } = useGetProductsQuery();
-  const women = data?.filter(
-    (women) => women.category === "women" && women.tag === "trending"
-  );
+  const features = data?.filter((features) => features.tag === "features");
+  // console.log(features);
   if (isLoading) {
     return <p className="text-center">Loading...</p>;
   }
   return (
-    <>
-      <div className="women-bg text-center mt-10 py-16">
-        <h3 className="text-3xl uppercase">Trending Women</h3>
-        <p className="text-sm mt-1">
-          Necklaces, bracelets, earrings, and rings to complete your look or wow
-          them with a perfect gift
+    <div>
+      <div className="featuresBannerImg py-16">
+        <h3 className="text-center text-3xl font-semibold uppercase">
+          Featured collection
+        </h3>
+        <p className="text-center text-sm mt-3">
+          Follow the most popular trends and get exclusive items from vogal
+          shop.
         </p>
       </div>
+      <LookBook></LookBook>
       <Container>
+        <h3 className="text-center text-3xl font-semibold uppercase mt-20">
+          Featured Product
+        </h3>
+        <p className="text-center text-sm mt-3">
+          Follow the most popular trends and get exclusive items from vogal
+          shop.
+        </p>
         <div className="grid grid-cols-12 gap-5 mt-10">
           {/* card */}
-          {women?.map((product, index) => (
+          {features?.map((product, index) => (
             <div
               key={index}
-              className="col-span-6 md:col-span-4 relative overflow-hidden"
+              className="col-span-6 md:col-span-3 relative overflow-hidden"
             >
               <Link href={`/shop/${product._id}`}>
                 {product?.firstImg && (
@@ -38,6 +48,7 @@ const Women = () => {
                     alt={product.title || "Product Image"}
                     width={500}
                     height={500}
+                    className="rounded-lg"
                   />
                 )}
 
@@ -65,10 +76,10 @@ const Women = () => {
                   </div>
                 </div>
 
-                <h5 className="text-md text-center mt-4">
-                  <p>{product?.title}</p>
+                <h5 className="text-md mt-4 px-3">
+                  <p className="">{product?.title}</p>
                   {product?.discount ? (
-                    <p className="mt-2 flex justify-center gap-2">
+                    <p className="mt-2 flex gap-2">
                       <span className="line-through text-[#979595]">
                         ${product?.discount}
                       </span>
@@ -83,8 +94,8 @@ const Women = () => {
           ))}
         </div>
       </Container>
-    </>
+    </div>
   );
 };
 
-export default Women;
+export default FeaturesPage;

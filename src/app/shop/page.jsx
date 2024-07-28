@@ -76,7 +76,9 @@ const ShopPage = () => {
   return (
     <div>
       <div className="shopBannerImg py-16">
-        <h3 className="text-center text-3xl font-semibold">All Products</h3>
+        <h3 className="text-center text-3xl font-semibold uppercase">
+          All Products
+        </h3>
       </div>
       <Container>
         <div className="grid grid-cols-12">
@@ -194,12 +196,10 @@ const ShopPage = () => {
                       <p>{product?.title}</p>
                       {product?.discount ? (
                         <p className="mt-2 flex justify-center gap-2">
-                          <span className="line-through">
+                          <span className="line-through text-[#979595]">
                             ${product?.discount}
                           </span>
-                          <span className="text-[#e22515]">
-                            ${product?.price}
-                          </span>
+                          <span className="">${product?.price}</span>
                         </p>
                       ) : (
                         <p className="mt-2">${product?.price}</p>

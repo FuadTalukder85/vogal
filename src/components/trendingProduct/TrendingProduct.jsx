@@ -28,7 +28,7 @@ const TrendingProduct = () => {
 
           <tbody>
             {trendingProduct?.slice(0, 3).map((trending, index) => (
-              <tr>
+              <tr key={index}>
                 <td className="font-semibold">{index + 1}.</td>
                 <td className="flex gap-2">
                   <Image

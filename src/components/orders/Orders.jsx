@@ -27,7 +27,7 @@ const Orders = () => {
           </thead>
           <tbody>
             {data?.slice(0, 5).map((payments, index) => (
-              <tr>
+              <tr key={index}>
                 <td className="font-semibold">{index + 1}.</td>
                 <td className="">{payments.email}</td>
                 <td className="text-center">${payments.price}.00</td>

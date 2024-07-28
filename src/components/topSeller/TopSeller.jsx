@@ -70,8 +70,10 @@ const TopSeller = () => {
                 <p>{product.title}</p>
                 {product.discount ? (
                   <p className="mt-2 flex justify-center gap-2">
-                    <span className="line-through">${product.discount}</span>
-                    <span className="text-[#e22515]">${product.price}</span>
+                    <span className="line-through text-[#979595]">
+                      ${product.discount}
+                    </span>
+                    <span className="">${product.price}</span>
                   </p>
                 ) : (
                   <p className="mt-2">${product.price}</p>

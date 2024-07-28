@@ -59,7 +59,7 @@ const NavBar = () => {
                 <Link href="/shop">Shop</Link>
               </li>
               <li className="text-[#e22515]">
-                <Link href="/">Features</Link>
+                <Link href="/features">Features</Link>
               </li>
               <li className="text-[#e22515]">
                 <Link href="/">Trending</Link>
@@ -87,7 +87,7 @@ const NavBar = () => {
               <Link href="/shop">Shop</Link>
             </li>
             <li>
-              <Link href="/">Features</Link>
+              <Link href="/features">Features</Link>
             </li>
             <li className="relative group">
               <Link href="/">
