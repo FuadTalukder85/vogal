@@ -10,7 +10,7 @@ const TrendingProduct = () => {
   return (
     <div className="bg-white px-5 py-2">
       <h5 className="text-xl">Trending Product</h5>
-      <hr className="bg-[#FF8042] py-[1.5px] w-[180px]" />
+      <hr className="bg-[#FF8042] py-[1.5px] w-[180px] rounded-tr-full rounded-tl-full" />
       <div className="overflow-x-auto mt-3 bg-white">
         <table className="table">
           {/* head */}

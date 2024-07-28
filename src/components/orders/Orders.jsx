@@ -6,7 +6,7 @@ const Orders = () => {
   return (
     <div className="bg-white p-5">
       <h5 className="text-xl">Orders</h5>
-      <hr className="bg-[#FF8042] py-[1.5px] w-[150px]" />
+      <hr className="bg-[#FF8042] py-[1.5px] w-[150px] rounded-tr-full rounded-tl-full" />
       <div className="overflow-x-auto mt-3">
         <table className="table">
           {/* head */}

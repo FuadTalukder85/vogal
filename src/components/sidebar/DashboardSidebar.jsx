@@ -7,7 +7,7 @@ import { TiMessages } from "react-icons/ti";
 
 const DashboardSidebar = () => {
   return (
-    <div className="bg-[#F2F2F2] border-r-2 border-[#E5E6E6] md:min-h-screen top-0 sticky p-5 px-10 pt-10">
+    <div className="bg-[#ebebeb] border-r-4 border-[#E5E6E6] md:min-h-screen top-0 sticky p-5 px-10 pt-10">
       <ul>
         <li>
           <Link

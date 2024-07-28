@@ -19,6 +19,7 @@ const AllProduct = () => {
   const [showModal, setShowModal] = useState(false);
   const [editById, setEditById] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   const [removeProduct] = useRemoveProductMutation();
@@ -60,14 +61,21 @@ const AllProduct = () => {
     });
   };
 
+  // Filter data based on search query
+  const filteredData = data?.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   // Calculate paginated data
   const paginatedData =
-    data?.slice(
+    filteredData?.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       currentPage * ITEMS_PER_PAGE
     ) || [];
 
-  const totalPages = Math.ceil((data?.length || 0) / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil((filteredData?.length || 0) / ITEMS_PER_PAGE);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -81,9 +89,6 @@ const AllProduct = () => {
     <div className="p-3 md:p-10">
       <div className="flex justify-between px-4">
         <div>
-          {/* <button className="border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
-            Stock Products : 250
-          </button> */}
           <button className="ms-5 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
             <Link href="/dashboard/addProduct">Add Products</Link>
           </button>
@@ -92,7 +97,9 @@ const AllProduct = () => {
           <input
             type="text"
             className="py-3 px-5 pe-16 rounded-s-md focus:outline-none"
-            placeholder="Search by title..."
+            placeholder="Search by title or category..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-e-md cursor-pointer">
             {" "}
@@ -102,7 +109,6 @@ const AllProduct = () => {
       </div>
       <div className="overflow-x-auto clear-start mt-10 bg-white p-5">
         <table className="table">
-          {/* head */}
           <thead>
             <tr className="">
               <th className="md:hidden md:text-[14px] text-[#333333]">*</th>
@@ -182,13 +188,15 @@ const AllProduct = () => {
                 <td className="hidden md:table-cell text-center">
                   ${product.discount}
                 </td>
-                <td className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
-                  <MdEditSquare
-                    onClick={() => {
-                      setEditById(product?._id);
-                      handleShowModal();
-                    }}
-                  />
+                <td className="">
+                  <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
+                    <MdEditSquare
+                      onClick={() => {
+                        setEditById(product?._id);
+                        handleShowModal();
+                      }}
+                    />
+                  </div>
                 </td>
                 <td>
                   <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
