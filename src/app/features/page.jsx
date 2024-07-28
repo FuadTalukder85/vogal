@@ -36,7 +36,7 @@ const FeaturesPage = () => {
         </p>
         <div className="grid grid-cols-12 gap-5 mt-10">
           {/* card */}
-          {features?.map((product, index) => (
+          {features?.slice(0, 8).map((product, index) => (
             <div
               key={index}
               className="col-span-6 md:col-span-3 relative overflow-hidden"
@@ -59,6 +59,7 @@ const FeaturesPage = () => {
                       alt={product.title || "Product Image"}
                       width={500}
                       height={500}
+                      className="rounded-lg"
                     />
                   )}
                   <div className="flex justify-center">

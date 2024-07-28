@@ -90,12 +90,14 @@ const NavBar = () => {
               <Link href="/features">Features</Link>
             </li>
             <li className="relative group">
-              <Link href="/">
+              {/* <Link href="/"> */}
+              <div>
                 <span>Trending</span>
                 <div className="hidden z-50 absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
                   <Trending></Trending>
                 </div>
-              </Link>
+              </div>
+              {/* </Link> */}
             </li>
             <li>
               <Link href="/about-us">About US</Link>

@@ -2,6 +2,7 @@ import React from "react";
 import bannerImg2 from "../../assets/images/bannerImg/bannerImg2.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const SliderOne = () => {
   return (
@@ -23,9 +24,11 @@ const SliderOne = () => {
               <b className="text-7xl">Luxury Brands</b>
               <p className="text-7xl">Without Labels</p>
             </h3>
-            <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
-              Shop Now
-            </button>
+            <Link href="/shop">
+              <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
+                Shop Now
+              </button>
+            </Link>
           </div>
           <div className="absolute bottom-16 left-20 md:hidden">
             <p className="text-center">NEW COLLECTION</p>

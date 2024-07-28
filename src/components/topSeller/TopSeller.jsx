@@ -39,6 +39,7 @@ const TopSeller = () => {
                   alt={product.title || "Product Image"}
                   width={500}
                   height={500}
+                  className="rounded-lg"
                 />
               )}
 
@@ -49,6 +50,7 @@ const TopSeller = () => {
                     alt={product.title || "Product Image"}
                     width={500}
                     height={500}
+                    className="rounded-lg"
                   />
                 )}
                 <div className="flex justify-center">
@@ -66,10 +68,10 @@ const TopSeller = () => {
                 </div>
               </div>
 
-              <h5 className="text-md text-center mt-4">
+              <h5 className="text-md mt-4 mx-3">
                 <p>{product.title}</p>
                 {product.discount ? (
-                  <p className="mt-2 flex justify-center gap-2">
+                  <p className="mt-2 flex gap-2">
                     <span className="line-through text-[#979595]">
                       ${product.discount}
                     </span>
