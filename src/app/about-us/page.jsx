@@ -2,65 +2,104 @@ import React from "react";
 import Container from "../../components/container/Container";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/images/vogal.png";
+import aboutUsImg from "../../assets/images/aboutUsImg.png";
+import teamImg01 from "../../assets/images/teamImg/teamImg01.png";
+import teamImg02 from "../../assets/images/teamImg/teamImg02.png";
+import teamImg03 from "../../assets/images/teamImg/teamImg03.png";
 
 const AboutUs = () => {
   return (
-    <Container>
-      <div className="mt-16">
-        <Link href="/">
-          <Image className="mt-16" src={logo} alt="logo" height={100}></Image>
-        </Link>
-        <h5 className="text-xl mt-10">About Us</h5>
-        <p className="mt-2 text-sm">
-          Fashion Field is an exceptional lifestyle and fashion eCommerce
-          platform based in the vibrant country of Bangladesh. Since its
-          inception in 2020, we have been on a mission to revolutionize the
-          fashion landscape, inspiring style enthusiasts who are passionate
-          about adorning themselves with the finest. Our extensive range
-          encompasses a diverse selection of lifestyle, fashion, and personal
-          care products catering to women, men, and children of all ages.
-        </p>
-        <p className="mt-3 text-sm">
-          As a proud brand under the umbrella of Elham Lifestyle Limited, we
-          belong to the illustrious Elham Group. Renowned as a comprehensive
-          source for international buyers seeking top-tier knit and woven
-          garments from Bangladesh, our parent company bolsters our commitment
-          to quality and excellence.
-        </p>
-        <p className="mt-3 text-sm">
-          At Fashion Field, we assure you that your fashion journey will never
-          fade. We,re not just a retailer; we,re your partners in cultivating an
-          enduring sense of style.
-        </p>
-        <h5 className="text-xl mt-10">Our Mission</h5>
-        <p className="mt-2 text-sm">
-          O﻿ur philosophy on fashion mirrors that of dining – why limit yourself
-          to the same menu? At Fashion Field, we present you with a curated
-          collection of fashion brands, each meticulously chosen to deliver the
-          utmost in quality and trendiness. Our aim is not only to elevate your
-          appearance but also to enhance your confidence. Since our inception,
-          we have remained steadfast in offering the finest lifestyle products
-          accompanied by impeccable customer support.
-        </p>
-        <h5 className="text-xl mt-10">Our Vision</h5>
-        <p className="mt-2 text-sm">
-          Our vision is to set the gold standard for online shopping
-          experiences, raising the bar for quality products available at
-          reasonable prices. In a world often fixated on quantity, we prioritize
-          quality above all. Every penny you invest with us is an investment in
-          the finest. Our aspirations extend beyond borders – we are committed
-          to transcending local boundaries and making our premium services
-          accessible to a global clientele.
-        </p>
-        <p className="mt-3 text-sm">
-          In summary, Fashion Field stands as a beacon of innovation and style
-          in Bangladesh,s eCommerce arena. With our unwavering dedication to
-          quality, we are not just shaping fashion; we are crafting an
-          experience that resonates with style-conscious individuals worldwide.
-        </p>
+    <div>
+      <div className="bg-[#F5F5F5] py-16">
+        <h5 className="text-center text-3xl font-semibold uppercase">
+          About Us
+        </h5>
       </div>
-    </Container>
+      <Container>
+        <div className="mt-16">
+          <Link href="/">
+            <Image
+              className="mt-16 rounded-lg"
+              src={aboutUsImg}
+              alt="logo"
+              height={800}
+            ></Image>
+          </Link>
+        </div>
+        <div className="grid grid-cols-12 gap-24 mt-16 items-center">
+          <div className="col-span-6">
+            <p className="text-lg font-semibold">Welcome To Our Online Store</p>
+            <h5 className="text-4xl font-semibold mt-7">
+              Discover Our Journey Redefining Online Shopping.
+            </h5>
+          </div>
+          <div className="col-span-6">
+            <p className="text-lg font-semibold leading-9">
+              At vogal, we,re passionate about bringing you the latest trends
+              and timeless classics in fashion. Our journey began with a vision
+              to redefine the online shopping experience, offering a curated
+              selection of high-quality clothing, accessories, and lifestyle
+              products that reflect your unique style. What sets us apart is our
+              dedication to providing exceptional customer service and a
+              seamless shopping experience from start to finish.
+            </p>
+          </div>
+        </div>
+        {/* meet our team */}
+        <div>
+          <h3 className="text-center text-3xl font-semibold uppercase mt-28">
+            Meet Our Teams
+          </h3>
+          <p className="text-center text-sm mt-3">
+            Follow the most popular trends and get exclusive items from vogal
+            shop.
+          </p>
+          <div className="grid grid-cols-12 mt-14 gap-10">
+            <div className="col-span-4 relative">
+              <Image
+                src={teamImg01}
+                alt="teamImg01"
+                height={4500}
+                width={400}
+                className="rounded-lg"
+              ></Image>
+              <div className="absolute top-9 left-9">
+                <h5 className="text-xl font-semibold">Savannah nguyen</h5>
+                <p className="text-[#868585]">Sales person</p>
+              </div>
+            </div>
+            {/*  */}
+            <div className="col-span-4 relative">
+              <Image
+                src={teamImg02}
+                alt="teamImg01"
+                height={400}
+                width={400}
+                className="rounded-lg"
+              ></Image>
+              <div className="absolute top-9 left-9">
+                <h5 className="text-xl font-semibold">Leslie alexander</h5>
+                <p className="text-[#868585]">Sales person</p>
+              </div>
+            </div>
+            {/*  */}
+            <div className="col-span-4 relative">
+              <Image
+                src={teamImg03}
+                alt="teamImg01"
+                height={400}
+                width={400}
+                className="rounded-lg"
+              ></Image>
+              <div className="absolute top-9 left-9">
+                <h5 className="text-xl font-semibold">Sn Jack</h5>
+                <p className="text-[#868585]">Sales person</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 };
 
