@@ -19,7 +19,7 @@ const ShopPage = () => {
     bestSeller: false,
     accessories: false,
   });
-
+  // console.log(data);
   useEffect(() => {
     const intervalId = setInterval(() => {
       refetch();

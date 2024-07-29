@@ -6,7 +6,6 @@ const useCarts = () => {
   const user = useAppSelector(useCurrentUser);
   const [carts, setCarts] = useState([]);
   const [error, setError] = useState(null);
-  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {

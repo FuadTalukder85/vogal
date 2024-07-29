@@ -16,7 +16,6 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 const ProductDetails = ({ productDetails }) => {
-  console.log(productDetails.originalPrice);
   const images = [
     {
       original: productDetails?.firstImg,
@@ -50,16 +49,17 @@ const ProductDetails = ({ productDetails }) => {
   const totalPrice = quantity * productDetails.price;
   const originalProductPrice = quantity * productDetails.originalPrice;
   const totalProfit = totalPrice - originalProductPrice;
-  console.log(totalProfit);
 
   const handleCurrentImg = (index) => {
     setCurrentImg(index);
   };
   const handleAddTocarts = () => {
     if (user && user.email) {
-      const { title } = productDetails;
+      const { title, originalPrice, price } = productDetails;
       const cartItem = {
         title,
+        originalPrice,
+        price,
         totalPrice,
         totalProfit,
         quantity,
