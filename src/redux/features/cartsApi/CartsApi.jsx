@@ -14,7 +14,15 @@ const CartsApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    deleteCart: builder.mutation({
+      query: (query) => ({
+        url: `/cart/${query}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["cart"],
+    }),
   }),
 });
 
-export const { useAddCartsMutation, useGetCartsQuery } = CartsApi;
+export const { useAddCartsMutation, useGetCartsQuery, useDeleteCartMutation } =
+  CartsApi;

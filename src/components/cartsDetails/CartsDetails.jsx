@@ -2,19 +2,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { AiFillDelete } from "react-icons/ai";
+import { useDeleteCartMutation } from "../../redux/features/cartsApi/CartsApi";
+import Swal from "sweetalert2";
 
 const CartsDetails = ({ carts }) => {
   const [quantities, setQuantities] = useState({});
+  const [deleteCart] = useDeleteCartMutation();
+  console.log(carts);
 
   useEffect(() => {
-    if (Object.keys(quantities).length === 0) {
+    if (carts.length > 0) {
       const initialQuantities = {};
       carts.forEach((cart) => {
         initialQuantities[cart._id] = cart.quantity || 1;
       });
       setQuantities(initialQuantities);
     }
-  }, [carts, quantities]);
+  }, [carts]);
 
   const handleDecrement = (id) => {
     if (quantities[id] > 1) {
@@ -24,12 +29,36 @@ const CartsDetails = ({ carts }) => {
       }));
     }
   };
-
   const handleIncrement = (id) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
       [id]: prevQuantities[id] + 1,
     }));
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Delete this product!",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deleteCart(id);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your product has been deleted.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error deleting product:", error);
+        }
+      }
+    });
   };
   return (
     <div>
@@ -50,25 +79,30 @@ const CartsDetails = ({ carts }) => {
                   <p className="text-md font-semibold mt-3">
                     ${itemTotalPrice}.00
                   </p>
-                  <div className="mt-4">
-                    <button
-                      onClick={() => handleDecrement(cart._id)}
-                      className="text-md border px-5"
-                    >
-                      -
-                    </button>
-                    <input
-                      type="text"
-                      value={quantities[cart._id]}
-                      className="border w-8 text-md text-center mx-auto"
-                      readOnly
-                    />
-                    <button
-                      onClick={() => handleIncrement(cart._id)}
-                      className="text-md border px-5"
-                    >
-                      +
-                    </button>
+                  <div className="mt-4 flex items-center gap-3">
+                    <div>
+                      <button
+                        onClick={() => handleDecrement(cart._id)}
+                        className="text-md border px-5"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="text"
+                        value={quantities[cart._id]}
+                        className="border w-8 text-md text-center mx-auto"
+                        readOnly
+                      />
+                      <button
+                        onClick={() => handleIncrement(cart._id)}
+                        className="text-md border px-5"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div className="text-[18px] hover:text-[#E85363] duration-700 cursor-pointer">
+                      <AiFillDelete onClick={() => handleDelete(cart?._id)} />
+                    </div>
                   </div>
                 </div>
               </div>

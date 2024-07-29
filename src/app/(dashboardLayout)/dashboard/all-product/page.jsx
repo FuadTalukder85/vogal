@@ -149,7 +149,7 @@ const AllProduct = () => {
             {paginatedData.map((product, index) => (
               <tr key={product._id}>
                 <th>
-                  <label className="text-[#E85363] ">
+                  <label className="">
                     {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}.
                   </label>
                 </th>
@@ -189,7 +189,7 @@ const AllProduct = () => {
                   ${product.discount}
                 </td>
                 <td className="">
-                  <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
+                  <div className="flex items-center justify-center cursor-pointer text-2xl hover:text-[#E85363] duration-700">
                     <MdEditSquare
                       onClick={() => {
                         setEditById(product?._id);
@@ -199,7 +199,7 @@ const AllProduct = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="flex items-center justify-center cursor-pointer text-[#E85363] text-4xl">
+                  <div className="flex items-center justify-center cursor-pointer text-2xl hover:text-[#E85363] duration-700">
                     <AiFillDelete onClick={() => handleDelete(product?._id)} />
                   </div>
                 </td>
