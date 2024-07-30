@@ -20,6 +20,7 @@ const AllProduct = () => {
   const [editById, setEditById] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   const [removeProduct] = useRemoveProductMutation();
@@ -62,11 +63,14 @@ const AllProduct = () => {
   };
 
   // Filter data based on search query
-  const filteredData = data?.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleSearch = () => {
+    const filtered = data?.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered || []);
+  };
 
   // Calculate paginated data
   const paginatedData =
@@ -96,14 +100,14 @@ const AllProduct = () => {
         <div className="flex items-center pe-10">
           <input
             type="text"
-            className="py-3 px-5 pe-16 rounded-s-md focus:outline-none"
+            className="py-3 px-5 w-[280px] rounded-s-md focus:outline-none"
             placeholder="Search by title or category..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-e-md cursor-pointer">
             {" "}
-            <CiSearch />
+            <CiSearch onClick={handleSearch} />
           </span>
         </div>
       </div>
