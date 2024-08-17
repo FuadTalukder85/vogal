@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const CartsDetails = ({ carts }) => {
   const [quantities, setQuantities] = useState({});
   const [deleteCart] = useDeleteCartMutation();
-  console.log(carts);
+  // console.log(carts);
 
   useEffect(() => {
     if (carts.length > 0) {

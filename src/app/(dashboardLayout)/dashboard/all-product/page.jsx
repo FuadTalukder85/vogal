@@ -61,6 +61,11 @@ const AllProduct = () => {
       }
     });
   };
+  useEffect(() => {
+    if (data) {
+      setFilteredData(data);
+    }
+  }, [data]);
 
   // Filter data based on search query
   const handleSearch = () => {
@@ -88,7 +93,7 @@ const AllProduct = () => {
   if (isLoading) {
     return <p className="text-center mt-5">Loading...</p>;
   }
-
+  console.log(paginatedData);
   return (
     <div className="p-3 md:p-10">
       <div className="flex justify-between px-4">
@@ -150,7 +155,7 @@ const AllProduct = () => {
             </tr>
           </thead>
           <tbody>
-            {paginatedData.map((product, index) => (
+            {paginatedData?.map((product, index) => (
               <tr key={product._id}>
                 <th>
                   <label className="">
