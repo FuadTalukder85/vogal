@@ -14,6 +14,8 @@ const AllUsers = () => {
               <th className="md:text-[14px] text-[#333333]">SL</th>
               <th className="md:text-[14px] text-[#333333]">Name</th>
               <th className="md:text-[14px] text-[#333333]">Email</th>
+              <th className="md:text-[14px] text-[#333333]">Joined</th>
+              <th className="md:text-[14px] text-[#333333]">Role</th>
               <th className="md:text-[14px] text-[#333333]">Action</th>
             </tr>
           </thead>
@@ -32,6 +34,8 @@ const AllUsers = () => {
                   </div>
                 </td>
                 <td className="">{user.email}</td>
+                <td className="">{user?.date}</td>
+                <td className="">Role</td>
                 <td className="">
                   <button className="text-red-500">Delete</button>
                 </td>
