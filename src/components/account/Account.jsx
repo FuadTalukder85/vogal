@@ -4,12 +4,15 @@ import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useGetUserQuery } from "../../redux/features/auth/authApi";
 
 const Account = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(useCurrentUser);
   const [isClient, setIsClient] = useState(false);
+  const { data } = useGetUserQuery();
+  // console.log(data);
 
   useEffect(() => {
     if (!user) {
@@ -30,6 +33,12 @@ const Account = () => {
     localStorage.removeItem("token");
     router.push("/");
   };
+  const userRole = data?.find(
+    (role) => role.email && role.role === "admin" && user?.email
+  );
+  console.log(user);
+  console.log(userRole);
+
   return (
     <div className="max-w-[1300px] mx-auto mb-10 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center md:mt-24">My Account</h5>
@@ -66,11 +75,19 @@ const Account = () => {
         <div className="col-span-5"></div>
         <div className="col-span-2">
           <div>
-            <Link href="/dashboard">
-              <button className="mt-6 bg-[#333333] hover:bg-[#86bbbf] transition-all duration-500 text-white py-3 px-6 text-xs rounded-md uppercase">
-                Dashboard
-              </button>
-            </Link>
+            {userRole?.role === "admin" ? (
+              <Link href="/dashboard">
+                <button className="mt-6 bg-[#333333] hover:bg-[#86bbbf] transition-all duration-500 text-white py-3 px-6 text-xs rounded-md uppercase">
+                  Dashboard
+                </button>
+              </Link>
+            ) : (
+              <Link href="/cart">
+                <button className="mt-6 bg-[#333333] hover:bg-[#86bbbf] transition-all duration-500 text-white py-3 px-6 text-xs rounded-md uppercase">
+                  View Cart
+                </button>
+              </Link>
+            )}
           </div>
           <div>
             <button className="mt-10 md:mt-36 border-b-2 pb-1 text-[#333333] text-xs">

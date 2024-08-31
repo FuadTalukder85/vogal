@@ -1,8 +1,20 @@
 "use client";
 import { useGetUserQuery } from "../../../../redux/features/auth/authApi";
+import { AiFillDelete } from "react-icons/ai";
+import { FaRegEye } from "react-icons/fa";
 const AllUsers = () => {
   const { data } = useGetUserQuery();
-  // console.log(data);
+
+  const handleMakeAdmin = (user) => {
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
+    })
+      .then((res) => res.json)
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   return (
     <div className="p-3 md:p-10">
       <h5 className="text-xl font-semibold">All Users</h5>
@@ -35,9 +47,16 @@ const AllUsers = () => {
                 </td>
                 <td className="">{user.email}</td>
                 <td className="">{user?.date}</td>
-                <td className="">Role</td>
                 <td className="">
-                  <button className="text-red-500">Delete</button>
+                  {user.role === "admin" ? (
+                    "admin"
+                  ) : (
+                    <button onClick={() => handleMakeAdmin(user)}>User</button>
+                  )}
+                </td>
+                <td className="flex gap-3 text-xl">
+                  <FaRegEye className=""></FaRegEye>
+                  <AiFillDelete className="text-red-500"></AiFillDelete>
                 </td>
               </tr>
             ))}
