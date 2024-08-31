@@ -12,8 +12,9 @@ const Account = () => {
   const user = useAppSelector(useCurrentUser);
   const [isClient, setIsClient] = useState(false);
   const { data } = useGetUserQuery();
-  // console.log(data);
 
+  const checkUser = data?.find((users) => users?.email === user?.email);
+  console.log(checkUser);
   useEffect(() => {
     if (!user) {
       router.push("/account/login");
@@ -33,11 +34,6 @@ const Account = () => {
     localStorage.removeItem("token");
     router.push("/");
   };
-  const userRole = data?.find(
-    (role) => role.email && role.role === "admin" && user?.email
-  );
-  console.log(user);
-  console.log(userRole);
 
   return (
     <div className="max-w-[1300px] mx-auto mb-10 p-5 md:p-0">
@@ -75,7 +71,7 @@ const Account = () => {
         <div className="col-span-5"></div>
         <div className="col-span-2">
           <div>
-            {userRole?.role === "admin" ? (
+            {checkUser?.role === "admin" ? (
               <Link href="/dashboard">
                 <button className="mt-6 bg-[#333333] hover:bg-[#86bbbf] transition-all duration-500 text-white py-3 px-6 text-xs rounded-md uppercase">
                   Dashboard
