@@ -22,24 +22,99 @@ const Cart = () => {
     }
   }, [carts]);
 
-  const handleDecrement = (id) => {
-    if (quantities[id] > 1) {
+  const handleDecrement = async (id) => {
+    const newQuantity = (quantities[id] || 1) - 1;
+    // Find the specific cart item by its id
+    const cart = carts.find((cart) => cart._id === id);
+    if (!cart) {
+      console.error("Cart item not found");
+      return;
+    }
+    // Calculate totalPrice and totalProfit based on the new quantity
+    const totalPrice = newQuantity * cart.price;
+    const originalProductPrice = newQuantity * cart.originalPrice;
+    const totalProfit = totalPrice - originalProductPrice;
+    // Construct the cartItem object
+    const cartItem = { totalPrice, totalProfit };
+    // Update the local quantities state
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [id]: newQuantity,
+    }));
+    try {
+      // Send the updated data to the API
+      const response = await fetch(`http://localhost:5000/carts/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ quantity: newQuantity, ...cartItem }),
+      });
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        throw new Error(`Failed to update quantity: ${errorDetails}`);
+      }
+      const result = await response.json();
+      console.log("Cart item updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+      // Revert to the previous quantity in case of an error
       setQuantities((prevQuantities) => ({
         ...prevQuantities,
-        [id]: prevQuantities[id] - 1,
+        [id]: (prevQuantities[id] || 1) - 1,
       }));
     }
   };
 
-  const handleIncrement = (id) => {
+  const handleIncrement = async (id) => {
+    const newQuantity = (quantities[id] || 1) + 1;
+    // Find the specific cart item by its id
+    const cart = carts.find((cart) => cart._id === id);
+    if (!cart) {
+      console.error("Cart item not found");
+      return;
+    }
+    // Calculate totalPrice and totalProfit based on the new quantity
+    const totalPrice = newQuantity * cart.price;
+    const originalProductPrice = newQuantity * cart.originalPrice;
+    const totalProfit = totalPrice - originalProductPrice;
+    // Construct the cartItem object
+    const cartItem = { totalPrice, totalProfit };
+    // Update the local quantities state
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [id]: prevQuantities[id] + 1,
+      [id]: newQuantity,
     }));
+    try {
+      // Send the updated data to the API
+      const response = await fetch(`http://localhost:5000/carts/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ quantity: newQuantity, ...cartItem }),
+      });
+      if (!response.ok) {
+        const errorDetails = await response.text();
+        throw new Error(`Failed to update quantity: ${errorDetails}`);
+      }
+      const result = await response.json();
+      console.log("Cart item updated successfully:", result);
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+      // Revert to the previous quantity in case of an error
+      setQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [id]: (prevQuantities[id] || 1) - 1,
+      }));
+    }
   };
 
-  const totalPrice = carts.reduce((sum, item) => sum + item.totalPrice, 0);
-  // console.log(totalPrice);
+  const productTotalPrice = carts.reduce(
+    (sum, item) => sum + item.totalPrice,
+    0
+  );
+  // console.log(carts);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -73,7 +148,7 @@ const Cart = () => {
         <div className="flex justify-between items-center px-10 mt-10">
           <h5 className="font-semibold text-lg">
             Total Price :{" "}
-            <span className="text-[#E85363]">${totalPrice}.00</span>
+            <span className="text-[#E85363]">${productTotalPrice}.00</span>
           </h5>{" "}
           <div className="flex gap-5">
             <Link href="/payment">
@@ -106,6 +181,7 @@ const Cart = () => {
               {/* row 1 */}
               {carts?.map((cart, index) => {
                 const itemTotalPrice = (quantities[cart._id] || 1) * cart.price;
+                // console.log(itemTotalPrice);
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
