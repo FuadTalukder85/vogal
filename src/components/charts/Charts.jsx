@@ -8,15 +8,12 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
 const Charts = () => {
   const { data: items } = useGetProductsQuery();
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   // Aggregate data by category
   const aggregatedData = items?.reduce((acc, product) => {
@@ -33,26 +30,29 @@ const Charts = () => {
   }, []);
 
   return (
-    <ComposedChart
-      className="mt-10"
-      width={1000}
-      height={400}
-      data={aggregatedData}
-      margin={{
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 20,
-      }}
-    >
-      <CartesianGrid stroke="#f5f5f5" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="StockProducts" barSize={20} fill="#413ea0" />
-      <Line type="monotone" dataKey="StockProducts" stroke="#ff7300" />
-    </ComposedChart>
+    <div className="mt-10">
+      <div className="mx-auto w-full sm:w-[600px] md:w-[800px] lg:w-[1000px] xl:w-[1000px] px-5 md:px-0">
+        <ResponsiveContainer width="100%" height={400}>
+          <ComposedChart
+            data={aggregatedData}
+            margin={{
+              top: 20,
+              right: 20,
+              bottom: 20,
+              left: 20,
+            }}
+          >
+            <CartesianGrid stroke="#f5f5f5" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="StockProducts" barSize={20} fill="#413ea0" />
+            <Line type="monotone" dataKey="StockProducts" stroke="#ff7300" />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 };
 

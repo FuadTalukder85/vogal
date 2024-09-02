@@ -18,7 +18,9 @@ const TrendingProduct = () => {
             <tr>
               <th className="md:text-[14px] text-[#333333]">SL *</th>
               <th className="md:text-[14px] text-[#333333]">Product Image</th>
-              <th className="md:text-[14px] text-[#333333]">Product Title</th>
+              <th className="md:text-[14px] text-[#333333] text-center">
+                Product Title
+              </th>
               <th className="md:text-[14px] text-[#333333] text-center">
                 Price
               </th>
@@ -44,7 +46,7 @@ const TrendingProduct = () => {
                     height={55}
                   />
                 </td>
-                <td className="">{trending.title}</td>
+                <td className="text-center">{trending.title}</td>
                 <td className="text-center">${trending.price}.00</td>
                 <td className="text-center">{trending.stockProduct}</td>
               </tr>

@@ -60,7 +60,7 @@ const PieCharts = () => {
     );
   };
   return (
-    <PieChart width={400} height={400}>
+    <PieChart width={400} height={400} className="px-5 md:px-0 mx-auto">
       <Pie
         data={aggregatedData}
         cx="50%"

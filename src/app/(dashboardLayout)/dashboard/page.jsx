@@ -10,18 +10,21 @@ import AdminRoute from "../../../components/adminRoute/AdminRoute";
 const DashboardPage = () => {
   return (
     <AdminRoute>
-      <div className="p-5 md:p-10">
-        <OverView></OverView>
-        <div className="flex items-center gap-10">
-          <Charts></Charts>
-          <PieChart></PieChart>
-        </div>
-        <div className="grid grid-cols-12 mt-16 md:gap-16">
-          <div className="col-span-12 md:col-span-6">
-            <TrendingProduct></TrendingProduct>
+      <div className="">
+        {/* <div className="bg-[#000000] py-3"></div> */}
+        <div className="md:px-10 pb-10">
+          <OverView></OverView>
+          <div className="md:flex items-center gap-10">
+            <Charts></Charts>
+            <PieChart></PieChart>
           </div>
-          <div className="col-span-12 md:col-span-6">
-            <Orders></Orders>
+          <div className="grid grid-cols-12 mt-16 md:gap-16">
+            <div className="col-span-12 md:col-span-6">
+              <TrendingProduct></TrendingProduct>
+            </div>
+            <div className="col-span-12 md:col-span-6">
+              <Orders></Orders>
+            </div>
           </div>
         </div>
       </div>
