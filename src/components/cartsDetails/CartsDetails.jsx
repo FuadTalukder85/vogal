@@ -22,6 +22,11 @@ const CartsDetails = ({ carts }) => {
   }, [carts]);
 
   const handleDecrement = async (id) => {
+    const currentQuantity = quantities[id] || 1;
+    // Prevent decrementing if the quantity is already 1
+    if (currentQuantity <= 1) {
+      return;
+    }
     const newQuantity = (quantities[id] || 1) - 1;
     // Find the specific cart item by its id
     const cart = carts.find((cart) => cart._id === id);

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
@@ -6,16 +7,20 @@ import { useGetUserQuery } from "../../redux/features/auth/authApi";
 
 const AdminRoute = ({ children }) => {
   const user = useAppSelector(useCurrentUser);
-  const { data } = useGetUserQuery();
+  const { data, isLoading } = useGetUserQuery();
   const router = useRouter();
-  const checkUser = data?.find((users) => users?.email === user?.email);
-  console.log(checkUser?.role);
-  useEffect(() => {
-    if (checkUser?.role !== "admin") {
-      router.push("/account/login");
-    }
-  }, [user, router]);
 
+  useEffect(() => {
+    if (!isLoading) {
+      const checkUser = data?.find((users) => users?.email === user?.email);
+      if (checkUser?.role !== "admin") {
+        router.push("/account/login");
+      }
+    }
+  }, [user, router, data, isLoading]);
+  if (isLoading || !data) {
+    return <p className="text-center mt-5">Loading...</p>;
+  }
   return user ? children : null;
 };
 

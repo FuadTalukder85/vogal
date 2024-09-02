@@ -8,7 +8,7 @@ import { useGetCartsQuery } from "../../redux/features/cartsApi/CartsApi";
 import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
 
 const OverView = () => {
-  const { data: products, isLoading } = useGetProductsQuery();
+  const { data: products } = useGetProductsQuery();
   // console.log(products);
   const { data } = useGetPaymentsQuery();
   const { data: orderOnCarts } = useGetCartsQuery();
@@ -22,9 +22,9 @@ const OverView = () => {
     (sum, item) => sum + item.quantity,
     0
   );
-  if (isLoading) {
-    return <div className="text-center">Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div className="text-center">Loading...</div>;
+  // }
   return (
     <div className="grid grid-cols-12 md:grid-cols-5 gap-2 md:gap-5">
       <div className="col-span-6 md:col-span-1 bg-base-300 p-3">
