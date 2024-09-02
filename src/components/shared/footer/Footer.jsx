@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-[#F5F5F5] p-5 md:mt-16 md:pt-16">
+    <div className="bg-[#F5F5F5] p-5 md:mt-16 md:pt-10">
       <div className="max-w-[1300px] mx-auto grid grid-cols-12 gap-5 md:gap-20">
         <div className="col-span-12 md:col-span-4">
           <a className="btn btn-ghost text-xl">

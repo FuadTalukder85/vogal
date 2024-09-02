@@ -6,6 +6,7 @@ import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
 import sellImg from "../../../assets/images/sell.png";
+import { MdFilterListOff } from "react-icons/md";
 import "./shop.css";
 
 const ShopPage = () => {
@@ -74,7 +75,7 @@ const ShopPage = () => {
     return <p className="text-center">Loading...</p>;
   }
   return (
-    <div>
+    <div className="">
       <div className="shopBannerImg py-16">
         <h3 className="text-center text-3xl font-semibold uppercase">
           All Products
@@ -82,75 +83,177 @@ const ShopPage = () => {
       </div>
       <Container>
         <div className="grid grid-cols-12">
-          <div className="col-span-3">
-            <div className={isFixed ? "fixed top-0 category" : "category"}>
-              <h5 className="uppercase font-medium mt-10">Category</h5>
-              <ul className="text-sm mt-6">
-                <li className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.men}
-                    onChange={() => handleCategoryChange("men")}
-                  />{" "}
-                  Men
-                </li>
-                <li className="flex items-center gap-3 mt-2">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.women}
-                    onChange={() => handleCategoryChange("women")}
-                  />{" "}
-                  Women
-                </li>
-                <li className="flex items-center gap-3 mt-2">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.jewellery}
-                    onChange={() => handleCategoryChange("jewellery")}
-                  />{" "}
-                  Jewellery
-                </li>
-                <li className="flex items-center gap-3 mt-2">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.partyDress}
-                    onChange={() => handleCategoryChange("partyDress")}
-                  />{" "}
-                  Party Dress
-                </li>
-                <li className="flex items-center gap-3 mt-2">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.bestSeller}
-                    onChange={() => handleCategoryChange("bestSeller")}
-                  />{" "}
-                  Best Sellers
-                </li>
-                <li className="flex items-center gap-3 mt-2">
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-sm"
-                    checked={selectedCategories.accessories}
-                    onChange={() => handleCategoryChange("accessories")}
-                  />{" "}
-                  Accessories
-                </li>
-                {/* <li className="flex items-center gap-3 mt-2">
+          <div className="md:col-span-3">
+            {/* large screen */}
+            <div className="hidden md:block">
+              <div className={isFixed ? "fixed top-0 category" : "category"}>
+                <h5 className="uppercase font-medium mt-10">Category</h5>
+                <ul className="text-sm mt-6">
+                  <li className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.men}
+                      onChange={() => handleCategoryChange("men")}
+                    />{" "}
+                    Men
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.women}
+                      onChange={() => handleCategoryChange("women")}
+                    />{" "}
+                    Women
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.jewellery}
+                      onChange={() => handleCategoryChange("jewellery")}
+                    />{" "}
+                    Jewellery
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.partyDress}
+                      onChange={() => handleCategoryChange("partyDress")}
+                    />{" "}
+                    Party Dress
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.bestSeller}
+                      onChange={() => handleCategoryChange("bestSeller")}
+                    />{" "}
+                    Best Sellers
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.accessories}
+                      onChange={() => handleCategoryChange("accessories")}
+                    />{" "}
+                    Accessories
+                  </li>
+                  {/* <li className="flex items-center gap-3 mt-2">
                   <input type="checkbox" className="checkbox checkbox-sm" />{" "}
                   Weekly Deal
                 </li> */}
-              </ul>
-              <div className="mt-8">
-                <Image src={sellImg} width={260} height={100} alt="img"></Image>
+                </ul>
+                <div className="mt-8 hidden md:block">
+                  <Image
+                    src={sellImg}
+                    width={200}
+                    height={100}
+                    alt="img"
+                  ></Image>
+                </div>
+              </div>
+            </div>
+            {/* responsive */}
+            {/* Drawer  */}
+            <div className="drawer block md:hidden z-50">
+              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label
+                  htmlFor="my-drawer"
+                  className="flex justify-center items-center gap-3 w-28 uppercase mt-10"
+                >
+                  <span className=" text-xl">
+                    <MdFilterListOff />
+                  </span>{" "}
+                  <span>Filter</span>
+                </label>
+              </div>
+              <div className="drawer-side">
+                <label
+                  htmlFor="my-drawer"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+                ></label>
+                <ul className="bg-base-200 text-base-content min-h-full w-80 p-4">
+                  {/* Sidebar content here */}
+                  <li>
+                    <h5 className="uppercase font-medium">Category</h5>
+                  </li>
+                  <li className="flex items-center gap-3 mt-8">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.men}
+                      onChange={() => handleCategoryChange("men")}
+                    />{" "}
+                    Men
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.women}
+                      onChange={() => handleCategoryChange("women")}
+                    />{" "}
+                    Women
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.jewellery}
+                      onChange={() => handleCategoryChange("jewellery")}
+                    />{" "}
+                    Jewellery
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.partyDress}
+                      onChange={() => handleCategoryChange("partyDress")}
+                    />{" "}
+                    Party Dress
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.bestSeller}
+                      onChange={() => handleCategoryChange("bestSeller")}
+                    />{" "}
+                    Best Sellers
+                  </li>
+                  <li className="flex items-center gap-3 mt-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-sm"
+                      checked={selectedCategories.accessories}
+                      onChange={() => handleCategoryChange("accessories")}
+                    />{" "}
+                    Accessories
+                  </li>
+                  <li>
+                    <div className="mt-8 block md:hidden">
+                      <Image
+                        src={sellImg}
+                        width={200}
+                        height={100}
+                        alt="img"
+                      ></Image>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-          <div className="col-span-9">
+          <div className="col-span-12 md:col-span-9">
             <div className="grid grid-cols-12 gap-5 mt-10">
               {/* card */}
               {filteredProducts?.map((product, index) => (
