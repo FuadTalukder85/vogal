@@ -93,7 +93,6 @@ const AllProduct = () => {
   if (isLoading) {
     return <p className="text-center mt-5">Loading...</p>;
   }
-  console.log(paginatedData);
   return (
     <div className="p-3 md:p-10">
       <div className="flex justify-between px-4">

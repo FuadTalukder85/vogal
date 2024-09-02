@@ -2,7 +2,7 @@ import DashboardSidebar from "../../../components/sidebar/DashboardSidebar";
 
 const layout = ({ children }) => {
   return (
-    <div className="md:min-h-screen my-2">
+    <div className="md:min-h-screen">
       <div className="md:flex justify-between">
         <div className="md:w-[15%]">
           <DashboardSidebar />

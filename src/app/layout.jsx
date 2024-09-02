@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import Providers from "../provider/Providers";
-import TopNav from "../components/shared/TopNav";
-import NavBar from "../components/shared/NavBar";
-import Footer from "../components/shared/footer/Footer";
+// import TopNav from "../components/shared/TopNav";
+// import NavBar from "../components/shared/NavBar";
+// import Footer from "../components/shared/footer/Footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={inter.className}>
         <Providers>
-          <TopNav></TopNav>
-          <NavBar></NavBar>
+          {/* <TopNav></TopNav>
+          <NavBar></NavBar> */}
           {children}
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </Providers>
       </body>
     </html>
