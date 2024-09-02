@@ -28,7 +28,7 @@ const Shipping = () => {
       </ul>
       <h5 className="text-lg mt-8">RETURNS</h5>
       <ul className="text-sm mt-4">
-        <li className="w-[980px]">
+        <li className="md:w-[980px]">
           <p>
             If you do not like the product you can return it within 15 days - no
             questions asked. This excludes bodysuits, swimwear and clearance

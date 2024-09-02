@@ -31,49 +31,82 @@ const NavBar = () => {
     <div className="max-w-[1300px] mx-auto">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+          <div className="dropdown block md:hidden pr-4 z-50">
+            {/* responsive drawer */}
+            <div className="drawer">
+              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer" className="drawer-button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h8m-8 6h16"
+                    />
+                  </svg>
+                </label>
+              </div>
+              <div className="drawer-side">
+                <label
+                  htmlFor="my-drawer"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+                ></label>
+                <ul className="bg-base-200 text-base-content min-h-full w-80 p-4">
+                  {/* Sidebar content here */}
+                  <li className="">
+                    <h5 className="uppercase font-medium text-black">Menu</h5>
+                  </li>
+                  <li className="py-5 border-b border-gray-300 uppercase text-sm mt-5">
+                    <Link href="/">Home</Link>
+                  </li>
+                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
+                    <Link href="/shop">Shop</Link>
+                  </li>
+                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
+                    <Link href="/features">Features</Link>
+                  </li>
+                  {/* <li className="py-5 border-b border-gray-300">
+                    <Link href="/">Trending</Link>
+                  </li> */}
+                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
+                    <Link href="/about-us">About US</Link>
+                  </li>
+                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
+                    <Link href="/contactUs">Contact US</Link>
+                  </li>
+                  <li>
+                    <div className="block md:hidden mt-8">
+                      <p className="uppercase text-black">Need help?</p>
+                      <span>Call +566 4444 9940</span>
+                    </div>
+                  </li>
+                  <li className="mt-8 bg-black text-white">
+                    {" "}
+                    <div className="block md:hidden">
+                      <select className="select select-ghost w-full max-w-xs uppercase">
+                        <option disabled selected>
+                          English
+                        </option>
+                        <option>Francais</option>
+                        <option>Deutsch</option>
+                      </select>
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#F7F7F7] rounded-box w-36"
-            >
-              <li className="text-[#e22515]">
-                <Link href="/">Home</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/shop">Shop</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/features">Features</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/">Trending</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/about-us">About US</Link>
-              </li>
-              <li className="text-[#e22515]">
-                <Link href="/contactUs">Contact US</Link>
-              </li>
-            </ul>
           </div>
 
-          <Link href="/" className="relative">
+          <Link href="/" className="">
             <Image src={logo} alt="logo" height={32}></Image>
           </Link>
         </div>
@@ -138,13 +171,13 @@ const NavBar = () => {
                   </li>
                 </label>
               </div>
-              <div className="drawer-side z-50">
+              <div className="drawer-side  z-50">
                 <label
                   htmlFor="my-drawer-4"
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>
-                <div className="menu bg-white text-base-content min-h-full w-[480px] p-4">
+                <div className="menu bg-white text-base-content min-h-full w-[380px] p-4">
                   <CartsSidebar></CartsSidebar>
                 </div>
               </div>

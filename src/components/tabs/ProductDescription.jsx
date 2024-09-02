@@ -80,7 +80,7 @@ const ProductDescription = () => {
       </ul>
       <h5 className="text-lg mt-8">Disclaimer</h5>
       <ul className="text-sm mt-4">
-        <li className="w-[700px]">
+        <li className="md:w-[700px]">
           <p>
             Please check the size guide before you buy. You may need one size
             bigger than other popular brands. Bring out the fashionista in you

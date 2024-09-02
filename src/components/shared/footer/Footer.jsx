@@ -43,10 +43,14 @@ const Footer = () => {
           <ul className="mt-5">
             <li className="mt-2 text-sm">Latest News</li>
             <li className="mt-2 text-sm">Career</li>
-            <li className="mt-2 text-sm">My Account</li>
-            <li className="mt-2 text-sm">My Cart</li>
+            <li className="mt-2 text-sm hover:underline">
+              <Link href="/account">My Account</Link>
+            </li>
+            <li className="mt-2 text-sm hover:underline">
+              <Link href="/cart">My Cart</Link>
+            </li>
             <li className="mt-2 text-sm">Orders and Returns</li>
-            <li className="mt-2 text-sm">
+            <li className="mt-2 text-sm hover:underline">
               <Link href="/contactUs">Contact us</Link>
             </li>
           </ul>
@@ -54,15 +58,15 @@ const Footer = () => {
         <div className="col-span-6 md:col-span-2">
           <h5 className="font-semibold text-sm uppercase">Customer Service</h5>
           <ul className="mt-5">
-            <li className="mt-2 text-sm">
+            <li className="mt-2 text-sm hover:underline">
               <Link href="/privacyPolicy">Privacy Policy</Link>
             </li>
             <li className="mt-2 text-sm">Terms & Conditions</li>
             <li className="mt-2 text-sm">Shipping & Returns</li>
-            <li className="mt-2 text-sm">
+            <li className="mt-2 text-sm hover:underline">
               <Link href="/faqs">Helps & FAQs</Link>
             </li>
-            <li className="mt-2 text-sm">
+            <li className="mt-2 text-sm hover:underline">
               <Link href="/refundPolicy">Refund Policy</Link>
             </li>
             <li className="mt-2 text-sm">Customer Service</li>

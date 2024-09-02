@@ -3,7 +3,7 @@ import Container from "../../../components/container/Container";
 const RefundPolicy = () => {
   return (
     <Container>
-      <div className="px-44">
+      <div className="px-5 md:px-44">
         <h5 className="text-4xl text-center mt-16">Refund policy</h5>
         <p className="text-xs mt-8">
           To be eligible for a return, your item must be in the same condition

@@ -160,30 +160,36 @@ const ShopPage = () => {
             </div>
             {/* responsive */}
             {/* Drawer  */}
-            <div className="drawer block md:hidden z-50">
-              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer block md:hidden">
+              <input
+                id="filter-drawerr"
+                type="checkbox"
+                className="drawer-toggle"
+              />
               <div className="drawer-content">
                 {/* Page content here */}
                 <label
-                  htmlFor="my-drawer"
+                  htmlFor="filter-drawerr"
                   className="flex justify-center items-center gap-3 w-28 uppercase mt-10"
                 >
-                  <span className=" text-xl">
+                  <span className="text-xl -z-50">
                     <MdFilterListOff />
                   </span>{" "}
-                  <span>Filter</span>
+                  <span className="-z-50">Filter</span>
                 </label>
               </div>
-              <div className="drawer-side">
+              <div className="drawer-side z-50">
                 <label
-                  htmlFor="my-drawer"
+                  htmlFor="filter-drawerr"
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>
                 <ul className="bg-base-200 text-base-content min-h-full w-80 p-4">
                   {/* Sidebar content here */}
                   <li>
-                    <h5 className="uppercase font-medium">Category</h5>
+                    <h5 className="uppercase font-medium text-black">
+                      Category
+                    </h5>
                   </li>
                   <li className="flex items-center gap-3 mt-8">
                     <input
@@ -239,7 +245,7 @@ const ShopPage = () => {
                     />{" "}
                     Accessories
                   </li>
-                  <li>
+                  <li className="z-50">
                     <div className="mt-8 block md:hidden">
                       <Image
                         src={sellImg}

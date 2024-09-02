@@ -157,12 +157,12 @@ const Cart = () => {
           </h5>{" "}
           <div className="flex gap-5">
             <Link href="/payment">
-              <button className="w-[180px] bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase">
+              <button className="md:w-[180px] bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase">
                 Proceed to checkout
               </button>
             </Link>
             <Link href="/shop">
-              <button className="w-[180px] bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 rounded-md text-sm uppercase">
+              <button className="md:w-[180px] bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 rounded-md text-sm uppercase">
                 Continue shopping
               </button>
             </Link>

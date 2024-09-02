@@ -95,18 +95,21 @@ const ProductDetails = ({ productDetails }) => {
 
   return (
     <Container>
-      <div className="grid grid-cols-12 mt-10 gap-10 items-center">
+      <div className="md:grid grid-cols-12 mt-10 gap-10 items-center p-5 md:p-0">
         <div className="col-span-6">
           <ImageGallery
             items={images}
             showThumbnails={true}
             thumbnailPosition="left"
+            showPlayButton={false}
             onSlide={handleCurrentImg}
           />
         </div>
         <div className="col-span-6">
           <div>
-            <h3 className="text-2xl font-medium">{productDetails.title}</h3>
+            <h3 className="text-2xl font-medium mt-5 md:mt-0">
+              {productDetails.title}
+            </h3>
             <p className="text-2xl font-semibold mt-5">${totalPrice}.00</p>
             <p className="font-semibold mt-8">In stock - Ready to ship</p>
             <div className="mt-8">
@@ -137,7 +140,7 @@ const ProductDetails = ({ productDetails }) => {
           </div>
         </div>
       </div>
-      <Tabs className="mt-28">
+      <Tabs className="mt-28 p-5 md:p-0">
         <TabList>
           <Tab>Product Description</Tab>
           <Tab>Shipping & Returns</Tab>
