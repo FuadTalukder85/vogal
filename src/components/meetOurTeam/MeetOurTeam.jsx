@@ -36,18 +36,40 @@ const MeetOurTeam = () => {
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024, // screens smaller than 1024px
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600, // screens smaller than 600px
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          nextArrow: <NextArrow />,
+          prevArrow: <PrevArrow />,
+        },
+      },
+    ],
   };
 
   return (
-    <div>
-      <h3 className="text-center text-3xl font-semibold uppercase mt-28">
+    <div className="mb-16 md:mb-0">
+      <h3 className="text-center text-3xl font-semibold uppercase mt-5 md:mt-28">
         Meet Our Teams
       </h3>
-      <p className="text-center text-sm mt-3">
+      <p className="text-center text-sm mt-3 px-5 md:px-0">
         Follow the most popular trends and get exclusive items from Vogal Shop.
       </p>
 
-      <div className="mt-14">
+      <div className="mt-14 w-[330px] md:w-full mx-auto">
         <Slider {...settings}>
           <div className="relative">
             <Image

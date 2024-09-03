@@ -259,7 +259,7 @@ const ShopPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-9">
+          <div className="col-span-12 md:col-span-9 p-5 md:p-0">
             <div className="grid grid-cols-12 gap-5 mt-10">
               {/* card */}
               {filteredProducts?.map((product, index) => (

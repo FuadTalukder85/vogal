@@ -19,12 +19,12 @@ const ContactUsPage = () => {
       <div className="bg-base-200">
         <div className="contact-banner text-white text-center py-16">
           <h5 className="text-4xl">Contact Us</h5>
-          <p className="text-lg mt-3">
+          <p className="md:text-lg mt-3">
             We love to hear from you on our customer service
           </p>
         </div>
         <Container>
-          <div className="grid grid-cols-12 gap-10 mt-10">
+          <div className="md:grid grid-cols-12 gap-10 mt-10">
             <div className="col-span-8">
               <div className="hero">
                 <div className="hero-content flex-col">
@@ -37,7 +37,7 @@ const ContactUsPage = () => {
                   <div className="card shrink-0">
                     <form
                       onSubmit={handleSubmit(onSubmit)}
-                      className="card-body md:w-[850px]"
+                      className="card-body w-[380px] md:w-[850px]"
                     >
                       <div className="md:flex gap-5 justify-between">
                         <div className="form-control">
@@ -48,7 +48,7 @@ const ContactUsPage = () => {
                             {...register("name")}
                           />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control mt-2 md:mt-0">
                           <input
                             type="text"
                             placeholder="Email"
@@ -94,7 +94,7 @@ const ContactUsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-4 md:mt-20">
+            <div className="col-span-4 md:mt-20 p-5 md:p-0">
               <h5 className="text-xl text-black">Address : </h5>
               <ul className="text-sm">
                 <li className="mt-5">55 Gallaxy Enque, 2568 steet, 23568 NY</li>

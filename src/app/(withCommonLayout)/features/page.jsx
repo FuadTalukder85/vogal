@@ -30,11 +30,11 @@ const FeaturesPage = () => {
         <h3 className="text-center text-3xl font-semibold uppercase mt-20">
           Featured Product
         </h3>
-        <p className="text-center text-sm mt-3">
+        <p className="text-center text-sm mt-3 px-5 md:px-5">
           Follow the most popular trends and get exclusive items from vogal
           shop.
         </p>
-        <div className="grid grid-cols-12 gap-5 mt-10">
+        <div className="grid grid-cols-12 gap-5 mt-10 p-5 md:p-">
           {/* card */}
           {features?.slice(0, 8).map((product, index) => (
             <div

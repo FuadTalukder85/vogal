@@ -45,7 +45,7 @@ const LookBook = () => {
   }
   return (
     <Container>
-      <div className="grid grid-cols-12 gap-14 items-center mt-28">
+      <div className="md:grid grid-cols-12 gap-14 items-center p-5 md:p-0 md:mt-28">
         <div className="col-span-6 overflow-hidden rounded-lg">
           <Image
             src={lookBookImg01}
@@ -56,7 +56,7 @@ const LookBook = () => {
           ></Image>
         </div>
         <div className="col-span-6">
-          <h3 className="text-3xl font-semibold uppercase">
+          <h3 className="text-3xl font-semibold uppercase mt-5 md:mt-0">
             Shop the Lookbook
           </h3>
           <p className="text-sm mt-3">

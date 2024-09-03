@@ -21,7 +21,7 @@ const AboutUs = () => {
             height={800}
           ></Image>
         </div>
-        <div className="grid grid-cols-12 gap-24 mt-16 items-center">
+        <div className="md:grid grid-cols-12 gap-24 mt-16 items-center p-5 md:p-0">
           <div className="col-span-6">
             <p className="text-lg font-semibold">Welcome To Our Online Store</p>
             <h5 className="text-4xl font-semibold mt-7">

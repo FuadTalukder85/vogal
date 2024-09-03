@@ -3,7 +3,7 @@ import Container from "../../../components/container/Container";
 const FAQS = () => {
   return (
     <Container>
-      <div className="px-44">
+      <div className="px-5 md:px-44">
         <h5 className="text-4xl text-center mt-16">
           Frequently Asked Questions
         </h5>

@@ -148,30 +148,30 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="w-[800px] mx-auto">
+      <div className="md:w-[800px] mx-auto">
         <h5 className="text-2xl font-semibold text-center mt-5">My Cart</h5>
-        <div className="flex justify-between items-center px-10 mt-10">
+        <div className="md:flex justify-between items-center px-5 md:px-10 mt-10">
           <h5 className="font-semibold text-lg">
             Total Price :{" "}
             <span className="text-[#E85363]">${productTotalPrice}.00</span>
           </h5>{" "}
-          <div className="flex gap-5">
+          <div className="flex gap-5 mt-5 md:mt-0">
             <Link href="/payment">
-              <button className="md:w-[180px] bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase">
+              <button className="bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
                 Proceed to checkout
               </button>
             </Link>
             <Link href="/shop">
-              <button className="md:w-[180px] bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 rounded-md text-sm uppercase">
+              <button className=" bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
                 Continue shopping
               </button>
             </Link>
           </div>
         </div>
         <div className="overflow-x-auto mt-3 bg-white p-5">
-          <table className="table">
+          <table className="table hidden md:block">
             {/* head */}
-            <thead>
+            <thead className="">
               <tr className="">
                 <th className="md:text-[14px] text-[#333333]">SL</th>
                 <th className="md:text-[14px] text-[#333333]">Product</th>
@@ -245,6 +245,57 @@ const Cart = () => {
               })}
             </tbody>
           </table>
+          {/* responsive carts  */}
+          <div className="block md:hidden">
+            {carts?.map((cart) => {
+              const itemTotalPrice = (quantities[cart._id] || 1) * cart.price;
+              return (
+                <div
+                  key={cart._id}
+                  className="grid grid-cols-12 items-center mt-4 bg-base-200 p-3"
+                >
+                  <div className="col-span-4">
+                    <Image src={cart.image} alt="img" height={80} width={80} />
+                  </div>
+                  <div className="col-span-8">
+                    <div>
+                      <h3 className="text-md font-medium">{cart.title}</h3>
+                      <p className="text-md font-semibold mt-3">
+                        ${itemTotalPrice}.00
+                      </p>
+                      <div className="mt-4 flex items-center gap-3">
+                        <div>
+                          <button
+                            onClick={() => handleDecrement(cart._id)}
+                            className="text-md border px-5"
+                          >
+                            -
+                          </button>
+                          <input
+                            type="text"
+                            value={quantities[cart._id]}
+                            className="border w-8 text-md text-center mx-auto"
+                            readOnly
+                          />
+                          <button
+                            onClick={() => handleIncrement(cart._id)}
+                            className="text-md border px-5"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div className="text-[18px] hover:text-[#E85363] duration-700 cursor-pointer">
+                          <AiFillDelete
+                            onClick={() => handleDelete(cart?._id)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

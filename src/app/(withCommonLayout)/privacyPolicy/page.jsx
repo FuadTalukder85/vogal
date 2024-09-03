@@ -4,7 +4,7 @@ import "./privacyPolicy.css";
 const PrivacyPolicy = () => {
   return (
     <Container>
-      <div className="px-44">
+      <div className="px-5 md:px-44">
         <h5 className="text-4xl text-center mt-16">Privacy policy</h5>
         <p className="text-xs mt-8">
           This Privacy Policy describes how vogal-demo.myshopify.com (the “Site”
