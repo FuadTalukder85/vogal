@@ -142,15 +142,20 @@ const NavBar = () => {
         </div>
         <div className="navbar-end pe-5">
           <ul className="flex gap-4">
-            <li className="text-xl">
-              <CiSearch />
+            <li className="text-xl cursor-pointer hover:text-[#40B884] transition-all duration-700">
+              <Link href="/search">
+                <CiSearch />
+              </Link>
             </li>
-            <li onClick={handleOnclick} className="text-xl cursor-pointer">
+            <li
+              onClick={handleOnclick}
+              className="text-xl cursor-pointer hover:text-[#40B884] transition-all duration-700"
+            >
               <MdOutlineAccountCircle />
             </li>
-            <li className="text-xl">
+            {/* <li className="text-xl hover:text-[#40B884] transition-all duration-700">
               <CiHeart />
-            </li>
+            </li> */}
             {/* Drawer  */}
             <div className="drawer drawer-end">
               <input
@@ -162,7 +167,7 @@ const NavBar = () => {
                 {/* Page content here */}
                 <label htmlFor="my-drawer-4" className="drawer-button">
                   <li className="text-xl cursor-pointer">
-                    <div className="indicator">
+                    <div className="indicator hover:text-[#40B884] transition-all duration-700">
                       <AiOutlineShoppingCart className="me-[8px]"></AiOutlineShoppingCart>
                       <span className="badge badge-sm indicator-item rounded-full text-white font-semibold bg-black p-1">
                         {carts?.length || 0}

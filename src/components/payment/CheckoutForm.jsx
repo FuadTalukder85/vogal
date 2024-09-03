@@ -112,7 +112,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="px-5 md:px-0 mt-5">
         <CardElement
           options={{
             style: {
@@ -130,7 +130,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
           }}
         />
         <button
-          className="btn btn-primary"
+          className="text-white bg-black py-3 px-8 text-sm rounded-md uppercase mt-5 hover:bg-[#40B884] transition-all duration-700"
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >

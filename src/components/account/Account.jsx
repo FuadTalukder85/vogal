@@ -14,7 +14,6 @@ const Account = () => {
   const { data } = useGetUserQuery();
 
   const checkUser = data?.find((users) => users?.email === user?.email);
-  console.log(checkUser);
   useEffect(() => {
     if (!user) {
       router.push("/account/login");
