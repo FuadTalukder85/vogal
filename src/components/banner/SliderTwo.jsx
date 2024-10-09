@@ -30,7 +30,8 @@ const SliderOne = () => {
               </button>
             </Link>
           </div>
-          <div className="absolute bottom-16 left-20 md:hidden">
+          {/* responsive */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center md:hidden">
             <p className="text-center">NEW COLLECTION</p>
             <h3>
               <b className="text-4xl">Luxury Brands</b>

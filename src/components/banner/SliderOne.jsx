@@ -11,7 +11,7 @@ const SliderOne = () => {
         <Image src={bannerImg1} alt="bannerImg1" height={950} />
       </div>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
+        initial={{ opacity: 0, scale: 0.1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{
           duration: 0.8,
@@ -32,14 +32,15 @@ const SliderOne = () => {
             </button>
           </Link>
         </div>
-        <div className="absolute top-48 left-20 md:hidden">
-          <p className="text-center">NEW COLLECTION</p>
+        {/* responsive */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center md:hidden">
+          <p className="">NEW COLLECTION</p>
           <h3>
             <b className="text-4xl">Luxury Brands</b>
             <p className="text-4xl">Without Labels</p>
           </h3>
           <div className="flex justify-center">
-            <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
+            <button className="mt-5 bg-[#333333] text-white py-2 px-6 sm:py-3 sm:px-8 text-xs sm:text-sm rounded-md uppercase">
               Shop Now
             </button>
           </div>
