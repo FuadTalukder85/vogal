@@ -11,7 +11,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 // custom button
 const NextArrow = ({ onClick }) => {
   return (
-    <div className="absolute flex -bottom-16 left-36 md:left-[660px] px-6 md:px-0 ">
+    <div className="absolute flex -bottom-16 left-64 md:left-[660px] px-6 md:px-0 ">
       <div
         className="custom-arrow prev-arrow bg-black p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700"
         onClick={onClick}
@@ -23,7 +23,7 @@ const NextArrow = ({ onClick }) => {
 };
 const PrevArrow = ({ onClick }) => {
   return (
-    <div className="absolute flex -bottom-16 left-24 md:left-[600px] px-5 md:px-0 z-10">
+    <div className="absolute flex -bottom-16 left-52 md:left-[600px] px-5 md:px-0 z-10">
       <div
         className="custom-arrow next-arrow bg-white border border-gray-200 p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700 z-10"
         onClick={onClick}

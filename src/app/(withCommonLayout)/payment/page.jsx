@@ -10,20 +10,10 @@ const stripePromise = loadStripe(
 );
 
 const Payment = () => {
-  // const stripePromise = loadStripe(
-  //   "pk_test_51NFcc9HiKihjMle8zJVuk4BL9UAeYsK1ITglwbaqFFAQGicflQHHTl27Ryyy8pFAPg2ix4NyIMNhOB4lCz0NrZq5005iFgUWZ1"
-  // );
-
-  const [carts, error] = useCarts(); // Destructure to get carts and error
-  // console.log(carts);
-
-  // Ensure carts is an array and calculate the total price
+  const [carts, error] = useCarts();
   const total = carts.reduce((sum, item) => sum + item.totalPrice, 0);
   const price = parseFloat(total.toFixed(2));
   const quantity = carts.reduce((sum, quantity) => sum + quantity.quantity, 0);
-  // console.log(quantity);
-
-  //   console.log(price);
 
   return (
     <Container>

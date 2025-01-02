@@ -56,9 +56,6 @@ const AddProducts = () => {
                     placeholder="Best selling/sale..."
                     className="input input-bordered"
                   />
-                  {/* {errors.tag && (
-                    <small className="text-red-500 ">Tag is required</small>
-                  )} */}
                 </div>
               </div>
               {/*  */}

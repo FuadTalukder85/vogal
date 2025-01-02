@@ -155,14 +155,14 @@ const Cart = () => {
             Total Price :{" "}
             <span className="text-[#E85363]">${productTotalPrice}.00</span>
           </h5>{" "}
-          <div className="flex gap-5 mt-5 md:mt-0">
+          <div className="md:flex text-center gap-5 mt-5 md:mt-0">
             <Link href="/payment">
-              <button className="bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
+              <button className="w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
                 Proceed to checkout
               </button>
             </Link>
             <Link href="/shop">
-              <button className=" bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
+              <button className="w-full mt-3 md:mt-0 bg-[#40B884] text-white hover:bg-[#333333] transition-all duration-500 py-3 px-2 rounded-md text-sm uppercase">
                 Continue shopping
               </button>
             </Link>
@@ -206,28 +206,24 @@ const Cart = () => {
                     </td>
                     <td>
                       <div className="">
-                        <div>
-                          <div className="">
-                            <button
-                              onClick={() => handleDecrement(cart._id)}
-                              className="text-md border px-5"
-                            >
-                              -
-                            </button>
-                            <input
-                              type="text"
-                              value={quantities[cart._id]}
-                              className="border w-8 text-md text-center mx-auto"
-                              readOnly
-                            />
-                            <button
-                              onClick={() => handleIncrement(cart._id)}
-                              className="text-md border px-5"
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
+                        <button
+                          onClick={() => handleDecrement(cart._id)}
+                          className="text-md border px-5"
+                        >
+                          -
+                        </button>
+                        <input
+                          type="text"
+                          value={quantities[cart._id]}
+                          className="border w-8 text-md text-center mx-auto"
+                          readOnly
+                        />
+                        <button
+                          onClick={() => handleIncrement(cart._id)}
+                          className="text-md border px-5"
+                        >
+                          +
+                        </button>
                       </div>
                     </td>
                     <td>
@@ -259,7 +255,7 @@ const Cart = () => {
                   </div>
                   <div className="col-span-8">
                     <div>
-                      <h3 className="text-md font-medium">{cart.title}</h3>
+                      <h3 className="text-sm font-medium">{cart.title}</h3>
                       <p className="text-md font-semibold mt-3">
                         ${itemTotalPrice}.00
                       </p>

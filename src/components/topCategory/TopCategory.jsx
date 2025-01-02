@@ -65,7 +65,7 @@ const TopCategory = () => {
               Online Exclusive
             </h5>
             <div className="flex justify-center">
-              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-3 md:px-7 rounded-md text-xs uppercase">
+              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
                 Shop Now
               </button>
             </div>

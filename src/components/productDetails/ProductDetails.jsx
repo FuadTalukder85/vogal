@@ -9,7 +9,6 @@ import ProductDescription from "../tabs/ProductDescription";
 import Shipping from "../tabs/Shipping";
 import { useAddCartsMutation } from "../../redux/features/cartsApi/CartsApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import "./ProductDetails.css";
 import { setCarts } from "../../redux/features/cartsApi/CartsSlice";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";

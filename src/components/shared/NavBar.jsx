@@ -105,10 +105,8 @@ const NavBar = () => {
                   <li className="mt-8 bg-black text-white">
                     {" "}
                     <div className="block md:hidden">
-                      <select className="select select-ghost w-full max-w-xs uppercase">
-                        <option disabled selected>
-                          English
-                        </option>
+                      <select className="select bg-black w-full uppercase focus:none outline-none border-none">
+                        <option>English</option>
                         <option>Francais</option>
                         <option>Deutsch</option>
                       </select>

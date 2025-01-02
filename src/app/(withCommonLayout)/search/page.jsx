@@ -13,7 +13,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     if (data) {
-      setFilteredData(data); // Initialize with all data
+      setFilteredData(data);
     }
   }, [data]);
 
@@ -23,7 +23,7 @@ const SearchPage = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
-      setFilteredData(data); // Reset to all data if search query is empty
+      setFilteredData(data);
     } else {
       const filtered = data.filter(
         (product) =>

@@ -17,7 +17,7 @@ const FeaturesPage = () => {
   return (
     <div>
       <div className="featuresBannerImg py-16">
-        <h3 className="text-center text-3xl font-semibold uppercase">
+        <h3 className="text-center text-3xl font-semibold uppercase px-3 md:px-0">
           Featured collection
         </h3>
         <p className="text-center text-sm mt-3">

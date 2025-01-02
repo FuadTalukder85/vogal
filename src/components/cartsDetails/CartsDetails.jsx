@@ -106,7 +106,6 @@ const CartsDetails = ({ carts }) => {
       console.log("Cart item updated successfully:", result);
     } catch (error) {
       console.error("Error updating quantity:", error);
-      // Revert to the previous quantity in case of an error
       setQuantities((prevQuantities) => ({
         ...prevQuantities,
         [id]: (prevQuantities[id] || 1) - 1,

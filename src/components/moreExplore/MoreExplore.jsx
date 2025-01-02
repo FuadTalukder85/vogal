@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const MoreExplore = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-10 md:mt-24 p-5 md:p-0">
+    <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">
         There,s More to Explore
       </h5>
@@ -37,7 +37,7 @@ const MoreExplore = () => {
               </button>
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="">
             <div className="relative overflow-hidden">
               <Image
                 className="hover:scale-110 transition-all duration-500"

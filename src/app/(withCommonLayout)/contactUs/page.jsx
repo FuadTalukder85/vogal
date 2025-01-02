@@ -10,7 +10,6 @@ import "./contactUs.css";
 
 const ContactUsPage = () => {
   const { register, handleSubmit } = useForm();
-
   const onSubmit = async (data) => {
     console.log(data);
   };
@@ -34,46 +33,46 @@ const ContactUsPage = () => {
                       Drop Us A Line
                     </span>
                   </div>
-                  <div className="card shrink-0">
+                  <div className="mt-5">
                     <form
                       onSubmit={handleSubmit(onSubmit)}
-                      className="card-body md:w-[850px]"
+                      className="bg-white p-3 md:p-5"
                     >
-                      <div className="md:flex gap-5 justify-between">
-                        <div className="form-control">
+                      <div className="md:flex gap-3">
+                        <div className="w-full">
                           <input
                             type="text"
                             placeholder="Name"
-                            className="input order border-[#EFEDEC] text-xs md:w-96"
+                            className="w-full input order border-[#EFEDEC] text-xs"
                             {...register("name")}
                           />
                         </div>
-                        <div className="form-control mt-2 md:mt-0">
+                        <div className="w-full mt-3 md:mt-0">
                           <input
                             type="text"
                             placeholder="Email"
-                            className="input order border-[#EFEDEC] text-xs md:w-96"
+                            className="w-full input order border-[#EFEDEC] text-xs"
                             {...register("email")}
                           />
                         </div>
                       </div>
-                      <div className="form-control">
+                      <div className="mt-3">
                         <input
                           type="number"
                           placeholder="Phone Number"
-                          className="input order border-[#EFEDEC] text-xs"
+                          className="w-full input order border-[#EFEDEC] text-xs"
                           {...register("number")}
                         />
                       </div>
-                      <div className="form-control">
+                      <div className="mt-3">
                         <input
                           type="text"
                           placeholder="Subject"
-                          className="input order border-[#EFEDEC] text-xs"
+                          className="w-full input order border-[#EFEDEC] text-xs"
                           {...register("subject")}
                         />
                       </div>
-                      <div className="form-control">
+                      <div className="form-control mt-3">
                         <textarea
                           type="text"
                           placeholder="Message"
@@ -94,7 +93,7 @@ const ContactUsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-4 p-5 md:p-0">
+            <div className="col-span-4 p-5 md:p-0 mt-5 md:mt-0">
               <h5 className="text-xl text-black">Address : </h5>
               <ul className="text-sm">
                 <li className="mt-5">55 Gallaxy Enque, 2568 steet, 23568 NY</li>
