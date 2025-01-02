@@ -13,10 +13,8 @@ const TopNav = () => {
           </p>
         </div>
         <div className="hidden md:block">
-          <select className="select select-ghost w-full max-w-xs uppercase">
-            <option disabled selected>
-              English
-            </option>
+          <select className="select bg-black w-full uppercase focus:none">
+            <option>English</option>
             <option>Francais</option>
             <option>Deutsch</option>
           </select>

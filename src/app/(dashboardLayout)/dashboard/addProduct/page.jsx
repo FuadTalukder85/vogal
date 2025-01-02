@@ -24,10 +24,10 @@ const AddProducts = () => {
   return (
     <div>
       <div className="my-10">
-        <h1 className="text-center text-4xl mb-5">Add product</h1>
+        <h1 className="text-center text-4xl py-5">Add product</h1>
         <div className="">
           <div className="card md:w-[50%] mx-auto bg-base-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-3 md:p-5">
               {/*  */}
               <div className="md:flex justify-between gap-5">
                 <div className="form-control w-full">

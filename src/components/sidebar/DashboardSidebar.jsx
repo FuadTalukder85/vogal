@@ -1,7 +1,10 @@
 "use client";
 import Link from "next/link";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import {
+  MdOutlineAddShoppingCart,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
@@ -50,7 +53,19 @@ const DashboardSidebar = () => {
               </p>
             </Link>
           </li>
-
+          <li className="mt-5">
+            <Link
+              href="/dashboard/addProduct"
+              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+            >
+              <span className="text-xl">
+                <MdOutlineAddShoppingCart />
+              </span>
+              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                Add Product
+              </p>
+            </Link>
+          </li>
           <li className="mt-5">
             <Link
               href="/dashboard/all-users"
@@ -161,7 +176,19 @@ const DashboardSidebar = () => {
                   </p>
                 </Link>
               </li>
-
+              <li className="py-5 border-b border-gray-300 uppercase text-sm">
+                <Link
+                  href="/dashboard/addProduct"
+                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                >
+                  <span className="text-xl">
+                    <MdOutlineAddShoppingCart />
+                  </span>
+                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                    Add Product
+                  </p>
+                </Link>
+              </li>
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/all-users"

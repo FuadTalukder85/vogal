@@ -6,7 +6,7 @@ const CartsSidebar = () => {
   // console.log(carts);
 
   return (
-    <div className="">
+    <div className="w-72">
       <CartsDetails carts={carts} />
     </div>
   );

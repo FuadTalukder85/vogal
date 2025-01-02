@@ -191,7 +191,7 @@ const NavBar = () => {
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>
-                <div className="menu bg-white text-base-content min-h-full w-full">
+                <div className="menu bg-white text-base-content min-h-full w-[315px] md:w-[350px]">
                   <div className="flex justify-between items-center py-3 px-2">
                     <h5 className="uppercase font-medium text-black">
                       My cart

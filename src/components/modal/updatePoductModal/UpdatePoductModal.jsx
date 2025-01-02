@@ -38,11 +38,11 @@ const UpdatePoductModal = ({ onClose, productId }) => {
   };
 
   return (
-    <div className="fixed top-0 md:top-2 left-0 backdrop-blur-[1px] w-full mx-auto">
+    <div className="absolute top-0 md:top-2 left-0 backdrop-blur-[1px] w-full mx-auto z-50">
       <div className="md:my-10">
         <div className="">
-          <div className="card md:w-[50%] mx-auto bg-[#EAFFFC]">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <div className="card md:w-[50%] mx-auto bg-gray-100">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-3 md:p-5">
               <div className="flex justify-between">
                 <h1 className="text-center md:text-4xl mb-5">Update product</h1>
                 <button

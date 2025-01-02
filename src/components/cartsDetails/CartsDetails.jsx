@@ -138,7 +138,7 @@ const CartsDetails = ({ carts }) => {
     });
   };
   return (
-    <div className="">
+    <div className="md:w-[330px]">
       {carts?.map((cart) => {
         const itemTotalPrice = (quantities[cart._id] || 1) * cart.price;
         return (

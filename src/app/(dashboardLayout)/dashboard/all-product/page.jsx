@@ -95,21 +95,21 @@ const AllProduct = () => {
   }
   return (
     <div className="p-3 md:p-10">
-      <div className="md:flex justify-between px-4">
-        <div className="flex justify-center">
-          <button className="ms-5 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
+      <div className="md:flex justify-between">
+        <div className="hidden md:flex justify-center">
+          <button className="border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
             <Link href="/dashboard/addProduct">Add Products</Link>
           </button>
         </div>
-        <div className="flex items-center md:pe-10 mt-2 md:mt-0">
+        <div className="flex items-center mt-2 md:mt-0">
           <input
             type="text"
-            className="py-3 px-5 w-[280px] rounded-s-md focus:outline-none"
+            className="py-3 px-2 md:px-5 w-[280px] rounded-s-md focus:outline-none"
             placeholder="Search by title or category..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-e-md cursor-pointer">
+          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-3 md:px-7 rounded-e-md cursor-pointer">
             {" "}
             <CiSearch onClick={handleSearch} />
           </span>

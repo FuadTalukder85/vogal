@@ -22,9 +22,9 @@ const RegisterForm = () => {
             Create an Account
           </span>
         </div>
-        <div className="card shrink-0 w-full max-w-fit bg-base-100">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="md:flex gap-10">
+        <div className="card shrink-0 w-full max-w-fit bg-base-100 p-3 md:p-10">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="md:flex gap-5">
               <div className="form-control">
                 <input
                   type="text"
@@ -33,7 +33,7 @@ const RegisterForm = () => {
                   {...register("firstName")}
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control mt-3 md:mt-0">
                 <input
                   type="text"
                   placeholder="Last name"
@@ -42,18 +42,18 @@ const RegisterForm = () => {
                 />
               </div>
             </div>
-            <div className="form-control">
+            <div className="form-control mt-3">
               <input
                 type="email"
-                placeholder="email"
+                placeholder="Email"
                 className="input order border-[#EFEDEC] text-xs"
                 {...register("email")}
               />
             </div>
-            <div className="form-control">
+            <div className="form-control mt-3">
               <input
                 type="password"
-                placeholder="password"
+                placeholder="Password"
                 className="input order border-[#EFEDEC] text-xs"
                 {...register("password")}
               />
