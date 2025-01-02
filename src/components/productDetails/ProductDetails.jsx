@@ -140,16 +140,16 @@ const ProductDetails = ({ productDetails }) => {
           </div>
         </div>
       </div>
-      <Tabs className="mt-28 p-5 md:p-0">
-        <TabList>
+      <Tabs className="mt-20 md:p-0">
+        <TabList className="text-sm md:text-base">
           <Tab>Product Description</Tab>
           <Tab>Shipping & Returns</Tab>
         </TabList>
 
-        <TabPanel>
+        <TabPanel className="px-3 md:px-0">
           <ProductDescription></ProductDescription>
         </TabPanel>
-        <TabPanel>
+        <TabPanel className="px-3 md:px-0">
           <Shipping></Shipping>
         </TabPanel>
       </Tabs>

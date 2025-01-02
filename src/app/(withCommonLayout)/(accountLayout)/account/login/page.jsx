@@ -41,7 +41,7 @@ const LoginForm = () => {
           <span className="text-2xl font-medium text-black">My Account</span>
         </div>
         <div className="md:flex gap-10 md:mt-10">
-          <div className="card shrink-0 bg-base-100 border border-[#EFEDEC] p-10">
+          <div className="card shrink-0 bg-base-100 border border-[#EFEDEC] p-3 md:p-10">
             <h5 className="text-2xl font-medium text-black">Login</h5>
             <p className="mt-5 text-xs">
               If you have an account with us, please log in.
@@ -68,16 +68,14 @@ const LoginForm = () => {
                 />
               </div>
 
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="form-control mt-5">
-                    <button
-                      type="submit"
-                      className=" border bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase"
-                    >
-                      Sign in
-                    </button>
-                  </div>
+              <div className="flex justify-between items-center gap-1 mt-5">
+                <div className="form-control">
+                  <button
+                    type="submit"
+                    className=" border bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 px-3 md:px-7 rounded-md text-xs uppercase"
+                  >
+                    Sign in
+                  </button>
                 </div>
                 <div>
                   <p className="text-xs cursor-pointer hover:text-[#FD6F8D]">
@@ -87,7 +85,7 @@ const LoginForm = () => {
               </div>
             </form>
           </div>
-          <div className="border border-[#EFEDEC] p-10">
+          <div className="border border-[#EFEDEC] p-3 md:p-10 mt-5 md:mt-0">
             <h5 className="text-2xl font-medium text-black">NEW CUSTOMER?</h5>
             <p className="mt-5 text-xs leading-6">
               Registering for this site allows you to access your order status

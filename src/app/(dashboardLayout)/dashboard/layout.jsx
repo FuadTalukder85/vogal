@@ -9,10 +9,7 @@ const layout = ({ children }) => {
           <div className="md:w-[15%] bg-[#E5E6E6]">
             <DashboardSidebar />
           </div>
-          <div className="md:w-[85%] bg-base-200">
-            <div className="bg-[#000000] py-3"></div>
-            {children}
-          </div>
+          <div className="md:w-[85%] bg-base-200">{children}</div>
         </div>
       </div>
     </AdminRoute>

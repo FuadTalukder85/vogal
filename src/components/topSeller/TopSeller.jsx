@@ -25,13 +25,10 @@ const TopSeller = () => {
     <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">Top Seller</h5>
 
-      <div className="grid grid-cols-12 gap-5 mt-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
         {/* card */}
         {data?.slice(1, 5).map((product, index) => (
-          <div
-            key={index}
-            className="col-span-6 md:col-span-3 relative overflow-hidden"
-          >
+          <div key={index} className="relative overflow-hidden">
             <Link href={`/shop/${product._id}`}>
               {product?.firstImg && (
                 <Image
@@ -69,7 +66,7 @@ const TopSeller = () => {
               </div>
 
               <h5 className="text-md mt-4 mx-3">
-                <p>{product.title}</p>
+                <p className="text-sm md:text-base">{product.title}</p>
                 {product.discount ? (
                   <p className="mt-2 flex gap-2">
                     <span className="line-through text-[#979595]">

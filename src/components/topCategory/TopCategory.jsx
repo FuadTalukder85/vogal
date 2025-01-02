@@ -23,11 +23,11 @@ const TopCategory = () => {
                 height={600}
               ></Image>
             </div>
-            <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
+            <h5 className="md:text-2xl font-semibold text-center mt-5">
               Spring Forward!
             </h5>
             <div className="flex justify-center">
-              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase ">
+              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white hover:bg transition-all duration-500 py-3 px-3 md:px-7 rounded-md text-xs uppercase ">
                 Discover More
               </button>
             </div>
@@ -42,11 +42,11 @@ const TopCategory = () => {
                 height={600}
               ></Image>
             </div>
-            <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
+            <h5 className="md:text-2xl font-semibold text-center mt-5">
               Bold Moves
             </h5>
             <div className="flex justify-center">
-              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
+              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-3 md:px-7 rounded-md text-xs uppercase">
                 Discover More
               </button>
             </div>
@@ -61,11 +61,11 @@ const TopCategory = () => {
                 height={600}
               ></Image>
             </div>
-            <h5 className="text-xl md:text-2xl font-semibold text-center mt-5">
+            <h5 className="md:text-2xl font-semibold text-center mt-5">
               Online Exclusive
             </h5>
             <div className="flex justify-center">
-              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
+              <button className="mt-3 border border-[#333333] text-[#333333] hover:bg-[#333333] hover:text-white transition-all duration-500 py-3 px-3 md:px-7 rounded-md text-xs uppercase">
                 Shop Now
               </button>
             </div>

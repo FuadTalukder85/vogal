@@ -11,7 +11,7 @@ const GlobalOffice = () => {
       <div className="text-center mt-16">
         <span className="text-2xl font-medium text-black">Global Offices</span>
       </div>
-      <div className="grid grid-cols-12 md:gap-10 mt-16">
+      <div className="grid grid-cols-12 md:gap-10 md:mt-16">
         <div className="col-span-6 md:col-span-3 bg-red">
           <ul className="p-5 md:p-10 text-center">
             <li className="text-center">

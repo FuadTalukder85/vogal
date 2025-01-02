@@ -31,7 +31,7 @@ const Charts = () => {
 
   return (
     <div className="mt-10">
-      <div className="mx-auto w-full sm:w-[600px] md:w-[800px] lg:w-[1000px] xl:w-[1000px] px-5 md:px-0">
+      <div className="mx-auto w-full md:w-[800px] md:px-0">
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart
             data={aggregatedData}

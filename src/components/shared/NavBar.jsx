@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Trending from "../../components/trending/Trending";
 import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
+import { IoCloseOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
@@ -61,10 +62,22 @@ const NavBar = () => {
                   className="drawer-overlay"
                 ></label>
                 <ul className="bg-base-200 text-base-content min-h-full w-80 p-4">
-                  {/* Sidebar content here */}
-                  <li className="">
+                  <div className="flex justify-between items-center">
                     <h5 className="uppercase font-medium text-black">Menu</h5>
-                  </li>
+                    <span
+                      onClick={() => {
+                        const drawerCheckbox =
+                          document.getElementById("my-drawer");
+                        if (drawerCheckbox) {
+                          drawerCheckbox.checked = false;
+                        }
+                      }}
+                      className="cursor-pointer border border-black rounded-md"
+                    >
+                      <IoCloseOutline />
+                    </span>
+                  </div>
+                  {/* Sidebar content here */}
                   <li className="py-5 border-b border-gray-300 uppercase text-sm mt-5">
                     <Link href="/">Home</Link>
                   </li>
@@ -105,7 +118,6 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-
           <Link href="/" className="">
             <Image src={logo} alt="logo" height={32}></Image>
           </Link>
@@ -153,9 +165,6 @@ const NavBar = () => {
             >
               <MdOutlineAccountCircle />
             </li>
-            {/* <li className="text-xl hover:text-[#40B884] transition-all duration-700">
-              <CiHeart />
-            </li> */}
             {/* Drawer  */}
             <div className="drawer drawer-end">
               <input
@@ -176,13 +185,30 @@ const NavBar = () => {
                   </li>
                 </label>
               </div>
-              <div className="drawer-side  z-50">
+              <div className="drawer-side z-50">
                 <label
                   htmlFor="my-drawer-4"
                   aria-label="close sidebar"
                   className="drawer-overlay"
                 ></label>
-                <div className="menu bg-white text-base-content min-h-full w-[380px] p-4">
+                <div className="menu bg-white text-base-content min-h-full w-full">
+                  <div className="flex justify-between items-center py-3 px-2">
+                    <h5 className="uppercase font-medium text-black">
+                      My cart
+                    </h5>
+                    <span
+                      onClick={() => {
+                        const drawerCheckbox =
+                          document.getElementById("my-drawer-4");
+                        if (drawerCheckbox) {
+                          drawerCheckbox.checked = false;
+                        }
+                      }}
+                      className="cursor-pointer border border-black rounded-md"
+                    >
+                      <IoCloseOutline />
+                    </span>
+                  </div>
                   <CartsSidebar></CartsSidebar>
                 </div>
               </div>

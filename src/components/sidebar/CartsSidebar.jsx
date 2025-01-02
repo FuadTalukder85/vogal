@@ -6,7 +6,7 @@ const CartsSidebar = () => {
   // console.log(carts);
 
   return (
-    <div className="px-5">
+    <div className="">
       <CartsDetails carts={carts} />
     </div>
   );

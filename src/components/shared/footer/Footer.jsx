@@ -83,9 +83,9 @@ const Footer = () => {
               <input
                 type="text"
                 placeholder="Email address"
-                className="input input-bordered join-item w-48 md:w-80"
+                className="input input-bordered join-item w-full md:w-80"
               />
-              <button className="btn btn-primary bg-[#1F1F1F] join-item uppercase text-sm">
+              <button className="text-white px-2 bg-[#1F1F1F] join-item uppercase text-sm">
                 Subscribe
               </button>
             </div>

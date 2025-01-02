@@ -11,10 +11,9 @@ const DashboardPage = () => {
   return (
     <AdminRoute>
       <div className="">
-        {/* <div className="bg-[#000000] py-3"></div> */}
         <div className="md:px-10 pb-10">
           <OverView></OverView>
-          <div className="md:flex items-center gap-10">
+          <div className="md:flex items-center justify-between">
             <Charts></Charts>
             <PieChart></PieChart>
           </div>

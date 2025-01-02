@@ -10,53 +10,60 @@ import Image from "next/image";
 
 const CompanyLogo = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-16 grid grid-cols-12 md:flex gap-5 p-5 md:p-0">
-      <div className="col-span-3">
+    <div className="max-w-[1300px] mx-auto mt-16 grid grid-cols-2 md:grid-cols-8 space-y-2 md:space-y-0 space-x-2 p-3 pr-5 md:p-0">
+      <div className="mt-2 md:mt-0 ps-2 md:ps-0">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo1}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-3">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo2}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-3">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo3}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-3">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo4}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-4">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo5}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-4">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo6}
           alt="companyLogo1"
         ></Image>
       </div>
-      <div className="col-span-4">
+      <div className="">
         <Image
           className="border border-[#EFEDEC]"
           src={companyLogo7}
+          alt="companyLogo1"
+        ></Image>
+      </div>
+      <div className="">
+        <Image
+          className="border border-[#EFEDEC]"
+          src={companyLogo3}
           alt="companyLogo1"
         ></Image>
       </div>

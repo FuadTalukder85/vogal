@@ -8,6 +8,7 @@ import Link from "next/link";
 import sellImg from "../../../assets/images/sell.png";
 import { MdFilterListOff } from "react-icons/md";
 import "./shop.css";
+import { IoCloseOutline } from "react-icons/io5";
 
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -170,12 +171,12 @@ const ShopPage = () => {
                 {/* Page content here */}
                 <label
                   htmlFor="filter-drawerr"
-                  className="flex justify-center items-center gap-3 w-28 uppercase mt-10"
+                  className="flex justify-center items-center gap-3 w-56 underline uppercase mt-10"
                 >
                   <span className="text-xl -z-50">
                     <MdFilterListOff />
                   </span>{" "}
-                  <span className="-z-50">Filter</span>
+                  <span className="-z-50">Filter by category</span>
                 </label>
               </div>
               <div className="drawer-side z-50">
@@ -186,11 +187,23 @@ const ShopPage = () => {
                 ></label>
                 <ul className="bg-base-200 text-base-content min-h-full w-80 p-4">
                   {/* Sidebar content here */}
-                  <li>
+                  <div className="flex justify-between items-center">
                     <h5 className="uppercase font-medium text-black">
                       Category
                     </h5>
-                  </li>
+                    <span
+                      onClick={() => {
+                        const drawerCheckbox =
+                          document.getElementById("filter-drawerr");
+                        if (drawerCheckbox) {
+                          drawerCheckbox.checked = false;
+                        }
+                      }}
+                      className="cursor-pointer border border-black rounded-md"
+                    >
+                      <IoCloseOutline />
+                    </span>
+                  </div>
                   <li className="flex items-center gap-3 mt-8">
                     <input
                       type="checkbox"

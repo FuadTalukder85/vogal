@@ -60,22 +60,24 @@ const PieCharts = () => {
     );
   };
   return (
-    <PieChart width={400} height={400} className="px-5 md:px-0 mx-auto">
-      <Pie
-        data={aggregatedData}
-        cx="50%"
-        cy="50%"
-        labelLine={false}
-        label={renderCustomizedLabel}
-        outerRadius={140}
-        fill="#8884d8"
-        dataKey="StockProducts"
-      >
-        {aggregatedData?.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-    </PieChart>
+    <div className="w-full overflow-x-scroll">
+      <PieChart width={400} height={400} className="mx-auto">
+        <Pie
+          data={aggregatedData}
+          cx="50%"
+          cy="50%"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={180}
+          fill="#8884d8"
+          dataKey="StockProducts"
+        >
+          {aggregatedData?.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
+    </div>
   );
 };
 

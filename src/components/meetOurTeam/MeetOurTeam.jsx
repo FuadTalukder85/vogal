@@ -7,69 +7,77 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import "./MeetOurTeam.css";
 
-const NextArrow = (props) => {
-  const { onClick } = props;
+// custom button
+const NextArrow = ({ onClick }) => {
   return (
-    <div className="custom-arrow next-arrow" onClick={onClick}>
-      <FaArrowRight />
+    <div className="absolute flex -bottom-16 left-36 md:left-[660px] px-6 md:px-0 ">
+      <div
+        className="custom-arrow prev-arrow bg-black p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700"
+        onClick={onClick}
+      >
+        <FaArrowRight className="text-white" />
+      </div>
     </div>
   );
 };
-
-const PrevArrow = (props) => {
-  const { onClick } = props;
+const PrevArrow = ({ onClick }) => {
   return (
-    <div className="custom-arrow prev-arrow" onClick={onClick}>
-      <FaArrowLeft />
+    <div className="absolute flex -bottom-16 left-24 md:left-[600px] px-5 md:px-0 z-10">
+      <div
+        className="custom-arrow next-arrow bg-white border border-gray-200 p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700 z-10"
+        onClick={onClick}
+      >
+        <FaArrowLeft className="text-black" />
+      </div>
     </div>
   );
 };
-
 const MeetOurTeam = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
     responsive: [
       {
-        breakpoint: 1024, // screens smaller than 1024px
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
+          dots: false,
+          nextArrow: <NextArrow onClick={() => {}} />,
+          prevArrow: <PrevArrow onClick={() => {}} />,
         },
       },
       {
-        breakpoint: 600, // screens smaller than 600px
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
-          nextArrow: <NextArrow />,
-          prevArrow: <PrevArrow />,
+          dots: false,
+          nextArrow: <NextArrow onClick={() => {}} />,
+          prevArrow: <PrevArrow onClick={() => {}} />,
         },
       },
     ],
   };
 
   return (
-    <div className="mb-16 md:mb-0">
-      <h3 className="text-center text-3xl font-semibold uppercase mt-5 md:mt-28">
+    <div className="mb-28">
+      <h3 className="text-center text-xl md:text-3xl font-semibold uppercase mt-10 md:mt-28">
         Meet Our Teams
       </h3>
-      <p className="text-center text-sm mt-3 px-5 md:px-0">
+      <p className="text-center text-sm md:mt-3 px-5 md:px-0">
         Follow the most popular trends and get exclusive items from Vogal Shop.
       </p>
 
-      <div className="mt-14 w-[330px] md:w-full mx-auto">
+      <div className="mt-14 mx-auto">
         <Slider {...settings}>
           <div className="relative">
             <Image
@@ -79,7 +87,7 @@ const MeetOurTeam = () => {
               width={400}
               className="rounded-lg mx-auto"
             />
-            <div className="absolute top-9 left-9">
+            <div className="absolute top-5 left-10">
               <h5 className="text-xl font-semibold">Savannah Nguyen</h5>
               <p className="text-[#868585]">Sales Person</p>
             </div>
@@ -92,7 +100,7 @@ const MeetOurTeam = () => {
               width={400}
               className="rounded-lg mx-auto"
             />
-            <div className="absolute top-9 left-9">
+            <div className="absolute top-5 left-10">
               <h5 className="text-xl font-semibold">Leslie Alexander</h5>
               <p className="text-[#868585]">Sales Person</p>
             </div>
@@ -105,7 +113,7 @@ const MeetOurTeam = () => {
               width={400}
               className="rounded-lg mx-auto"
             />
-            <div className="absolute top-9 left-9">
+            <div className="absolute top-5 left-10">
               <h5 className="text-xl font-semibold">Sn Jack</h5>
               <p className="text-[#868585]">Sales Person</p>
             </div>

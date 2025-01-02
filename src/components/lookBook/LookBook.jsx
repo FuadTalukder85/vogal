@@ -9,35 +9,65 @@ import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./LookBook.css";
-
-const NextArrow = (props) => {
-  const { onClick } = props;
+// custom button
+const NextArrow = ({ onClick }) => {
   return (
-    <div className="custom-arrow next-arrow" onClick={onClick}>
-      <FaArrowRight />
+    <div className="absolute flex -bottom-16 left-36 md:left-80 px-6 md:px-0 ">
+      <div
+        className="custom-arrow prev-arrow bg-black p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700"
+        onClick={onClick}
+      >
+        <FaArrowRight className="text-white" />
+      </div>
     </div>
   );
 };
-
-const PrevArrow = (props) => {
-  const { onClick } = props;
+const PrevArrow = ({ onClick }) => {
   return (
-    <div className="custom-arrow prev-arrow" onClick={onClick}>
-      <FaArrowLeft />
+    <div className="absolute flex -bottom-16 left-24 md:left-64 px-5 md:px-0 z-10">
+      <div
+        className="custom-arrow next-arrow bg-white border border-gray-200 p-3 rounded-md shadow-md cursor-pointer hover:bg-seaBlue transition-all duration-700 z-10"
+        onClick={onClick}
+      >
+        <FaArrowLeft className="text-black" />
+      </div>
     </div>
   );
 };
 
 const LookBook = () => {
   const settings = {
-    // dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          nextArrow: <NextArrow onClick={() => {}} />,
+          prevArrow: <PrevArrow onClick={() => {}} />,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          nextArrow: <NextArrow onClick={() => {}} />,
+          prevArrow: <PrevArrow onClick={() => {}} />,
+        },
+      },
+    ],
   };
   const { data, isLoading } = useGetProductsQuery();
   if (isLoading) {
@@ -45,21 +75,21 @@ const LookBook = () => {
   }
   return (
     <Container>
-      <div className="md:grid grid-cols-12 gap-14 items-center p-5 md:p-0 md:mt-28">
-        <div className="col-span-6 overflow-hidden rounded-lg">
+      <div className="md:grid grid-cols-12 gap-14 items-center mt-5 md:mt-28">
+        <div className="col-span-6 overflow-hidden md:rounded-lg">
           <Image
             src={lookBookImg01}
             alt="lookBookImg01"
             width={700}
             height={700}
-            className="rounded-lg hover:scale-105 duration-700 cursor-pointer"
+            className="md:rounded-lg hover:scale-105 duration-700 cursor-pointer"
           ></Image>
         </div>
         <div className="col-span-6">
-          <h3 className="text-3xl font-semibold uppercase mt-5 md:mt-0">
+          <h3 className="text-xl md:text-3xl font-semibold uppercase mt-5 md:mt-0 px-3 md:px-0">
             Shop the Lookbook
           </h3>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 px-3 md:px-0">
             Follow the most popular trends and get exclusive items from Vogal
             Shop.
           </p>
@@ -101,9 +131,11 @@ const LookBook = () => {
                     </div>
                   </div>
                   <h5 className="text-md mt-4 px-3">
-                    <p className="">{product?.title}</p>
+                    <p className="text-center md:text-start">
+                      {product?.title}
+                    </p>
                     {product?.discount ? (
-                      <p className="mt-2 flex gap-2">
+                      <p className="mt-2 flex gap-2 justify-center md:justify-normal">
                         <span className="line-through text-[#979595]">
                           ${product?.discount}
                         </span>

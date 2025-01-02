@@ -27,7 +27,7 @@ const FeaturesPage = () => {
       </div>
       <LookBook></LookBook>
       <Container>
-        <h3 className="text-center text-3xl font-semibold uppercase mt-20">
+        <h3 className="text-center text-xl md:text-3xl font-semibold uppercase mt-28 md:mt-20">
           Featured Product
         </h3>
         <p className="text-center text-sm mt-3 px-5 md:px-5">
@@ -78,7 +78,7 @@ const FeaturesPage = () => {
                 </div>
 
                 <h5 className="text-md mt-4 px-3">
-                  <p className="">{product?.title}</p>
+                  <p className="text-sm md:text-base">{product?.title}</p>
                   {product?.discount ? (
                     <p className="mt-2 flex gap-2">
                       <span className="line-through text-[#979595]">
