@@ -42,7 +42,7 @@ const LoginForm = () => {
         </div>
         <div className="md:flex gap-10 md:mt-10">
           <div className="card shrink-0 bg-base-100 border border-[#EFEDEC] p-3 md:p-10">
-            <h5 className="text-2xl font-medium text-black">Login</h5>
+            <h5 className="text-2xl font-medium text-black">Login as admin!</h5>
             <p className="mt-5 text-xs">
               If you have an account with us, please log in.
             </p>
@@ -57,6 +57,7 @@ const LoginForm = () => {
                   placeholder="Email"
                   className="input order border-[#EFEDEC] text-xs md:w-96"
                   {...register("email")}
+                  defaultValue={"webfuadtk@gmail.com"}
                 />
               </div>
               <div className="form-control">
@@ -65,6 +66,7 @@ const LoginForm = () => {
                   placeholder="Password"
                   className="input order border-[#EFEDEC] text-xs"
                   {...register("password")}
+                  defaultValue={"fuad"}
                 />
               </div>
 

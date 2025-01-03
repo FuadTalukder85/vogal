@@ -33,7 +33,7 @@ const ContactUsPage = () => {
                       Drop Us A Line
                     </span>
                   </div>
-                  <div className="mt-5">
+                  <div className="my-5">
                     <form
                       onSubmit={handleSubmit(onSubmit)}
                       className="bg-white p-3 md:p-5"

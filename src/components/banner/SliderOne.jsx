@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const SliderOne = () => {
   return (
-    <div className="max-w-[1300px] relative mx-auto md:flex items-center justify-between text-black overflow-hidden">
+    <div className="er max-w-[1300px] relative mx-auto md:flex items-center justify-between text-black overflow-hidden">
       <div>
         <Image src={bannerImg1} alt="bannerImg1" height={950} />
       </div>
@@ -34,7 +34,7 @@ const SliderOne = () => {
         </div>
         {/* responsive */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center md:hidden">
-          <p className="">NEW COLLECTION</p>
+          <p className="">NEW COLLECTIONnnn</p>
           <h3>
             <b className="text-4xl">Luxury Brands</b>
             <p className="text-4xl">Without Labels</p>
