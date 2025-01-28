@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const SliderOne = () => {
   return (
-    <div className="bg-[#F7F7F7]">
+    <div className="">
       <div className="max-w-[1300px] relative mx-auto md:flex items-center justify-between text-black overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -16,7 +16,7 @@ const SliderOne = () => {
             delay: 0.5,
             ease: [0, 0.71, 0.2, 1.01],
           }}
-          className="w-[50%]"
+          className="md:w-[50%]"
         >
           <div className="mx-auto hidden md:block">
             <p className="">NEW COLLECTION</p>
@@ -31,16 +31,18 @@ const SliderOne = () => {
             </Link>
           </div>
           {/* responsive */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center md:hidden">
+          <div className="absolute inset-0 flex flex-col items-center top-24 text-center md:hidden">
             <p className="text-center">NEW COLLECTION</p>
             <h3>
               <b className="text-4xl">Luxury Brands</b>
               <p className="text-4xl">Without Labels</p>
             </h3>
             <div className="flex justify-center">
-              <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
-                Shop Now
-              </button>
+              <Link href="/shop">
+                <button className="mt-7 bg-[#333333] text-white py-3 px-8 text-sm rounded-md uppercase">
+                  Shop Now
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>
