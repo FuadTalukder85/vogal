@@ -9,7 +9,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Trending from "../../components/trending/Trending";
+import Trending from "../Trending";
 import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
 import { IoCloseOutline } from "react-icons/io5";

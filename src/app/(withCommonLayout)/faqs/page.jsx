@@ -1,4 +1,4 @@
-import Container from "../../../components/container/Container";
+import Container from "../../../components/Container";
 
 const FAQS = () => {
   return (

@@ -1,10 +1,10 @@
 "use client";
-import Container from "../../components/container/Container";
-import dealZone01 from "../../assets/images/dealZoneImg/dealzone01.png";
-import dealZone02 from "../../assets/images/dealZoneImg/dealzone02.png";
-import dealZone03 from "../../assets/images/dealZoneImg/dealzone03.png";
-import dealZone04 from "../../assets/images/dealZoneImg/dealzone04.png";
-import dealZone05 from "../../assets/images/dealZoneImg/dealzone05.png";
+import Container from "./Container";
+import dealZone01 from "../assets/images/dealZoneImg/dealzone01.png";
+import dealZone02 from "../assets/images/dealZoneImg/dealzone02.png";
+import dealZone03 from "../assets/images/dealZoneImg/dealzone03.png";
+import dealZone04 from "../assets/images/dealZoneImg/dealzone04.png";
+import dealZone05 from "../assets/images/dealZoneImg/dealzone05.png";
 import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";

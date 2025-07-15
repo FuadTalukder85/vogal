@@ -1,6 +1,6 @@
 "use client";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
-import Container from "../../../../../components/container/Container";
+import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";

@@ -1,4 +1,4 @@
-import { useGetPaymentsQuery } from "../../redux/features/paymentApi/PaymentApi";
+import { useGetPaymentsQuery } from "../redux/features/paymentApi/PaymentApi";
 import { FaRegEye } from "react-icons/fa";
 
 const Orders = () => {

@@ -1,4 +1,4 @@
-import CartsDetails from "../cartsDetails/CartsDetails";
+import CartsDetails from "../CartsDetails";
 import useCarts from "../hooks/useCarts";
 
 const CartsSidebar = () => {

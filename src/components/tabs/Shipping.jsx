@@ -1,28 +1,26 @@
-import "./ProductDescription.css";
-
 const Shipping = () => {
   return (
     <div>
       <h5 className="text-lg mt-8">DELIVERY</h5>
       <ul className="text-sm mt-4">
         <li className="flex gap-3 items-center">
-          <p className="bullet-point"></p>
+          <p className="h-1.5 w-1.5 bg-[#222222] rounded-full"></p>
           <p>Dispatch: Within 24 Hours</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
-          <p className="bullet-point"></p>
+          <p className="h-1.5 w-1.5 bg-[#222222] rounded-full"></p>
           <p>Free shipping across all products on a minimum purchase of $50.</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
-          <p className="bullet-point"></p>
+          <p className="h-1.5 w-1.5 bg-[#222222] rounded-full"></p>
           <p>International delivery time - 7-10 business days</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
-          <p className="bullet-point"></p>
+          <p className="h-1.5 w-1.5 bg-[#222222] rounded-full"></p>
           <p>Cash on delivery might be available</p>
         </li>
         <li className="flex gap-3 items-center mt-2">
-          <p className="bullet-point"></p>
+          <p className="h-1.5 w-1.5 bg-[#222222] rounded-full"></p>
           <p>Easy 30 days returns and exchanges</p>
         </li>
       </ul>

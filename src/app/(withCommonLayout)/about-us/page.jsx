@@ -1,8 +1,8 @@
 import React from "react";
-import Container from "../../../components/container/Container";
+import Container from "../../../components/Container";
 import Image from "next/image";
 import aboutUsImg from "../../../assets/images/aboutUsImg.png";
-import MeetOurTeam from "../../../components/meetOurTeam/MeetOurTeam";
+import MeetOurTeam from "../../../components/MeetOurTeam";
 
 const AboutUs = () => {
   return (

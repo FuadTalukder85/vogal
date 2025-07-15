@@ -1,12 +1,12 @@
 import React from "react";
 import Banner from "../../components/banner/Banner";
-import TopCategory from "../../components/topCategory/TopCategory";
-import MoreExplore from "../../components/moreExplore/MoreExplore";
-import CompanyLogo from "../../components/companyLogo/CompanyLogo";
-import TopSeller from "../../components/topSeller/TopSeller";
-import Articles from "../../components/articles/Articles";
-import CustomerService from "../../components/customerService/CustomerService";
-import NewArrivals from "../../components/newArrivals/NewArrivals";
+import TopCategory from "../../components/TopCategory";
+import MoreExplore from "../../components/MoreExplore";
+import CompanyLogo from "../../components/CompanyLogo";
+import TopSeller from "../../components/TopSeller";
+import Articles from "../../components/Articles";
+import CustomerService from "../../components/CustomerService";
+import NewArrivals from "../../components/NewArrivals";
 
 const HomePage = () => {
   return (

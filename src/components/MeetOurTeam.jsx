@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import teamImg01 from "../../assets/images/teamImg/teamImg01.png";
-import teamImg02 from "../../assets/images/teamImg/teamImg02.png";
-import teamImg03 from "../../assets/images/teamImg/teamImg03.png";
+import teamImg01 from "../assets/images/teamImg/teamImg01.png";
+import teamImg02 from "../assets/images/teamImg/teamImg02.png";
+import teamImg03 from "../assets/images/teamImg/teamImg03.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

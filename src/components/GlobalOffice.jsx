@@ -1,8 +1,8 @@
-import Container from "../container/Container";
-import usa from "../../assets/images/globalOfficeImg/usa.png";
-import canada from "../../assets/images/globalOfficeImg/canada.png";
-import london from "../../assets/images/globalOfficeImg/london.png";
-import tokyo from "../../assets/images/globalOfficeImg/tokyo.png";
+import Container from "./Container";
+import usa from "../assets/images/globalOfficeImg/usa.png";
+import canada from "../assets/images/globalOfficeImg/canada.png";
+import london from "../assets/images/globalOfficeImg/london.png";
+import tokyo from "../assets/images/globalOfficeImg/tokyo.png";
 import Image from "next/image";
 
 const GlobalOffice = () => {

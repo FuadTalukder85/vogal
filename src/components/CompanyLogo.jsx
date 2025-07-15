@@ -1,11 +1,11 @@
 import React from "react";
-import companyLogo1 from "../../assets/images/companyLogoImg/companyLogo1.png";
-import companyLogo2 from "../../assets/images/companyLogoImg/companyLogo2.png";
-import companyLogo3 from "../../assets/images/companyLogoImg/companyLogo3.png";
-import companyLogo4 from "../../assets/images/companyLogoImg/companyLogo4.png";
-import companyLogo5 from "../../assets/images/companyLogoImg/companyLogo5.png";
-import companyLogo6 from "../../assets/images/companyLogoImg/companyLogo6.png";
-import companyLogo7 from "../../assets/images/companyLogoImg/companyLogo7.png";
+import companyLogo1 from "../assets/images/companyLogoImg/companyLogo1.png";
+import companyLogo2 from "../assets/images/companyLogoImg/companyLogo2.png";
+import companyLogo3 from "../assets/images/companyLogoImg/companyLogo3.png";
+import companyLogo4 from "../assets/images/companyLogoImg/companyLogo4.png";
+import companyLogo5 from "../assets/images/companyLogoImg/companyLogo5.png";
+import companyLogo6 from "../assets/images/companyLogoImg/companyLogo6.png";
+import companyLogo7 from "../assets/images/companyLogoImg/companyLogo7.png";
 import Image from "next/image";
 
 const CompanyLogo = () => {

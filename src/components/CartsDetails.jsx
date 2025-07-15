@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { useDeleteCartMutation } from "../../redux/features/cartsApi/CartsApi";
+import { useDeleteCartMutation } from "../redux/features/cartsApi/CartsApi";
 import Swal from "sweetalert2";
 
 const CartsDetails = ({ carts }) => {

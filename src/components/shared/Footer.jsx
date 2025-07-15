@@ -1,6 +1,6 @@
 import Image from "next/image";
-import logo from "../../../assets/images/vogal.png";
-import BottomFooter from "../footer/BottomFooter";
+import logo from "../../assets/images/vogal.png";
+import BottomFooter from "./BottomFooter";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";

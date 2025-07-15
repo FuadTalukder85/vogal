@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import icon1 from "../../assets/images/icons/icon1.png";
-import icon2 from "../../assets/images/icons/icon2.png";
-import icon3 from "../../assets/images/icons/icon3.png";
-import icon4 from "../../assets/images/icons/icon4.png";
+import icon1 from "../assets/images/icons/icon1.png";
+import icon2 from "../assets/images/icons/icon2.png";
+import icon3 from "../assets/images/icons/icon3.png";
+import icon4 from "../assets/images/icons/icon4.png";
 
 const CustomerService = () => {
   return (

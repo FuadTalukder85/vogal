@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import articleImg1 from "../../assets/images/articleImg/articleImg1.png";
-import articleImg2 from "../../assets/images/articleImg/articleImg2.png";
-import articleImg3 from "../../assets/images/articleImg/articleImg3.png";
+import articleImg1 from "../assets/images/articleImg/articleImg1.png";
+import articleImg2 from "../assets/images/articleImg/articleImg2.png";
+import articleImg3 from "../assets/images/articleImg/articleImg3.png";
 
 const Articles = () => {
   return (

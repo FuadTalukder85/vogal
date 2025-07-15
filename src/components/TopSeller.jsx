@@ -3,11 +3,11 @@ import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiSearch } from "react-icons/ci";
-import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
+import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 import { useEffect } from "react";
 import Link from "next/link";
 
-const NewArrivals = () => {
+const TopSeller = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -17,20 +17,17 @@ const NewArrivals = () => {
   }, [refetch]);
 
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <p>Loading...</p>;
   }
-
   // console.log(data);
 
   return (
     <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
-      <h5 className="text-2xl font-medium text-center">New Arrivals</h5>
-      <p className="text-sm text-black text-center">
-        We have your occasion covered
-      </p>
+      <h5 className="text-2xl font-medium text-center">Top Seller</h5>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
         {/* card */}
-        {data?.slice(0, 8).map((product, index) => (
+        {data?.slice(1, 5).map((product, index) => (
           <div key={index} className="relative overflow-hidden">
             <Link href={`/shop/${product._id}`}>
               {product?.firstImg && (
@@ -68,32 +65,25 @@ const NewArrivals = () => {
                 </div>
               </div>
 
-              <h5 className="text-md mt-4 px-3">
-                <p className="text-sm md:text-base">{product?.title}</p>
-                {product?.discount ? (
+              <h5 className="text-md mt-4 mx-3">
+                <p className="text-sm md:text-base">{product.title}</p>
+                {product.discount ? (
                   <p className="mt-2 flex gap-2">
                     <span className="line-through text-[#979595]">
-                      ${product?.discount}
+                      ${product.discount}
                     </span>
-                    <span className="">${product?.price}</span>
+                    <span className="">${product.price}</span>
                   </p>
                 ) : (
-                  <p className="mt-2">${product?.price}</p>
+                  <p className="mt-2">${product.price}</p>
                 )}
               </h5>
             </Link>
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-10">
-        <Link href="/shop">
-          <button className="mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
-            Discover More
-          </button>
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default NewArrivals;
+export default TopSeller;

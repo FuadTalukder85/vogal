@@ -2,15 +2,15 @@
 import React, { useState } from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
-import Container from "../container/Container";
+import Container from "./Container";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import ProductDescription from "../tabs/ProductDescription";
-import Shipping from "../tabs/Shipping";
-import { useAddCartsMutation } from "../../redux/features/cartsApi/CartsApi";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setCarts } from "../../redux/features/cartsApi/CartsSlice";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import ProductDescription from "./tabs/ProductDescription";
+import Shipping from "./tabs/Shipping";
+import { useAddCartsMutation } from "../redux/features/cartsApi/CartsApi";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setCarts } from "../redux/features/cartsApi/CartsSlice";
+import { useCurrentUser } from "../redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 

@@ -2,7 +2,7 @@
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../../components/payment/CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import Container from "../../../components/container/Container";
+import Container from "../../../components/Container";
 import useCarts from "../../../components/hooks/useCarts";
 
 const stripePromise = loadStripe(

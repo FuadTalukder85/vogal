@@ -1,11 +1,11 @@
 "use client";
-import Container from "../../../components/container/Container";
+import Container from "../../../components/Container";
 import { useForm } from "react-hook-form";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import GlobalOffice from "../../../components/globalOffice/GlobalOffice";
+import GlobalOffice from "../../../components/GlobalOffice";
 import "./contactUs.css";
 
 const ContactUsPage = () => {

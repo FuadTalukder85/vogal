@@ -1,6 +1,6 @@
 "use client";
-import Container from "../../../components/container/Container";
-import LookBook from "../../../components/lookBook/LookBook";
+import Container from "../../../components/Container";
+import LookBook from "../../../components/LookBook";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Link from "next/link";
 import Image from "next/image";

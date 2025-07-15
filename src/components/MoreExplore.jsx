@@ -1,8 +1,8 @@
 import Image from "next/image";
-import explore1 from "../../assets/images/exploreImg/explore1.png";
-import explore2 from "../../assets/images/exploreImg/explore2.png";
-import explore3 from "../../assets/images/exploreImg/explore3.png";
-import explore4 from "../../assets/images/exploreImg/explore4.png";
+import explore1 from "../assets/images/exploreImg/explore1.png";
+import explore2 from "../assets/images/exploreImg/explore2.png";
+import explore3 from "../assets/images/exploreImg/explore3.png";
+import explore4 from "../assets/images/exploreImg/explore4.png";
 import Link from "next/link";
 
 const MoreExplore = () => {

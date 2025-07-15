@@ -1,10 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
-import OverView from "../../../components/overView/OverView";
-import Orders from "../../../components/orders/Orders";
-import TrendingProduct from "../../../components/trendingProduct/TrendingProduct";
+import OverView from "../../../components/OverView";
+import Orders from "../../../components/Orders";
+import TrendingProduct from "../../../components/TrendingProduct";
 import Charts from "../../../components/charts/Charts";
-import PieChart from "../../../components/pieChart/PieChart";
+import PieChart from "../../../components/charts/PieChart";
 import AdminRoute from "../../../components/adminRoute/AdminRoute";
 
 const DashboardPage = () => {

@@ -1,4 +1,4 @@
-import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
+import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 import Image from "next/image";
 
 const TrendingProduct = () => {

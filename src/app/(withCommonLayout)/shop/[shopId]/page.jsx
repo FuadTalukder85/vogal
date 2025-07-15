@@ -1,4 +1,4 @@
-import ProductDetails from "../../../../components/productDetails/ProductDetails";
+import ProductDetails from "../../../../components/ProductDetails";
 
 const ProductDetailsById = async ({ params }) => {
   const res = await fetch(`http://localhost:5000/products/${params.shopId}`);

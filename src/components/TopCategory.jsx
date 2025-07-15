@@ -1,7 +1,7 @@
 import React from "react";
-import category1 from "../../assets/images/categoryImg/category1.png";
-import category2 from "../../assets/images/categoryImg/category2.png";
-import category3 from "../../assets/images/categoryImg/category3.png";
+import category1 from "../assets/images/categoryImg/category1.png";
+import category2 from "../assets/images/categoryImg/category2.png";
+import category3 from "../assets/images/categoryImg/category3.png";
 import Image from "next/image";
 import Link from "next/link";
 

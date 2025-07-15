@@ -1,5 +1,5 @@
 "use client";
-import Container from "../../../components/container/Container";
+import Container from "../../../components/Container";
 import { useGetProductsQuery } from "../../../redux/features/productApi/ProductApi";
 import { useEffect, useState } from "react";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";

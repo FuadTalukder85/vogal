@@ -3,9 +3,9 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { FcPaid } from "react-icons/fc";
 import { FaCheck } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useGetPaymentsQuery } from "../../redux/features/paymentApi/PaymentApi";
-import { useGetCartsQuery } from "../../redux/features/cartsApi/CartsApi";
-import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi";
+import { useGetPaymentsQuery } from "../redux/features/paymentApi/PaymentApi";
+import { useGetCartsQuery } from "../redux/features/cartsApi/CartsApi";
+import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 
 const OverView = () => {
   const { data: products } = useGetProductsQuery();
