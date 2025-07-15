@@ -11,8 +11,17 @@ import { TiMessages } from "react-icons/ti";
 import Image from "next/image";
 import logo from "../../assets/images/vogal.png";
 import { IoCloseOutline } from "react-icons/io5";
+import dynamic from "next/dynamic";
 
 const DashboardSidebar = () => {
+  const closeDrawer = (id) => {
+    if (typeof window !== "undefined") {
+      const drawerCheckbox = document.getElementById(id);
+      if (drawerCheckbox) {
+        drawerCheckbox.checked = false;
+      }
+    }
+  };
   return (
     <div className="md:min-h-screen top-0 sticky z-50">
       <div className="hidden md:block p-5 px-10 pt-5">
@@ -136,14 +145,7 @@ const DashboardSidebar = () => {
                   Admin Dashboard
                 </h5>
                 <span
-                  onClick={() => {
-                    const drawerCheckbox = document.getElementById(
-                      "my-dashboard-drawer"
-                    );
-                    if (drawerCheckbox) {
-                      drawerCheckbox.checked = false;
-                    }
-                  }}
+                  onClick={() => closeDrawer("my-dashboard-drawer")}
                   className="cursor-pointer border border-black rounded-md"
                 >
                   <IoCloseOutline />
@@ -243,4 +245,5 @@ const DashboardSidebar = () => {
   );
 };
 
-export default DashboardSidebar;
+// export default DashboardSidebar;
+export default dynamic(() => Promise.resolve(DashboardSidebar), { ssr: false });

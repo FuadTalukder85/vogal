@@ -9,6 +9,7 @@ import sellImg from "../../../assets/images/sell.png";
 import { MdFilterListOff } from "react-icons/md";
 import "./shop.css";
 import { IoCloseOutline } from "react-icons/io5";
+import dynamic from "next/dynamic";
 
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -71,6 +72,14 @@ const ShopPage = () => {
     }
     return true;
   });
+  const closeDrawer = (id) => {
+    if (typeof window !== "undefined") {
+      const drawerCheckbox = document.getElementById(id);
+      if (drawerCheckbox) {
+        drawerCheckbox.checked = false;
+      }
+    }
+  };
 
   if (isLoading) {
     return <p className="text-center">Loading...</p>;
@@ -192,13 +201,7 @@ const ShopPage = () => {
                       Category
                     </h5>
                     <span
-                      onClick={() => {
-                        const drawerCheckbox =
-                          document.getElementById("filter-drawerr");
-                        if (drawerCheckbox) {
-                          drawerCheckbox.checked = false;
-                        }
-                      }}
+                      onClick={() => closeDrawer("filter-drawerr")}
                       className="cursor-pointer border border-black rounded-md"
                     >
                       <IoCloseOutline />
@@ -340,4 +343,5 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+// export default ShopPage;
+export default dynamic(() => Promise.resolve(ShopPage), { ssr: false });

@@ -3,7 +3,6 @@ import Image from "next/image";
 import logo from "../../assets/images/vogal.png";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { CiHeart } from "react-icons/ci";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
@@ -13,18 +12,27 @@ import Trending from "../Trending";
 import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
 import { IoCloseOutline } from "react-icons/io5";
+import dynamic from "next/dynamic";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
   const [carts, error] = useCarts();
-  // console.log(carts);
 
   const handleOnclick = () => {
     if (user) {
       router.push("/account");
     } else {
       router.push("/account/login");
+    }
+  };
+
+  const closeDrawer = (id) => {
+    if (typeof window !== "undefined") {
+      const drawerCheckbox = document.getElementById(id);
+      if (drawerCheckbox) {
+        drawerCheckbox.checked = false;
+      }
     }
   };
 
@@ -65,13 +73,7 @@ const NavBar = () => {
                   <div className="flex justify-between items-center">
                     <h5 className="uppercase font-medium text-black">Menu</h5>
                     <span
-                      onClick={() => {
-                        const drawerCheckbox =
-                          document.getElementById("my-drawer");
-                        if (drawerCheckbox) {
-                          drawerCheckbox.checked = false;
-                        }
-                      }}
+                      onClick={() => closeDrawer("my-drawer")}
                       className="cursor-pointer border border-black rounded-md"
                     >
                       <IoCloseOutline />
@@ -87,9 +89,6 @@ const NavBar = () => {
                   <li className="py-5 border-b border-gray-300 uppercase text-sm">
                     <Link href="/features">Features</Link>
                   </li>
-                  {/* <li className="py-5 border-b border-gray-300">
-                    <Link href="/">Trending</Link>
-                  </li> */}
                   <li className="py-5 border-b border-gray-300 uppercase text-sm">
                     <Link href="/about-us">About US</Link>
                   </li>
@@ -103,7 +102,6 @@ const NavBar = () => {
                     </div>
                   </li>
                   <li className="mt-8 bg-black text-white">
-                    {" "}
                     <div className="block md:hidden">
                       <select className="select bg-black w-full uppercase focus:none outline-none border-none">
                         <option>English</option>
@@ -117,7 +115,7 @@ const NavBar = () => {
             </div>
           </div>
           <Link href="/" className="">
-            <Image src={logo} alt="logo" height={32}></Image>
+            <Image src={logo} alt="logo" height={32} />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -126,21 +124,18 @@ const NavBar = () => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              {" "}
               <Link href="/shop">Shop</Link>
             </li>
             <li>
               <Link href="/features">Features</Link>
             </li>
             <li className="relative group">
-              {/* <Link href="/"> */}
               <div>
                 <span>Trending</span>
                 <div className="hidden z-50 absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
-                  <Trending></Trending>
+                  <Trending />
                 </div>
               </div>
-              {/* </Link> */}
             </li>
             <li>
               <Link href="/about-us">About US</Link>
@@ -175,7 +170,7 @@ const NavBar = () => {
                 <label htmlFor="my-drawer-4" className="drawer-button">
                   <li className="text-xl cursor-pointer">
                     <div className="indicator hover:text-[#40B884] transition-all duration-700">
-                      <AiOutlineShoppingCart className="me-[8px]"></AiOutlineShoppingCart>
+                      <AiOutlineShoppingCart className="me-[8px]" />
                       <span className="badge badge-sm indicator-item rounded-full text-white font-semibold bg-black p-1">
                         {carts?.length || 0}
                       </span>
@@ -195,19 +190,13 @@ const NavBar = () => {
                       My cart
                     </h5>
                     <span
-                      onClick={() => {
-                        const drawerCheckbox =
-                          document.getElementById("my-drawer-4");
-                        if (drawerCheckbox) {
-                          drawerCheckbox.checked = false;
-                        }
-                      }}
+                      onClick={() => closeDrawer("my-drawer-4")}
                       className="cursor-pointer border border-black rounded-md"
                     >
                       <IoCloseOutline />
                     </span>
                   </div>
-                  <CartsSidebar></CartsSidebar>
+                  <CartsSidebar />
                 </div>
               </div>
             </div>
@@ -218,4 +207,5 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+// export default NavBar;
+export default dynamic(() => Promise.resolve(NavBar), { ssr: false });

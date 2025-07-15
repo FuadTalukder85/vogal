@@ -1,5 +1,4 @@
 import Container from "../../../components/Container";
-
 const RefundPolicy = () => {
   return (
     <Container>
