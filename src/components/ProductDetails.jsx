@@ -119,10 +119,12 @@ const ProductDetails = ({ productDetails }) => {
                 -
               </button>
               <input
-                type="text"
+                type="number"
                 value={quantity}
+                onChange={(e) => setQuantity(Number(e.target.value))}
                 className="border w-14 text-2xl text-center mx-auto"
               />
+
               <button
                 onClick={handleIncrement}
                 className="text-2xl border px-5"

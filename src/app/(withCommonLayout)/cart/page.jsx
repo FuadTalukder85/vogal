@@ -214,7 +214,7 @@ const Cart = () => {
                         </button>
                         <input
                           type="text"
-                          value={quantities[cart._id]}
+                          value={quantities[cart._id] ?? ""}
                           className="border w-8 text-md text-center mx-auto"
                           readOnly
                         />
@@ -269,7 +269,7 @@ const Cart = () => {
                           </button>
                           <input
                             type="text"
-                            value={quantities[cart._id]}
+                            value={quantities[cart._id] ?? ""}
                             className="border w-8 text-md text-center mx-auto"
                             readOnly
                           />
