@@ -12,7 +12,7 @@ const useCarts = () => {
       if (user && user.email) {
         try {
           const res = await fetch(
-            `http://localhost:5000/cart?email=${user?.email}`
+            `http://localhost:5000/api/v1/carts/user?email=${user?.email}`
           );
           if (!res.ok) {
             throw new Error("Failed to fetch order carts");
