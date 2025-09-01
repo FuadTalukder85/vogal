@@ -3,7 +3,7 @@ const CartsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addCarts: builder.mutation({
       query: (addCarts) => ({
-        url: "/create-carts",
+        url: "/carts",
         method: "POST",
         body: addCarts,
       }),
@@ -16,10 +16,10 @@ const CartsApi = baseApi.injectEndpoints({
     }),
     deleteCart: builder.mutation({
       query: (query) => ({
-        url: `/cart/${query}`,
+        url: `/carts/${query}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["cart"],
+      invalidatesTags: ["carts"],
     }),
   }),
 });

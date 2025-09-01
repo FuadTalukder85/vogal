@@ -6,7 +6,7 @@ const AllUsers = () => {
   const { data } = useGetUserQuery();
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`http://localhost:5000/api/v1/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json)

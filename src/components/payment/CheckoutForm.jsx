@@ -23,7 +23,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
 
   useEffect(() => {
     console.log(price);
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("http://localhost:5000/api/v1/payments/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
     }
     // console.log("payment Intent", paymentIntent);
     setProcessing(false);
-    if (paymentIntent.status === "succeeded") {
+    if (paymentIntent?.status === "succeeded") {
       setTransactionId(paymentIntent.id);
       // Save payment info to the server
       const payment = {

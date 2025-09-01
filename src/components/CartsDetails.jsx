@@ -47,7 +47,7 @@ const CartsDetails = ({ carts }) => {
     }));
     try {
       // Send the updated data to the API
-      const response = await fetch(`http://localhost:5000/carts/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/v1/carts/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const CartsDetails = ({ carts }) => {
     }));
     try {
       // Send the updated data to the API
-      const response = await fetch(`http://localhost:5000/carts/${id}`, {
+      const response = await fetch(`http://localhost:5000/api/v1/carts/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
