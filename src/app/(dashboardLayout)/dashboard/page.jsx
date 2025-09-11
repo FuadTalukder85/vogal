@@ -6,13 +6,15 @@ import TrendingProduct from "../../../components/TrendingProduct";
 import Charts from "../../../components/charts/Charts";
 import PieChart from "../../../components/charts/PieChart";
 import AdminRoute from "../../../components/adminRoute/AdminRoute";
+import DashNav from "../../../components/Shared/DashNav.jsx";
 
 const DashboardPage = () => {
   return (
     <AdminRoute>
       <div className="">
+        <DashNav />
         <div className="md:px-10 pb-10">
-          <OverView></OverView>
+          <OverView />
           <div className="md:flex items-center justify-between">
             <Charts></Charts>
             <PieChart></PieChart>

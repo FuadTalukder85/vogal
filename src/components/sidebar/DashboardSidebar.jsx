@@ -9,7 +9,7 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
 import Image from "next/image";
-import logo from "../../assets/images/vogal.png";
+import logo from "../../assets/images/vogal_white.png";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
 
@@ -24,27 +24,27 @@ const DashboardSidebar = () => {
   };
   return (
     <div className="md:min-h-screen top-0 sticky z-50">
-      <div className="hidden md:block p-5 px-10 pt-5">
-        <div className="bg-[#F2F2F2] py-2 rounded-xl">
+      <div className="hidden md:block">
+        <div className=" border-b border-gray-500 py-3">
           <Link
             href="/"
-            className="hover:text-[#FF8042] transition-all duration-700"
+            className="hover:text-white transition-all duration-700"
           >
-            <p className="flex items-center justify-center hover:text-[#FF8042] transition-all duration-700">
-              <Image src={logo} alt="logo" height={32}></Image>
+            <p className="flex items-center justify-center hover:text-white transition-all duration-700">
+              <Image src={logo} alt="logo" height={40}></Image>
             </p>
           </Link>
         </div>
-        <ul className="text-black">
+        <ul className="text-[#9097A7] px-10 py-4">
           <li className="mt-5">
             <Link
               href="/dashboard"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <LuLayoutDashboard />
               </span>
-              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className="w-full hover:text-white transition-all duration-700">
                 Dashboard Home
               </p>
             </Link>
@@ -52,12 +52,12 @@ const DashboardSidebar = () => {
           <li className="mt-5">
             <Link
               href="/dashboard/all-product"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <MdOutlineProductionQuantityLimits />
               </span>
-              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className="w-full hover:text-white transition-all duration-700">
                 All Product
               </p>
             </Link>
@@ -65,12 +65,12 @@ const DashboardSidebar = () => {
           <li className="mt-5">
             <Link
               href="/dashboard/addProduct"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <MdOutlineAddShoppingCart />
               </span>
-              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className="w-full hover:text-white transition-all duration-700">
                 Add Product
               </p>
             </Link>
@@ -78,12 +78,12 @@ const DashboardSidebar = () => {
           <li className="mt-5">
             <Link
               href="/dashboard/all-users"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <FaRegUser />
               </span>
-              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className="w-full hover:text-white transition-all duration-700">
                 Users & Role
               </p>
             </Link>
@@ -91,12 +91,12 @@ const DashboardSidebar = () => {
           <li className="mt-5">
             <Link
               href="/dashboard/all-orders"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <IoMdCheckboxOutline />
               </span>
-              <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className="w-full hover:text-white transition-all duration-700">
                 Total Order
               </p>
             </Link>
@@ -104,12 +104,12 @@ const DashboardSidebar = () => {
           <li className="mt-5">
             <Link
               href="/dashboard/message"
-              className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
             >
               <span className="text-xl">
                 <TiMessages />
               </span>
-              <p className=" w-full hover:text-[#FF8042] transition-all duration-700">
+              <p className=" w-full hover:text-white transition-all duration-700">
                 Message
               </p>
             </Link>
@@ -155,12 +155,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm mt-5">
                 <Link
                   href="/dashboard"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <LuLayoutDashboard />
                   </span>
-                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className="w-full hover:text-white transition-all duration-700">
                     Dashboard Home
                   </p>
                 </Link>
@@ -168,12 +168,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/all-product"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <MdOutlineProductionQuantityLimits />
                   </span>
-                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className="w-full hover:text-white transition-all duration-700">
                     All Product
                   </p>
                 </Link>
@@ -181,12 +181,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/addProduct"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <MdOutlineAddShoppingCart />
                   </span>
-                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className="w-full hover:text-white transition-all duration-700">
                     Add Product
                   </p>
                 </Link>
@@ -194,12 +194,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/all-users"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <FaRegUser />
                   </span>
-                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className="w-full hover:text-white transition-all duration-700">
                     Users & Role
                   </p>
                 </Link>
@@ -207,12 +207,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/all-orders"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <IoMdCheckboxOutline />
                   </span>
-                  <p className="w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className="w-full hover:text-white transition-all duration-700">
                     Total Order
                   </p>
                 </Link>
@@ -220,12 +220,12 @@ const DashboardSidebar = () => {
               <li className="py-5 border-b border-gray-300 uppercase text-sm">
                 <Link
                   href="/dashboard/message"
-                  className="flex gap-3 justify-center items-center hover:text-[#FF8042] transition-all duration-700"
+                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
                 >
                   <span className="text-xl">
                     <TiMessages />
                   </span>
-                  <p className=" w-full hover:text-[#FF8042] transition-all duration-700">
+                  <p className=" w-full hover:text-white transition-all duration-700">
                     Message
                   </p>
                 </Link>
@@ -235,7 +235,7 @@ const DashboardSidebar = () => {
         </div>
         <div className="bg-[#F2F2F2] py-3 px-5 rounded-xl">
           <Link href="/">
-            <p className="flex items-center justify-center hover:text-[#FF8042] transition-all duration-700">
+            <p className="flex items-center justify-center hover:text-white transition-all duration-700">
               <Image src={logo} alt="logo" height={40}></Image>
             </p>
           </Link>

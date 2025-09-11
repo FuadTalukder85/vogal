@@ -6,7 +6,7 @@ const layout = ({ children }) => {
     <AdminRoute>
       <div className="">
         <div className="md:flex justify-between">
-          <div className="md:w-[15%] bg-[#E5E6E6]">
+          <div className="md:w-[15%] bg-[#262D34] border-r border-gray-500">
             <DashboardSidebar />
           </div>
           <div className="md:w-[85%] bg-base-200">{children}</div>
