@@ -12,8 +12,10 @@ import Image from "next/image";
 import logo from "../../assets/images/vogal_white.png";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 
 const DashboardSidebar = () => {
+  const pathname = usePathname();
   const closeDrawer = (id) => {
     if (typeof window !== "undefined") {
       const drawerCheckbox = document.getElementById(id);
@@ -22,6 +24,42 @@ const DashboardSidebar = () => {
       }
     }
   };
+  const isActive = (path) => {
+    if (pathname === path) return "text-white";
+  };
+  const menu = [
+    {
+      href: "/dashboard",
+      label: "Dashboard Home",
+      icon: <LuLayoutDashboard />,
+    },
+    {
+      href: "/dashboard/all-product",
+      label: "All Product",
+      icon: <MdOutlineProductionQuantityLimits />,
+    },
+    {
+      href: "/dashboard/addProduct",
+      label: "Add Product",
+      icon: <MdOutlineAddShoppingCart />,
+    },
+    {
+      href: "/dashboard/all-users",
+      label: "Users & Role",
+      icon: <FaRegUser />,
+    },
+    {
+      href: "/dashboard/all-orders",
+      label: "Total Order",
+      icon: <IoMdCheckboxOutline />,
+    },
+    {
+      href: "/dashboard/message",
+      label: "Message",
+      icon: <TiMessages />,
+    },
+  ];
+
   return (
     <div className="md:min-h-screen top-0 sticky z-50">
       <div className="hidden md:block">
@@ -35,85 +73,22 @@ const DashboardSidebar = () => {
             </p>
           </Link>
         </div>
-        <ul className="text-[#9097A7] px-10 py-4">
-          <li className="mt-5">
-            <Link
-              href="/dashboard"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <LuLayoutDashboard />
-              </span>
-              <p className="w-full hover:text-white transition-all duration-700">
-                Dashboard Home
-              </p>
-            </Link>
-          </li>
-          <li className="mt-5">
-            <Link
-              href="/dashboard/all-product"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <MdOutlineProductionQuantityLimits />
-              </span>
-              <p className="w-full hover:text-white transition-all duration-700">
-                All Product
-              </p>
-            </Link>
-          </li>
-          <li className="mt-5">
-            <Link
-              href="/dashboard/addProduct"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <MdOutlineAddShoppingCart />
-              </span>
-              <p className="w-full hover:text-white transition-all duration-700">
-                Add Product
-              </p>
-            </Link>
-          </li>
-          <li className="mt-5">
-            <Link
-              href="/dashboard/all-users"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <FaRegUser />
-              </span>
-              <p className="w-full hover:text-white transition-all duration-700">
-                Users & Role
-              </p>
-            </Link>
-          </li>
-          <li className="mt-5">
-            <Link
-              href="/dashboard/all-orders"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <IoMdCheckboxOutline />
-              </span>
-              <p className="w-full hover:text-white transition-all duration-700">
-                Total Order
-              </p>
-            </Link>
-          </li>
-          <li className="mt-5">
-            <Link
-              href="/dashboard/message"
-              className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-            >
-              <span className="text-xl">
-                <TiMessages />
-              </span>
-              <p className=" w-full hover:text-white transition-all duration-700">
-                Message
-              </p>
-            </Link>
-          </li>
+        <ul className="text-[#9097A7] py-4">
+          {menu?.map((item, index) => (
+            <li key={index} className="mt-3">
+              <Link
+                href={item.href}
+                className={`flex gap-3 justify-center items-center hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 ${isActive(
+                  item.href
+                )}`}
+              >
+                <span className="text-xl">{item.icon}</span>
+                <p className="w-full hover:text-white transition-all duration-700">
+                  {item.label}
+                </p>
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
       {/* Responsive menu */}
@@ -152,84 +127,22 @@ const DashboardSidebar = () => {
                 </span>
               </div>
               {/* Sidebar content here */}
-              <li className="py-5 border-b border-gray-300 uppercase text-sm mt-5">
-                <Link
-                  href="/dashboard"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
+              {menu?.map((item, index) => (
+                <li
+                  key={index}
+                  className="py-5 border-b border-gray-300 uppercase text-sm"
                 >
-                  <span className="text-xl">
-                    <LuLayoutDashboard />
-                  </span>
-                  <p className="w-full hover:text-white transition-all duration-700">
-                    Dashboard Home
-                  </p>
-                </Link>
-              </li>
-              <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                <Link
-                  href="/dashboard/all-product"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                >
-                  <span className="text-xl">
-                    <MdOutlineProductionQuantityLimits />
-                  </span>
-                  <p className="w-full hover:text-white transition-all duration-700">
-                    All Product
-                  </p>
-                </Link>
-              </li>
-              <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                <Link
-                  href="/dashboard/addProduct"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                >
-                  <span className="text-xl">
-                    <MdOutlineAddShoppingCart />
-                  </span>
-                  <p className="w-full hover:text-white transition-all duration-700">
-                    Add Product
-                  </p>
-                </Link>
-              </li>
-              <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                <Link
-                  href="/dashboard/all-users"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                >
-                  <span className="text-xl">
-                    <FaRegUser />
-                  </span>
-                  <p className="w-full hover:text-white transition-all duration-700">
-                    Users & Role
-                  </p>
-                </Link>
-              </li>
-              <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                <Link
-                  href="/dashboard/all-orders"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                >
-                  <span className="text-xl">
-                    <IoMdCheckboxOutline />
-                  </span>
-                  <p className="w-full hover:text-white transition-all duration-700">
-                    Total Order
-                  </p>
-                </Link>
-              </li>
-              <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                <Link
-                  href="/dashboard/message"
-                  className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                >
-                  <span className="text-xl">
-                    <TiMessages />
-                  </span>
-                  <p className=" w-full hover:text-white transition-all duration-700">
-                    Message
-                  </p>
-                </Link>
-              </li>
+                  <Link
+                    href={item.href}
+                    className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
+                  >
+                    <span className="text-xl">{item.icon}</span>
+                    <p className="w-full hover:text-white transition-all duration-700">
+                      {item.label}
+                    </p>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

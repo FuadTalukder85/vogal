@@ -13,9 +13,7 @@ const DashNav = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
-  const handleShowModal = () => {
-    setShowModal(!showModal);
-  };
+
   const handleLogout = () => {
     dispatch(logout());
     localStorage.removeItem("token");
@@ -81,22 +79,24 @@ const DashNav = () => {
       </div>
       {/* dropdown */}
       {showModal && (
-        <div className="dropdown-box absolute right-10 top-16 h-40 w-[180px] bg-white rounded-md shadow-xl text-[#333333]">
-          <ul className="px-6 pt-2 pb-5 space-y-2">
-            <li>Welcome!</li>
-            <li className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer">
-              <CgProfile /> Profile
-            </li>
-            <li className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer">
-              <MdOutlineSms /> Message
-            </li>
-            <li
-              onClick={handleLogout}
-              className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer"
-            >
-              <MdLogout /> Logout
-            </li>
-          </ul>
+        <div className="fixed inset-0 z-0" onClick={() => setShowModal(false)}>
+          <div className="dropdown-box absolute right-10 top-16 h-40 w-[180px] bg-white rounded-md shadow-xl text-[#333333]">
+            <ul className="px-6 pt-2 pb-5 space-y-2">
+              <li>Welcome!</li>
+              <li className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer">
+                <CgProfile /> Profile
+              </li>
+              <li className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer">
+                <MdOutlineSms /> Message
+              </li>
+              <li
+                onClick={handleLogout}
+                className="flex gap-2 items-center hover:text-[#FF8042] transition-all duration-300 cursor-pointer"
+              >
+                <MdLogout /> Logout
+              </li>
+            </ul>
+          </div>
         </div>
       )}
     </div>
