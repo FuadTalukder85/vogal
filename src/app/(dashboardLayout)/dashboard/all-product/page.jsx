@@ -35,7 +35,7 @@ const AllProduct = () => {
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-
+  // handle delete product
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure you want to delete this product?",

@@ -1,20 +1,74 @@
 "use client";
-import { useGetUserQuery } from "../../../../redux/features/auth/authApi";
+import {
+  useDeleteUserMutation,
+  useGetUserQuery,
+} from "../../../../redux/features/auth/authApi";
 import { AiFillDelete } from "react-icons/ai";
-import { FaRegEye } from "react-icons/fa";
+import Swal from "sweetalert2";
 const AllUsers = () => {
-  const { data } = useGetUserQuery();
+  const { data, refetch } = useGetUserQuery();
+  const [deleteUser] = useDeleteUserMutation();
 
-  const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/api/v1/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json)
-      .then((data) => {
-        console.log(data);
-      });
+  const handleChangeRole = (user, role) => {
+    Swal.fire({
+      title: `Change the role?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, change it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          fetch(`http://localhost:5000/api/v1/users/admin/${user._id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ role }),
+          })
+            .then((res) => res.json)
+            .then((data) => {
+              console.log(data);
+              refetch();
+            });
+          Swal.fire({
+            title: "Yes",
+            text: "Role has been changed.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error change role:", error);
+        }
+      }
+    });
   };
-
+  // handle delete user
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to delete this user?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deleteUser(id);
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "User has been deleted.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error deleting user:", error);
+        }
+      }
+    });
+  };
   return (
     <div className="p-3 md:p-10">
       <h5 className="text-xl font-semibold">All Users</h5>
@@ -51,16 +105,23 @@ const AllUsers = () => {
                 </td>
                 <td className="">{user.email}</td>
                 <td className="hidden md:table-cell">{user?.date}</td>
-                <td className="">
-                  {user.role === "admin" ? (
-                    "admin"
+                <td>
+                  {user?.role === "admin" ? (
+                    <button onClick={() => handleChangeRole(user, "user")}>
+                      Admin
+                    </button>
                   ) : (
-                    <button onClick={() => handleMakeAdmin(user)}>User</button>
+                    <button onClick={() => handleChangeRole(user, "admin")}>
+                      User
+                    </button>
                   )}
                 </td>
                 <td className="flex gap-3 text-xl">
-                  <FaRegEye className=""></FaRegEye>
-                  <AiFillDelete className="text-red-500"></AiFillDelete>
+                  {/* <FaRegEye className="cursor-pointer text-2xl hover:text-[#E85363] duration-700"></FaRegEye> */}
+                  <AiFillDelete
+                    onClick={() => handleDelete(user?._id)}
+                    className="cursor-pointer text-2xl hover:text-[#E85363] duration-700"
+                  />
                 </td>
               </tr>
             ))}
