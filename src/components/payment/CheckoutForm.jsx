@@ -6,7 +6,6 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAddPaymentsMutation } from "../../redux/features/paymentApi/PaymentApi";
 
 const CheckoutForm = ({ carts, price, quantity }) => {
-  // console.log(carts);
   const stripe = useStripe();
   const elements = useElements();
   const user = useAppSelector(useCurrentUser);
@@ -19,10 +18,8 @@ const CheckoutForm = ({ carts, price, quantity }) => {
 
   const totalProfits = carts?.map((profits) => profits.totalProfit);
   const totalProfit = totalProfits.reduce((item, sum) => item + sum, 0);
-  // console.log(totalProfit);
 
   useEffect(() => {
-    console.log(price);
     fetch("http://localhost:5000/api/v1/payments/create-payment-intent", {
       method: "POST",
       headers: {
@@ -98,11 +95,13 @@ const CheckoutForm = ({ carts, price, quantity }) => {
         const quantityKey = `quantity${(index + 1)
           .toString()
           .padStart(2, "0")}`;
+        const productImg = `image${(index + 1).toString().padStart(2, "0")}`;
 
         payment.items[itemKey] = [
           {
             [productKey]: item.title,
             [quantityKey]: item.quantity,
+            [productImg]: item.image,
           },
         ];
       });

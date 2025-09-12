@@ -1,14 +1,17 @@
 "use client";
+import { useState } from "react";
 import {
   useDeleteUserMutation,
   useGetUserQuery,
 } from "../../../../redux/features/auth/authApi";
 import { AiFillDelete } from "react-icons/ai";
+import { CiSearch } from "react-icons/ci";
 import Swal from "sweetalert2";
 const AllUsers = () => {
   const { data, refetch } = useGetUserQuery();
   const [deleteUser] = useDeleteUserMutation();
-
+  const [searchTerm, setSearchTerm] = useState("");
+  // change role
   const handleChangeRole = (user, role) => {
     Swal.fire({
       title: `Change the role?`,
@@ -69,30 +72,52 @@ const AllUsers = () => {
       }
     });
   };
+  // search
+  const search = data.filter((dt) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      dt._id?.toLowerCase().includes(term) ||
+      dt.email.toLowerCase().includes(term)
+    );
+  });
   return (
     <div className="p-3 md:p-10">
-      <h5 className="text-xl font-semibold">All Users</h5>
+      <div className="md:flex justify-between">
+        <div className="hidden md:flex justify-center">
+          <h5 className="text-xl font-semibold">All Users</h5>
+        </div>
+        <div className="flex items-center mt-2 md:mt-0">
+          <input
+            type="text"
+            className="py-3 px-2 md:px-5 w-[280px] rounded-s-md focus:outline-none"
+            placeholder="Search by id or email..."
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-3 md:px-7 rounded-e-md cursor-pointer">
+            <CiSearch />
+          </span>
+        </div>
+      </div>
       <div className="overflow-x-auto mt-3 bg-white md:p-5">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="">
-              <th className="md:text-[14px] text-[#333333]">SL</th>
-              <th className="md:text-[14px] text-[#333333] hidden md:table-cell">
-                Name
-              </th>
-              <th className="md:text-[14px] text-[#333333]">Email</th>
-              <th className="md:text-[14px] text-[#333333] hidden md:table-cell">
-                Joined
-              </th>
-              <th className="md:text-[14px] text-[#333333]">Role</th>
-              <th className="md:text-[14px] text-[#333333]">Action</th>
+            <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200">
+              <th className="">SL</th>
+              <th className=" hidden md:table-cell">Name</th>
+              <th className="">Id</th>
+              <th className="">Email</th>
+              <th className=" hidden md:table-cell">Joined</th>
+              <th className="">Role</th>
+              <th className="">Action</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            {data?.map((user, index) => (
-              <tr key={index}>
+            {search?.map((user, index) => (
+              <tr key={index} className="border border-gray-200">
                 <td className="">{index + 1}</td>
                 <td className="hidden md:table-cell">
                   <div className="flex items-center gap-3">
@@ -103,6 +128,7 @@ const AllUsers = () => {
                     </div>
                   </div>
                 </td>
+                <td className="">{user._id}</td>
                 <td className="">{user.email}</td>
                 <td className="hidden md:table-cell">{user?.date}</td>
                 <td>

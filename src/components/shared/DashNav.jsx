@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
@@ -29,7 +30,7 @@ const DashNav = () => {
           setShowModal(false);
         }
       }}
-      className="relative flex justify-between items-center md:px-10 bg-[#262D34] text-gray-200 border-b border-gray-500"
+      className="sticky top-0 z-50 flex justify-between items-center md:px-10 bg-[#262D34] text-gray-200 border-b border-gray-500"
     >
       {/* search */}
       <div className="flex items-center relative">
