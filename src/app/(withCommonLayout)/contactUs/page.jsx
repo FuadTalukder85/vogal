@@ -7,11 +7,22 @@ import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import GlobalOffice from "../../../components/GlobalOffice";
 import "./contactUs.css";
-
+import { useAddMessageMutation } from "../../../redux/features/messageApi/MessageApi";
 const ContactUsPage = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const [addMessage] = useAddMessageMutation();
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      await addMessage(data);
+      reset();
+    } catch (error) {
+      console.error("Message send failed:", error);
+    }
   };
   return (
     <div>
@@ -44,16 +55,30 @@ const ContactUsPage = () => {
                             type="text"
                             placeholder="Name"
                             className="w-full input order border-[#EFEDEC] text-xs"
-                            {...register("name")}
+                            {...register("name", {
+                              required: "This field is required",
+                            })}
                           />
+                          {errors.name && (
+                            <small className="text-red-500 mt-1">
+                              {errors.name.message}
+                            </small>
+                          )}
                         </div>
                         <div className="w-full mt-3 md:mt-0">
                           <input
                             type="text"
                             placeholder="Email"
                             className="w-full input order border-[#EFEDEC] text-xs"
-                            {...register("email")}
+                            {...register("email", {
+                              required: "This field is required",
+                            })}
                           />
+                          {errors.email && (
+                            <small className="text-red-500 mt-1">
+                              {errors.email.message}
+                            </small>
+                          )}
                         </div>
                       </div>
                       <div className="mt-3">
@@ -61,23 +86,45 @@ const ContactUsPage = () => {
                           type="number"
                           placeholder="Phone Number"
                           className="w-full input order border-[#EFEDEC] text-xs"
-                          {...register("number")}
+                          {...register("number", {
+                            required: "This field is required",
+                          })}
                         />
+                        {errors.number && (
+                          <small className="text-red-500 mt-1">
+                            {errors.number.message}
+                          </small>
+                        )}
                       </div>
                       <div className="mt-3">
                         <input
                           type="text"
                           placeholder="Subject"
                           className="w-full input order border-[#EFEDEC] text-xs"
-                          {...register("subject")}
+                          {...register("subject", {
+                            required: "This field is required",
+                          })}
                         />
+                        {errors.subject && (
+                          <small className="text-red-500 mt-1">
+                            {errors.subject.message}
+                          </small>
+                        )}
                       </div>
                       <div className="form-control mt-3">
                         <textarea
                           type="text"
                           placeholder="Message"
                           className="input order border-[#EFEDEC] text-xs h-32 pt-3"
-                        ></textarea>
+                          {...register("message", {
+                            required: "This field is required",
+                          })}
+                        />
+                        {errors.message && (
+                          <small className="text-red-500 mt-1">
+                            {errors.message.message}
+                          </small>
+                        )}
                       </div>
 
                       <div className="form-control mt-5">

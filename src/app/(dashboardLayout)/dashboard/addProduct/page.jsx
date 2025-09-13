@@ -1,6 +1,7 @@
 "use client";
-import { useAddProductMutation } from "../../../../redux/features/productApi/ProductApi";
+
 import { useForm } from "react-hook-form";
+import { useAddProductMutation } from "../../../../redux/features/productApi/ProductApi";
 
 const AddProducts = () => {
   const {

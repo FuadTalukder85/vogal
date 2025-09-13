@@ -131,7 +131,7 @@ const AllUsers = () => {
                 <td className="">{user._id}</td>
                 <td className="">{user.email}</td>
                 <td className="hidden md:table-cell">{user?.date}</td>
-                <td>
+                <td className="hover:text-red-500 transition-all duration-300">
                   {user?.role === "admin" ? (
                     <button onClick={() => handleChangeRole(user, "user")}>
                       Admin
