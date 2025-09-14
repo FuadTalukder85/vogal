@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAddPaymentsMutation } from "../../redux/features/paymentApi/PaymentApi";
+import { useForm } from "react-hook-form";
 
 const CheckoutForm = ({ carts, price, quantity }) => {
   const stripe = useStripe();
@@ -15,6 +16,12 @@ const CheckoutForm = ({ carts, price, quantity }) => {
   const [transactionId, setTransactionId] = useState("");
 
   const [addPayments] = useAddPaymentsMutation();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const totalProfits = carts?.map((profits) => profits.totalProfit);
   const totalProfit = totalProfits.reduce((item, sum) => item + sum, 0);
@@ -29,7 +36,6 @@ const CheckoutForm = ({ carts, price, quantity }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data.clientSecret);
         setClientSecret(data.clientSecret);
       })
       .catch((error) => {
@@ -37,18 +43,14 @@ const CheckoutForm = ({ carts, price, quantity }) => {
       });
   }, [price]);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (data) => {
     if (!stripe || !elements) {
       return;
     }
-
     const card = elements.getElement(CardElement);
     if (card === null) {
       return;
     }
-
     const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -74,13 +76,18 @@ const CheckoutForm = ({ carts, price, quantity }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    // console.log("payment Intent", paymentIntent);
     setProcessing(false);
     if (paymentIntent?.status === "succeeded") {
       setTransactionId(paymentIntent.id);
       // Save payment info to the server
       const payment = {
         email: user?.email,
+        name: data.name,
+        number: data.number,
+        region: data.region,
+        city: data.city,
+        thana: data.thana,
+        address: data.address,
         transactionId: paymentIntent.id,
         price,
         quantity,
@@ -106,35 +113,169 @@ const CheckoutForm = ({ carts, price, quantity }) => {
         ];
       });
       addPayments(payment);
+      reset();
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="px-5 md:px-0 mt-5">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        <button
-          className="text-white bg-black py-3 px-8 text-sm rounded-md uppercase mt-5 hover:bg-[#40B884] transition-all duration-700"
-          type="submit"
-          disabled={!stripe || !clientSecret || processing}
-        >
-          Pay
-        </button>
+      <form onSubmit={handleSubmit(onSubmit)} className="px-5 md:px-0 mt-5">
+        <div className="grid grid-cols-6 gap-5">
+          <div className="col-span-4 bg-[#F5F5F5] p-5">
+            <h3>Delivery Information</h3>
+            <div className="flex gap-5">
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    Full Name <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="Name here"
+                  className="input input-bordered"
+                />
+                {errors.name && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    Phone Number <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="number"
+                  {...register("number", { required: true })}
+                  placeholder="Number here"
+                  className="input input-bordered"
+                />
+                {errors.number && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-5">
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    Region <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("region", { required: true })}
+                  placeholder="Region here"
+                  className="input input-bordered"
+                />
+                {errors.region && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    City <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("city", { required: true })}
+                  placeholder="City here"
+                  className="input input-bordered"
+                />
+                {errors.city && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-5">
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    Thana <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("thana", { required: true })}
+                  placeholder="Thana here"
+                  className="input input-bordered"
+                />
+                {errors.thana && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">
+                    Address <span className="text-red-500 text-lg">*</span>
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  {...register("address", { required: true })}
+                  placeholder="Address here"
+                  className="input input-bordered"
+                />
+                {errors.address && (
+                  <small className="text-red-500 ">
+                    This field is required
+                  </small>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="col-span-2 w-full bg-[#F5F5F5] p-5">
+            <h3>Order Summery</h3>
+            <p className="mt-3 flex justify-between">
+              Item Price: <span>${price}</span>
+            </p>
+            <p className="mt-3 flex justify-between">
+              Delivery Fee: <span>Free</span>
+            </p>
+            <p className="mt-10 py-3 flex justify-between border-t border-gray-300">
+              Total Payment: <span>${price}</span>
+            </p>
+            <div className="bg-white py-3 px-3 mt-3">
+              <CardElement
+                options={{
+                  style: {
+                    base: {
+                      fontSize: "16px",
+                      color: "#424770",
+                      "::placeholder": {
+                        color: "#aab7c4",
+                      },
+                    },
+                    invalid: {
+                      color: "#9e2146",
+                    },
+                  },
+                }}
+              />
+            </div>
+            <button
+              className="text-white bg-black py-3 px-8 text-sm rounded-md uppercase mt-5 hover:bg-[#40B884] transition-all duration-700"
+              type="submit"
+              disabled={!stripe || !clientSecret || processing}
+            >
+              Pay Now
+            </button>
+          </div>
+        </div>
       </form>
       {cardError && <p className="text-red-500">{cardError}</p>}
       {transactionId && (

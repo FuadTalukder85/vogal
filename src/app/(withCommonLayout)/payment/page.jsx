@@ -17,11 +17,11 @@ const Payment = () => {
 
   return (
     <Container>
-      <div className="mt-10 px-5 md:px-0">Payment</div>
+      {/* <div className="mt-10 px-5 md:px-0">Payment</div>
       {error && <div className="error">Error: {error}</div>}
       <div className="px-5 md:px-0 mt-2">
         Total: <span className="text-red-500">${total}.00</span>
-      </div>{" "}
+      </div> */}
       {/* Display the total price */}
       <Elements stripe={stripePromise}>
         <CheckoutForm carts={carts} price={price} quantity={quantity} />
