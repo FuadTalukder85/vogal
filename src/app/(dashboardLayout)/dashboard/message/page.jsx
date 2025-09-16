@@ -102,12 +102,14 @@ const AllMessage = () => {
                 <td className="hover:text-red-500 transition-all duration-300">
                   {user.message}
                 </td>
-                <td className="flex gap-3 text-xl">
+                <td className="gap-3 text-xl">
                   {/* <FaRegEye className="cursor-pointer text-2xl hover:text-[#E85363] duration-700"></FaRegEye> */}
-                  <AiFillDelete
-                    onClick={() => handleDelete(user?._id)}
-                    className="cursor-pointer text-2xl hover:text-[#E85363] duration-700"
-                  />
+                  <p className="flex justify-center items-center">
+                    <AiFillDelete
+                      onClick={() => handleDelete(user?._id)}
+                      className="cursor-pointer text-2xl hover:text-[#E85363] duration-700"
+                    />
+                  </p>
                 </td>
               </tr>
             ))}
