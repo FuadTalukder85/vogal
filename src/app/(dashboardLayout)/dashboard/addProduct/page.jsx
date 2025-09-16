@@ -1,7 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAddProductMutation } from "../../../../redux/features/productApi/ProductApi";
+import FormInput from "../../../../components/ReusableForm/FormInput";
+import FormSelect from "../../../../components/ReusableForm/FormSelect";
+import FormTextArea from "../../../../components/ReusableForm/FormTextArea";
+import FormFileUpload from "../../../../components/ReusableForm/FormFileUpload";
 
 const AddProducts = () => {
   const {
@@ -10,250 +15,151 @@ const AddProducts = () => {
     reset,
     formState: { errors },
   } = useForm();
-
   const [addProduct] = useAddProductMutation();
+
+  // Image states
+  const [firstImage, setFirstImage] = useState(null);
+  const [secondImage, setSecondImage] = useState(null);
+  const [thirdImage, setThirdImage] = useState(null);
+
   const onSubmit = async (data) => {
     try {
-      await addProduct(data);
-      console.log(data);
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("tag", data.tag || "");
+      formData.append("category", data.category);
+      formData.append("stockProduct", data.stockProduct);
+      formData.append("originalPrice", data.originalPrice);
+      formData.append("price", data.price);
+      formData.append("discount", data.discount || "");
+      formData.append("description", data.description);
+
+      firstImage && formData.append("firstImg", firstImage);
+      secondImage && formData.append("secondImg", secondImage);
+      thirdImage && formData.append("thirdImg", thirdImage);
+
+      await addProduct(formData);
       reset();
+      setFirstImage(null);
+      setSecondImage(null);
+      setThirdImage(null);
     } catch (error) {
       console.error("Add product failed:", error);
     }
   };
 
   return (
-    <div>
-      <div className="my-10">
-        <h1 className="text-center text-4xl py-5">Add product</h1>
-        <div className="">
-          <div className="card md:w-[50%] mx-auto bg-base-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="p-3 md:p-5">
-              {/*  */}
-              <div className="md:flex justify-between gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Title <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    {...register("title", { required: true })}
-                    placeholder="Title here"
-                    className="input input-bordered"
-                  />
-                  {errors.title && (
-                    <small className="text-red-500 ">Title is required</small>
-                  )}
-                </div>
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Tag</span>
-                  </label>
-                  <input
-                    type="tag"
-                    {...register("tag")}
-                    placeholder="Best selling/sale..."
-                    className="input input-bordered"
-                  />
-                </div>
-              </div>
-              {/*  */}
-              <div className="md:flex justify-between gap-5">
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Category <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <select
-                    {...register("category", { required: true })}
-                    className="select select-bordered w-full"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select Category
-                    </option>
-                    <option value="men">Men</option>
-                    <option value="women">Women</option>
-                    <option value="jewellery">Jewellery</option>
-                    <option value="partyDress">Party Dress</option>
-                    <option value="accessories">Accessories</option>
-                    <option value="bestSeller">Best Sellers</option>
-                  </select>
-                  {errors.category && (
-                    <small className="text-red-500 ">
-                      Category is required
-                    </small>
-                  )}
-                </div>
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Stock Product{" "}
-                      <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    {...register("stockProduct", { required: true })}
-                    placeholder="Stock Product"
-                    className="input input-bordered"
-                  />
-                  {errors.stockProduct && (
-                    <small className="text-red-500 ">
-                      Stock product is required
-                    </small>
-                  )}
-                </div>
-              </div>
-              {/* Image */}
-              <div className="md:flex justify-between gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Original Price{" "}
-                      <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    {...register("originalPrice", { required: true })}
-                    placeholder="Original Price"
-                    className="input input-bordered"
-                  />
-                  {errors.originalPrice && (
-                    <small className="text-red-500 ">
-                      Original price is required
-                    </small>
-                  )}
-                </div>
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Price <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    {...register("price", { required: true })}
-                    placeholder="price"
-                    className="input input-bordered"
-                  />
-                  {errors.price && (
-                    <small className="text-red-500 ">Price is required</small>
-                  )}
-                </div>
-              </div>
-              {/*  */}
-              <div className="md:flex justify-between gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Discount price</span>
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    {...register("discount")}
-                    placeholder="Discount Price"
-                    className="input input-bordered"
-                  />
-                  {/* {errors.discount && (
-                    <small className="text-red-500 ">
-                      Discount Price is required
-                    </small>
-                  )} */}
-                </div>
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      First Image{" "}
-                      <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    {...register("firstImg", { required: true })}
-                    placeholder="First image here"
-                    className="input input-bordered"
-                  />
-                  {errors.firstImg && (
-                    <small className="text-red-500 ">
-                      First image is required
-                    </small>
-                  )}
-                </div>
-              </div>
-
-              <div className="md:flex justify-between gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Second Image{" "}
-                      <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="secondImg"
-                    {...register("secondImg", { required: true })}
-                    placeholder="Second image here"
-                    className="input input-bordered"
-                  />
-                  {errors.secondImg && (
-                    <small className="text-red-500 ">
-                      Second image is required
-                    </small>
-                  )}
-                </div>
-                <div className="form-control  w-full">
-                  <label className="label">
-                    <span className="label-text">
-                      Third Image{" "}
-                      <span className="text-red-500 text-lg">*</span>
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    {...register("thirdImg", { required: true })}
-                    placeholder="Third image here"
-                    className="input input-bordered"
-                  />
-                  {errors.thirdImg && (
-                    <small className="text-red-500 ">
-                      Third image is required
-                    </small>
-                  )}
-                </div>
-              </div>
-              <div className="form-control ">
-                <label className="label">
-                  <span className="label-text">
-                    Description <span className="text-red-500 text-lg">*</span>
-                  </span>
-                </label>
-                <input
-                  {...register("description", { required: true })}
-                  placeholder="description"
-                  className="input input-bordered"
-                />
-                {errors.description && (
-                  <small className="text-red-500 ">
-                    Description is required
-                  </small>
-                )}
-              </div>
-              <div className="form-control mt-6">
-                <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
-                  Add Product
-                </button>
-              </div>
-            </form>
+    <div className="p-10">
+      <h1 className="text-4xl py-5">Add Product</h1>
+      <div className="mx-auto bg-base-100 p-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          <div className="md:flex gap-5">
+            <FormInput
+              label="Title"
+              required
+              placeholder="Title here"
+              register={register("title", { required: "Title is required" })}
+              error={errors.title}
+            />
+            <FormInput
+              label="Tag"
+              placeholder="Best selling/sale..."
+              register={register("tag")}
+            />
           </div>
-        </div>
+
+          <div className="md:flex gap-5">
+            <FormSelect
+              label="Category"
+              required
+              options={[
+                { value: "men", label: "Men" },
+                { value: "women", label: "Women" },
+                { value: "jewellery", label: "Jewellery" },
+                { value: "partyDress", label: "Party Dress" },
+                { value: "accessories", label: "Accessories" },
+                { value: "bestSeller", label: "Best Sellers" },
+              ]}
+              register={register("category", {
+                required: "Category is required",
+              })}
+              error={errors.category}
+            />
+            <FormInput
+              label="Stock Product"
+              required
+              type="number"
+              placeholder="Stock Product"
+              register={register("stockProduct", {
+                required: "Stock is required",
+              })}
+              error={errors.stockProduct}
+            />
+          </div>
+
+          <div className="md:flex gap-5">
+            <FormInput
+              label="Original Price"
+              required
+              type="number"
+              placeholder="Original Price"
+              register={register("originalPrice", {
+                required: "Original price is required",
+              })}
+              error={errors.originalPrice}
+            />
+            <FormInput
+              label="Price"
+              required
+              type="number"
+              placeholder="Price"
+              register={register("price", { required: "Price is required" })}
+              error={errors.price}
+            />
+            <FormInput
+              label="Discount Price"
+              type="number"
+              placeholder="Discount Price"
+              register={register("discount")}
+            />
+          </div>
+
+          <FormTextArea
+            label="Description"
+            required
+            placeholder="Description here..."
+            register={register("description", {
+              required: "Description is required",
+            })}
+            error={errors.description}
+          />
+
+          {/* Image Uploads */}
+          <div className="md:flex gap-5">
+            <FormFileUpload
+              label="Thumbnail Image"
+              file={firstImage}
+              setFile={setFirstImage}
+              error={errors.firstImg}
+            />
+            <FormFileUpload
+              label="Second Image"
+              file={secondImage}
+              setFile={setSecondImage}
+              error={errors.secondImg}
+            />
+            <FormFileUpload
+              label="Third Image"
+              file={thirdImage}
+              setFile={setThirdImage}
+              error={errors.thirdImg}
+            />
+          </div>
+
+          <button className="text-right mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
+            Add Product
+          </button>
+        </form>
       </div>
     </div>
   );
