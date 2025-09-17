@@ -7,6 +7,7 @@ import FormInput from "../../../../components/ReusableForm/FormInput";
 import FormSelect from "../../../../components/ReusableForm/FormSelect";
 import FormTextArea from "../../../../components/ReusableForm/FormTextArea";
 import FormFileUpload from "../../../../components/ReusableForm/FormFileUpload";
+import axios from "axios";
 
 const AddProducts = () => {
   const {
@@ -16,29 +17,43 @@ const AddProducts = () => {
     formState: { errors },
   } = useForm();
   const [addProduct] = useAddProductMutation();
-
   // Image states
   const [firstImage, setFirstImage] = useState(null);
   const [secondImage, setSecondImage] = useState(null);
   const [thirdImage, setThirdImage] = useState(null);
-
+  // post on imgBB
+  const imgbbApiKey = process.env.NEXT_PUBLIC_IMGBB_API;
+  const uploadToImgBB = async (imageFile) => {
+    if (!imageFile) return null;
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+      formData
+    );
+    return res.data?.data?.display_url || null;
+  };
   const onSubmit = async (data) => {
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("tag", data.tag || "");
-      formData.append("category", data.category);
-      formData.append("stockProduct", data.stockProduct);
-      formData.append("originalPrice", data.originalPrice);
-      formData.append("price", data.price);
-      formData.append("discount", data.discount || "");
-      formData.append("description", data.description);
+      // Upload images to imgbb
+      const firstImgUrl = await uploadToImgBB(firstImage);
+      const secondImgUrl = await uploadToImgBB(secondImage);
+      const thirdImgUrl = await uploadToImgBB(thirdImage);
 
-      firstImage && formData.append("firstImg", firstImage);
-      secondImage && formData.append("secondImg", secondImage);
-      thirdImage && formData.append("thirdImg", thirdImage);
-
-      await addProduct(formData);
+      const productData = {
+        title: data.title,
+        tag: data.tag || "",
+        category: data.category,
+        stockProduct: data.stockProduct,
+        originalPrice: data.originalPrice,
+        price: data.price,
+        discount: data.discount || "",
+        description: data.description,
+        firstImg: firstImgUrl,
+        secondImg: secondImgUrl,
+        thirdImg: thirdImgUrl,
+      };
+      await addProduct(productData);
       reset();
       setFirstImage(null);
       setSecondImage(null);
@@ -156,9 +171,11 @@ const AddProducts = () => {
             />
           </div>
 
-          <button className="text-right mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
-            Add Product
-          </button>
+          <div className="flex justify-end">
+            <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
+              Add Product
+            </button>
+          </div>
         </form>
       </div>
     </div>

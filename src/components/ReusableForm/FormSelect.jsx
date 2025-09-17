@@ -1,6 +1,7 @@
 export default function FormSelect({
   label,
   required,
+  defaultValue,
   options,
   register,
   error,
@@ -12,10 +13,11 @@ export default function FormSelect({
           {label} {required && <span className="text-red-500 text-lg">*</span>}
         </span>
       </label>
+
       <select
         {...register}
         className="select select-bordered w-full"
-        defaultValue=""
+        defaultValue={defaultValue || ""}
       >
         <option value="" disabled>
           Select {label}
@@ -26,6 +28,7 @@ export default function FormSelect({
           </option>
         ))}
       </select>
+
       {error && <small className="text-red-500">{error.message}</small>}
     </div>
   );

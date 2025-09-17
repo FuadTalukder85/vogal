@@ -13,9 +13,19 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import Link from "next/link";
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 20;
 
 const AllProduct = () => {
+  const menu = [
+    "S/L",
+    "Product Image",
+    "Product Title",
+    "Category",
+    "Price",
+    "Sale Price",
+    "Discount",
+    "Action",
+  ];
   const [showModal, setShowModal] = useState(false);
   const [editById, setEditById] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -116,99 +126,75 @@ const AllProduct = () => {
         </div>
       </div>
       <div className="overflow-x-auto clear-start mt-10 bg-white p-5">
-        <table className="table">
+        <table className="w-full">
           <thead>
-            <tr className="">
-              <th className="md:hidden md:text-[14px] text-[#333333]">*</th>
-              <th className="hidden md:table-cell md:text-[14px] text-[#333333]">
-                SL NO.
-              </th>
-              <th className="hidden md:text-[14px] text-[#333333]">
-                Product Image
-              </th>
-              <th className="hidden md:table-cell md:text-[14px] text-[#333333]">
-                Product Image
-              </th>
-              <th className="md:hidden text-[#333333]">Title</th>
-              <th className="hidden w-64 md:table-cell md:text-[14px] text-[#333333]">
-                Product Title
-              </th>
-              <th className="hidden md:table-cell md:text-[14px] text-[#333333] text-center">
-                Category
-              </th>
-              <th className="hidden md:table-cell md:text-[14px] text-[#333333] text-center">
-                Original Price
-              </th>
-              <th className="md:text-[14px] text-[#333333] text-center">
-                Price
-              </th>
-              <th className="md:text-[14px] text-[#333333] text-center">
-                Discount
-              </th>
-              <th className="md:text-[14px] text-[#333333] text-center">
-                Update
-              </th>
-              <th className="md:text-[14px] text-[#333333] text-center">
-                Delete
-              </th>
+            <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
+              {menu?.map((item, index) => {
+                return (
+                  <th key={index} className="p-2">
+                    {item}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
             {paginatedData?.map((product, index) => (
-              <tr key={product._id}>
-                <th>
-                  <label className="">
-                    {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}.
-                  </label>
-                </th>
-                <td className="hidden md:table-cell">
+              <tr
+                key={product._id}
+                className="text-sm border border-gray-200 text-left"
+              >
+                <td className="p-2">
+                  {(currentPage - 1) * ITEMS_PER_PAGE + index + 1}.
+                </td>
+                <td className="p-2">
                   <div className="flex items-center gap-3">
-                    <div className="avatar gap-5">
-                      <div className="mask mask-squircle">
+                    <div className="flex gap-3">
+                      <div className="">
                         {product?.firstImg && (
                           <Image
                             src={product.firstImg}
                             alt={product.title || "Product Image"}
                             width={40}
                             height={40}
+                            className="rounded-lg"
                           />
                         )}
                       </div>
-                      <div className="mask mask-squircle">
+                      <div className="">
                         {product?.secondImg && (
                           <Image
                             src={product.secondImg}
                             alt={product.title || "Product Image"}
                             width={40}
                             height={40}
+                            className="rounded-lg"
                           />
                         )}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td className="">{product?.title}</td>
-                <td className="text-center">{product?.category}</td>
-                <td className="hidden md:table-cell text-center">
-                  ${product.originalPrice}
-                </td>
-                <td className=" text-center">${product.price}</td>
-                <td className="hidden md:table-cell text-center">
-                  ${product.discount}
-                </td>
-                <td className="">
-                  <div className="flex items-center justify-center cursor-pointer text-2xl hover:text-[#E85363] duration-700">
-                    <MdEditSquare
-                      onClick={() => {
-                        setEditById(product?._id);
-                        handleShowModal();
-                      }}
-                    />
-                  </div>
-                </td>
-                <td>
-                  <div className="flex items-center justify-center cursor-pointer text-2xl hover:text-[#E85363] duration-700">
-                    <AiFillDelete onClick={() => handleDelete(product?._id)} />
+                <td className="p-2">{product?.title}</td>
+                <td className="p-2">{product?.category}</td>
+                <td className="p-2">${product.originalPrice}</td>
+                <td className="p-2">${product.price}</td>
+                <td className="p-2">${product.discount}</td>
+                <td className="p-2">
+                  <div className="flex gap-3">
+                    <div className="cursor-pointer text-2xl hover:text-[#E85363] duration-700">
+                      <MdEditSquare
+                        onClick={() => {
+                          setEditById(product?._id);
+                          handleShowModal();
+                        }}
+                      />
+                    </div>
+                    <div className="cursor-pointer text-2xl hover:text-[#E85363] duration-700">
+                      <AiFillDelete
+                        onClick={() => handleDelete(product?._id)}
+                      />
+                    </div>
                   </div>
                 </td>
               </tr>

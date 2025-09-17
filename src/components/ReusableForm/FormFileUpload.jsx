@@ -1,30 +1,43 @@
 "use client";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineUpload, AiOutlineClose } from "react-icons/ai";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function FormFileUpload({ label, register, error, setFile }) {
-  const [preview, setPreview] = useState(null);
+export default function FormFileUpload({
+  label,
+  error,
+  file,
+  setFile,
+  initialImage,
+}) {
+  const [preview, setPreview] = useState(initialImage || null);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: (acceptedFiles) => {
-      const file = acceptedFiles[0];
-      setFile(file); // Parent component e state update
-      setPreview(URL.createObjectURL(file));
+      const selectedFile = acceptedFiles[0];
+      setFile(selectedFile); // parent এ state update
     },
     multiple: false,
     accept: { "image/*": [] },
   });
 
   const handleRemove = () => {
-    setPreview(null);
     setFile(null);
+    setPreview(null);
   };
 
   useEffect(() => {
-    // Cleanup URL object
-    return () => preview && URL.revokeObjectURL(preview);
-  }, [preview]);
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      setPreview(objectUrl);
+
+      return () => URL.revokeObjectURL(objectUrl);
+    } else if (!file && initialImage) {
+      setPreview(initialImage);
+    } else {
+      setPreview(null);
+    }
+  }, [file, initialImage]);
 
   return (
     <div className="form-control w-full">
@@ -38,7 +51,7 @@ export default function FormFileUpload({ label, register, error, setFile }) {
           isDragActive ? "border-blue-500 bg-blue-50" : ""
         }`}
       >
-        <input {...getInputProps()} {...register} />
+        <input {...getInputProps()} />
         <AiOutlineUpload className="text-4xl text-gray-400 mb-2" />
         <p className="text-gray-500 text-center">
           Drop your image here, or click to browse

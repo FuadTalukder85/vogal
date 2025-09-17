@@ -2,6 +2,7 @@ export default function FormTextArea({
   label,
   required,
   placeholder,
+  defaultValue,
   register,
   error,
 }) {
@@ -14,6 +15,7 @@ export default function FormTextArea({
       </label>
       <textarea
         placeholder={placeholder}
+        defaultValue={defaultValue}
         {...register}
         className="textarea textarea-bordered"
       />

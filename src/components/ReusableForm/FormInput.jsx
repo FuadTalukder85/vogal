@@ -3,6 +3,7 @@ export default function FormInput({
   required,
   type = "text",
   placeholder,
+  defaultValue,
   register,
   error,
 }) {
@@ -16,6 +17,7 @@ export default function FormInput({
       <input
         type={type}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         {...register}
         className="input input-bordered"
       />
