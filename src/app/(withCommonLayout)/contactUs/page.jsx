@@ -6,7 +6,6 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import GlobalOffice from "../../../components/GlobalOffice";
-import "./contactUs.css";
 import { useAddMessageMutation } from "../../../redux/features/messageApi/MessageApi";
 const ContactUsPage = () => {
   const {
@@ -27,7 +26,15 @@ const ContactUsPage = () => {
   return (
     <div>
       <div className="bg-base-200">
-        <div className="contact-banner text-white text-center py-16">
+        <div
+          style={{
+            backgroundImage: "url('/contactImg.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="text-white text-center py-16"
+        >
           <h5 className="text-2xl md:text-4xl">Contact Us</h5>
           <p className="md:text-lg mt-3 px-3 md:px-0">
             We love to hear from you on our customer service

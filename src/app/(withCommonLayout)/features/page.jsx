@@ -5,18 +5,23 @@ import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../redux/features/productApi/ProductApi";
-import "./features.css";
-
 const FeaturesPage = () => {
   const { data, isLoading } = useGetProductsQuery();
   const features = data?.filter((features) => features.tag === "features");
-  // console.log(features);
   if (isLoading) {
     return <p className="text-center">Loading...</p>;
   }
   return (
     <div>
-      <div className="featuresBannerImg py-16">
+      <div
+        style={{
+          backgroundImage: "url('/featuresBannerImg.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="py-16"
+      >
         <h3 className="text-center text-3xl font-semibold uppercase px-3 md:px-0">
           Featured collection
         </h3>

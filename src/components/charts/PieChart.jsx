@@ -6,10 +6,6 @@ import { useGetProductsQuery } from "../../redux/features/productApi/ProductApi"
 const PieCharts = () => {
   const { data: items } = useGetProductsQuery();
 
-  //   if (isLoading) {
-  //     return <div>Loading...</div>;
-  //   }
-
   // Aggregate data by category
   const aggregatedData = items?.reduce((acc, product) => {
     const existingCategory = acc.find((item) => item.name === product.category);

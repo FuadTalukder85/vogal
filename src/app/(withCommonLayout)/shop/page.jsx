@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import sellImg from "../../../assets/images/sell.png";
 import { MdFilterListOff } from "react-icons/md";
-import "./shop.css";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
 
@@ -86,7 +85,15 @@ const ShopPage = () => {
   }
   return (
     <div className="">
-      <div className="shopBannerImg py-16">
+      <div
+        style={{
+          backgroundImage: "url('/shopBannerImg.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="py-16"
+      >
         <h3 className="text-center text-3xl font-semibold uppercase">
           All Products
         </h3>

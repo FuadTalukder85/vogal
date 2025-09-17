@@ -4,8 +4,6 @@ import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
-import "./partyDress.css";
-
 const PartyDress = () => {
   const { data, isLoading } = useGetProductsQuery();
   const partyDress = data?.filter(
@@ -18,7 +16,15 @@ const PartyDress = () => {
   }
   return (
     <>
-      <div className="partyDress-bg text-center mt-10 py-16">
+      <div
+        style={{
+          backgroundImage: "url('/shopBannerImg.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="text-center mt-10 py-16"
+      >
         <h3 className="text-3xl uppercase">Trending Party Dress</h3>
         <p className="text-sm mt-1">
           Necklaces, bracelets, earrings, and rings to complete your look or wow
