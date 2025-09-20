@@ -31,6 +31,12 @@ const Charts = () => {
 
   return (
     <div className="mt-10">
+      <div className="flex justify-between mb-7">
+        <div>
+          <h1 className="text-xl capitalize">Stock products</h1>
+          <hr className="bg-[#FF8042] py-[1.5px] w-[180px] rounded-tr-full rounded-tl-full" />
+        </div>
+      </div>
       <div className="mx-auto w-full md:w-[800px] md:px-0">
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart

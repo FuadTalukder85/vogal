@@ -5,6 +5,7 @@ import Orders from "../../../components/Orders";
 import TrendingProduct from "../../../components/TrendingProduct";
 import Charts from "../../../components/charts/Charts";
 import PieChart from "../../../components/charts/PieChart";
+import MonthlySalesChart from "../../../components/charts/MonthlySalesChart";
 import AdminRoute from "../../../components/adminRoute/AdminRoute";
 
 const DashboardPage = () => {
@@ -17,7 +18,8 @@ const DashboardPage = () => {
             <Charts />
             <PieChart />
           </div>
-          <div className="grid grid-cols-12 mt-16 md:gap-16">
+          <MonthlySalesChart />
+          <div className="grid grid-cols-12 mt-28 md:gap-16">
             <div className="col-span-12 md:col-span-6">
               <TrendingProduct />
             </div>
