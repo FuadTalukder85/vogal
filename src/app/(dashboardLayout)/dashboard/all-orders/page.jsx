@@ -7,6 +7,7 @@ import { MdOutlineReviews } from "react-icons/md";
 const AllOrder = () => {
   const { data } = useGetPaymentsQuery();
   const [searchTerm, setSearchTerm] = useState("");
+  // const filteredDate = data.sort
   // search
   const search = data?.filter((dt) => {
     const term = searchTerm.toLowerCase();

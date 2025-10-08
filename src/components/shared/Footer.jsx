@@ -76,14 +76,14 @@ const Footer = () => {
           <h5 className="font-semibold text-sm uppercase">NEWSLETTER</h5>
           <p className="mt-5 text-sm">
             Enter your email to receive daily news and get 20% off coupon for
-            all items. NO spam, we promise
+            all items. No spam, we promise.
           </p>
           <fieldset className="form-control mt-7">
             <div className="join">
               <input
                 type="text"
                 placeholder="Email address"
-                className="input input-bordered join-item w-full md:w-80"
+                className="input input-bordered join-item w-full md:w-72"
               />
               <button className="text-white px-2 bg-[#1F1F1F] join-item uppercase text-sm">
                 Subscribe

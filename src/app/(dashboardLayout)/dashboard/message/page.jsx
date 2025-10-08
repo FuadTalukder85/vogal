@@ -54,7 +54,7 @@ const AllMessage = () => {
     <div className="p-3 md:p-10">
       <div className="md:flex justify-between">
         <div className="hidden md:flex justify-center">
-          <h5 className="text-xl font-semibold">All Users</h5>
+          <h5 className="text-xl font-semibold">All Message</h5>
         </div>
         <div className="flex items-center mt-2 md:mt-0">
           <input
