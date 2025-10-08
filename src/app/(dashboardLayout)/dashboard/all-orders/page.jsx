@@ -4,6 +4,7 @@ import { FiPrinter } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { useGetPaymentsQuery } from "../../../../redux/features/paymentApi/PaymentApi";
 import { MdOutlineReviews } from "react-icons/md";
+import Link from "next/link";
 const AllOrder = () => {
   const { data } = useGetPaymentsQuery();
   const [searchTerm, setSearchTerm] = useState("");
@@ -71,7 +72,9 @@ const AllOrder = () => {
                 <td className="p-2 gap-3 text-xl">
                   <p className="flex items-center gap-3">
                     <FiPrinter className="cursor-pointer text-xl hover:text-[#E85363] duration-700" />
-                    <MdOutlineReviews className="cursor-pointer text-xl hover:text-[#E85363] duration-700" />
+                    <Link href={`/dashboard/all-orders/${order._id}`}>
+                      <MdOutlineReviews className="cursor-pointer text-xl hover:text-[#E85363] duration-700" />
+                    </Link>
                   </p>
                 </td>
               </tr>

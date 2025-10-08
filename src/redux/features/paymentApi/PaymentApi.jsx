@@ -14,7 +14,17 @@ const PaymentApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    getSinglePayment: builder.query({
+      query: (_id) => ({
+        url: `/payments/${_id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useAddPaymentsMutation, useGetPaymentsQuery } = PaymentApi;
+export const {
+  useAddPaymentsMutation,
+  useGetPaymentsQuery,
+  useGetSinglePaymentQuery,
+} = PaymentApi;
