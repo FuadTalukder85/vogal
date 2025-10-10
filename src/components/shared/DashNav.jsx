@@ -30,21 +30,21 @@ const DashNav = () => {
           setShowModal(false);
         }
       }}
-      className="sticky top-0 z-50 flex justify-between items-center md:px-10 bg-[#262D34] text-gray-200 border-b border-gray-500"
+      className="sticky top-0 z-40 md:flex justify-between items-center md:px-10 bg-[#262D34] text-gray-200 border-b border-gray-500"
     >
       {/* search */}
-      <div className="flex items-center relative">
+      <div className="hidden md:flex items-center relative px-3 md:px-0">
         <input
           type="text"
-          className="py-2 px-5 md:w-[680px] rounded-md focus:outline-none drop-shadow-lg bg-transparent border border-gray-500"
+          className="py-2 px-5 w-full md:w-[680px] rounded-md focus:outline-none drop-shadow-lg bg-transparent border border-gray-500"
           placeholder="Type to search..."
         />
-        <span className="absolute right-0 text-white text-2xl transition-all duration-500 pr-3 rounded-e-md cursor-pointer">
+        <span className="absolute right-0 text-white text-2xl transition-all duration-500 pr-5 md:pr-3 rounded-e-md cursor-pointer">
           <CiSearch />
         </span>
       </div>
       {/* admin */}
-      <div className="flex gap-5">
+      <div className="hidden md:flex justify-center gap-5">
         <ul className="flex items-center gap-5 border-r border-gray-500 pr-5">
           <li className="py-5">
             <Image
@@ -70,13 +70,23 @@ const DashNav = () => {
             height={40}
             className="rounded-full"
           ></Image>
-          <div>
+          <div className="">
             <div>
               <h3>Fuad Talukder</h3>
               <p className="-mt-1 text-sm">Admin</p>
             </div>
           </div>
         </div>
+      </div>
+      <div className="md:hidden flex items-center relative px-3 md:px-0 mb-3 md:mb-0">
+        <input
+          type="text"
+          className="py-2 px-5 w-full md:w-[680px] rounded-md focus:outline-none drop-shadow-lg bg-transparent border border-gray-500"
+          placeholder="Type to search..."
+        />
+        <span className="absolute right-0 text-white text-2xl transition-all duration-500 pr-5 md:pr-3 rounded-e-md cursor-pointer">
+          <CiSearch />
+        </span>
       </div>
       {/* dropdown */}
       {showModal && (

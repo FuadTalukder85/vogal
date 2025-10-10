@@ -13,6 +13,7 @@ import logo from "../../assets/images/vogal_white.png";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import avatar from "../../assets/images/avatar.png";
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
@@ -99,15 +100,16 @@ const DashboardSidebar = () => {
             type="checkbox"
             className="drawer-toggle"
           />
-          <div className="drawer-content">
+          <div className="drawer-content max-w-[50px]">
             {/* Page content here */}
             <label
               htmlFor="my-dashboard-drawer"
-              className="drawer-button text-2xl"
+              className="drawer-button text-3xl text-white"
             >
               <LuLayoutDashboard />
             </label>
           </div>
+
           <div className="drawer-side">
             <label
               htmlFor="my-dashboard-drawer"
@@ -146,7 +148,24 @@ const DashboardSidebar = () => {
             </ul>
           </div>
         </div>
-        <div className="bg-[#F2F2F2] py-3 px-5 rounded-xl">
+        <div
+          onClick={() => setShowModal(!showModal)}
+          className="flex items-center gap-3 text-white w-full"
+        >
+          <div className="text-right md:text-base">
+            <h3 className="truncate">Fuad Talukder</h3>
+            <p className="-mt-1 text-sm">Admin</p>
+          </div>
+
+          <Image
+            src={avatar}
+            alt="avatar"
+            width={40}
+            height={40}
+            className="rounded-full flex shrink-0"
+          ></Image>
+        </div>
+        <div className="hidden py-2 px-5 rounded-xl">
           <Link href="/">
             <p className="flex items-center justify-center hover:text-white transition-all duration-700">
               <Image src={logo} alt="logo" height={40}></Image>
