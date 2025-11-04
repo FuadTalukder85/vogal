@@ -13,6 +13,7 @@ import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
@@ -102,12 +103,26 @@ const NavBar = () => {
                     </div>
                   </li>
                   <li className="mt-8 bg-black text-white">
-                    <div className="block md:hidden">
-                      <select className="select bg-black w-full uppercase focus:none outline-none border-none">
+                    <div className="block md:hidden py-3">
+                      {/* <select className="select bg-black w-full uppercase focus:none outline-none border-none">
                         <option>English</option>
                         <option>Francais</option>
                         <option>Deutsch</option>
-                      </select>
+                      </select> */}
+                      <ul className="flex justify-between gap-3 px-9">
+                        <li className="bg-white text-black p-1 rounded-md text-sm">
+                          <FaFacebookF />
+                        </li>
+                        <li className="bg-white text-black p-1 rounded-md text-sm">
+                          <FaTwitter />
+                        </li>
+                        <li className="bg-white text-black p-1 rounded-md text-sm">
+                          <FaInstagram />
+                        </li>
+                        <li className="bg-white text-black p-1 rounded-md text-sm">
+                          <FaYoutube />
+                        </li>
+                      </ul>
                     </div>
                   </li>
                 </ul>

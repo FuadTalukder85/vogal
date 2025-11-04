@@ -22,7 +22,7 @@ const TopSeller = () => {
   // console.log(data);
 
   return (
-    <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
+    <div className="max-w-[1300px] mx-auto mt-5 md:mt-16 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">Top Seller</h5>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">

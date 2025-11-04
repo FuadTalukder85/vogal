@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const MoreExplore = () => {
   return (
-    <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
+    <div className="max-w-[1300px] mx-auto mt-5 md:mt-16 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center">
         There,s More to Explore
       </h5>
