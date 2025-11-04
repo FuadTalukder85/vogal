@@ -104,8 +104,8 @@ const AllProduct = () => {
     return <p className="text-center mt-5">Loading...</p>;
   }
   return (
-    <div className="p-3 md:p-10">
-      <div className="md:flex justify-between">
+    <div className="md:p-10">
+      <div className="md:flex justify-between p-3 md:p-0">
         <div className="hidden md:flex justify-center">
           <button className="border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md uppercase">
             <Link href="/dashboard/addProduct">Add Products</Link>

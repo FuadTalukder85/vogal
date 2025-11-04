@@ -9,6 +9,7 @@ import sellImg from "../../../assets/images/sell.png";
 import { MdFilterListOff } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import Loading from "../../../components/Loading/Loading";
 
 const ShopPage = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -81,7 +82,7 @@ const ShopPage = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <div className="">
@@ -339,6 +340,11 @@ const ShopPage = () => {
                         <p className="mt-2">${product?.price}</p>
                       )}
                     </h5>
+                  </Link>
+                  <Link href={`/shop/${product._id}`}>
+                    <button className="w-full mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
+                      Buy Now
+                    </button>
                   </Link>
                 </div>
               ))}

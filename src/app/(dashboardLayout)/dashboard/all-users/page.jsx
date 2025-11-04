@@ -81,8 +81,8 @@ const AllUsers = () => {
     );
   });
   return (
-    <div className="p-3 md:p-10">
-      <div className="md:flex justify-between">
+    <div className="md:p-10">
+      <div className="md:flex justify-between p-3 md:p-0">
         <div className="hidden md:flex justify-center">
           <h5 className="text-xl font-semibold">All Users</h5>
         </div>
@@ -100,7 +100,7 @@ const AllUsers = () => {
           </span>
         </div>
       </div>
-      <div className="overflow-x-auto mt-3 bg-white md:p-5">
+      <div className="overflow-x-auto mt-3 bg-white p-3 md:p-5">
         <table className="table">
           {/* head */}
           <thead>

@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 import { useEffect } from "react";
 import Link from "next/link";
+import Loading from "../components/Loading/Loading.jsx";
 
 const NewArrivals = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -17,10 +18,8 @@ const NewArrivals = () => {
   }, [refetch]);
 
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
-
-  // console.log(data);
 
   return (
     <div className="max-w-[1300px] mx-auto mt-5 md:mt-24 p-5 md:p-0">
@@ -31,7 +30,7 @@ const NewArrivals = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-10">
         {/* card */}
         {data?.slice(0, 8).map((product, index) => (
-          <div key={index} className="relative overflow-hidden">
+          <div key={index} className="relative overflow-hidden ">
             <Link href={`/shop/${product._id}`}>
               {product?.firstImg && (
                 <Image
@@ -42,7 +41,6 @@ const NewArrivals = () => {
                   className="rounded-lg"
                 />
               )}
-
               <div className="absolute top-0 left-0 opacity-0 hover:opacity-100 transition-all duration-700">
                 {product?.secondImg && (
                   <Image
@@ -67,12 +65,11 @@ const NewArrivals = () => {
                   </ul>
                 </div>
               </div>
-
               <h5 className="text-md mt-4 px-3">
                 <p className="text-sm md:text-base">{product?.title}</p>
                 {product?.discount ? (
                   <p className="mt-2 flex gap-2">
-                    <span className="line-through text-[#979595]">
+                    <span className="line-through text-[#40B884]">
                       ${product?.discount}
                     </span>
                     <span className="">${product?.price}</span>
@@ -82,15 +79,13 @@ const NewArrivals = () => {
                 )}
               </h5>
             </Link>
+            <Link href={`/shop/${product._id}`}>
+              <button className="w-full mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
+                Buy Now
+              </button>
+            </Link>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center mt-10">
-        <Link href="/shop">
-          <button className="mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
-            Discover More
-          </button>
-        </Link>
       </div>
     </div>
   );

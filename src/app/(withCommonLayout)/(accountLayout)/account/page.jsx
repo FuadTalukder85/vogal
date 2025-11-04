@@ -8,13 +8,14 @@ import {
   logout,
   useCurrentUser,
 } from "../../../../redux/features/auth/authSlice";
+import Loading from "../../../../components/Loading/Loading";
 
 const AccountPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const user = useAppSelector(useCurrentUser);
   const [isClient, setIsClient] = useState(false);
-  const { data } = useGetUserQuery();
+  const { data, isLoading } = useGetUserQuery();
 
   const checkUser = data?.find((users) => users?.email === user?.email);
   useEffect(() => {
@@ -36,7 +37,9 @@ const AccountPage = () => {
     localStorage.removeItem("token");
     router.push("/");
   };
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="max-w-[1300px] mx-auto mb-10 p-5 md:p-0">
       <h5 className="text-2xl font-medium text-center md:mt-24">My Account</h5>

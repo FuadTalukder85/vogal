@@ -64,8 +64,8 @@ const AddProducts = () => {
   };
 
   return (
-    <div className="p-10">
-      <h1 className="text-4xl py-5">Add Product</h1>
+    <div className=" md:p-10">
+      <h1 className="text-4xl py-5 px-3 md:px-0">Add Product</h1>
       <div className="mx-auto bg-base-100 p-5">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="md:flex gap-5">
@@ -171,8 +171,8 @@ const AddProducts = () => {
             />
           </div>
 
-          <div className="flex justify-end">
-            <button className="mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
+          <div className="md:flex justify-end">
+            <button className="w-full md:w-auto mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-3 px-7 rounded-md text-sm uppercase">
               Add Product
             </button>
           </div>

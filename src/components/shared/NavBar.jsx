@@ -7,7 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Trending from "../Trending";
 import CartsSidebar from "../sidebar/CartsSidebar";
 import useCarts from "../hooks/useCarts";
@@ -18,35 +18,31 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 const NavBar = () => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
-  const [carts, error] = useCarts();
+  const [carts] = useCarts();
+  const pathname = usePathname();
 
   const handleOnclick = () => {
-    if (user) {
-      router.push("/account");
-    } else {
-      router.push("/account/login");
-    }
+    router.push(user ? "/account" : "/account/login");
   };
-
   const closeDrawer = (id) => {
     if (typeof window !== "undefined") {
       const drawerCheckbox = document.getElementById(id);
-      if (drawerCheckbox) {
-        drawerCheckbox.checked = false;
-      }
+      if (drawerCheckbox) drawerCheckbox.checked = false;
     }
   };
+  const isActive = (path) =>
+    pathname === path ? "text-[#40B884] font-bold" : "";
 
   return (
     <div className="max-w-[1300px] mx-auto">
       <div className="navbar bg-base-100">
+        {/* ---------- Navbar Start ---------- */}
         <div className="navbar-start">
+          {/* mobile drawer */}
           <div className="dropdown block md:hidden pr-4 z-50">
-            {/* responsive drawer */}
             <div className="drawer">
               <input id="my-drawer" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
-                {/* Page content here */}
                 <label htmlFor="my-drawer" className="drawer-button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +60,7 @@ const NavBar = () => {
                   </svg>
                 </label>
               </div>
+
               <div className="drawer-side">
                 <label
                   htmlFor="my-drawer"
@@ -80,22 +77,24 @@ const NavBar = () => {
                       <IoCloseOutline />
                     </span>
                   </div>
-                  {/* Sidebar content here */}
-                  <li className="py-5 border-b border-gray-300 uppercase text-sm mt-5">
-                    <Link href="/">Home</Link>
-                  </li>
-                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                    <Link href="/shop">Shop</Link>
-                  </li>
-                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                    <Link href="/features">Features</Link>
-                  </li>
-                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                    <Link href="/about-us">About US</Link>
-                  </li>
-                  <li className="py-5 border-b border-gray-300 uppercase text-sm">
-                    <Link href="/contactUs">Contact US</Link>
-                  </li>
+
+                  {[
+                    { href: "/", label: "Home" },
+                    { href: "/shop", label: "Shop" },
+                    { href: "/features", label: "Features" },
+                    { href: "/about-us", label: "About Us" },
+                    { href: "/contactUs", label: "Contact Us" },
+                  ].map((link, i) => (
+                    <li
+                      key={i}
+                      className={`py-5 border-b border-gray-300 uppercase text-sm mt-2 ${
+                        pathname === link.href ? "text-[#40B884]" : "text-black"
+                      }`}
+                      onClick={() => closeDrawer("my-drawer")}
+                    >
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
                   <li>
                     <div className="block md:hidden mt-8">
                       <p className="uppercase text-black">Need help?</p>
@@ -104,11 +103,6 @@ const NavBar = () => {
                   </li>
                   <li className="mt-8 bg-black text-white">
                     <div className="block md:hidden py-3">
-                      {/* <select className="select bg-black w-full uppercase focus:none outline-none border-none">
-                        <option>English</option>
-                        <option>Francais</option>
-                        <option>Deutsch</option>
-                      </select> */}
                       <ul className="flex justify-between gap-3 px-9">
                         <li className="bg-white text-black p-1 rounded-md text-sm">
                           <FaFacebookF />
@@ -129,39 +123,52 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <Link href="/" className="">
+
+          <Link href="/">
             <Image src={logo} alt="logo" height={32} />
           </Link>
         </div>
+
+        {/* ---------- Navbar Center ---------- */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 uppercase font-medium text-xs text-[#111111]">
+          <ul className="menu menu-horizontal px-1 uppercase font-medium text-xs">
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/" className={isActive("/")}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="/shop">Shop</Link>
+              <Link href="/shop" className={isActive("/shop")}>
+                Shop
+              </Link>
             </li>
             <li>
-              <Link href="/features">Features</Link>
+              <Link href="/features" className={isActive("/features")}>
+                Features
+              </Link>
             </li>
             <li className="relative group">
-              <div>
-                <span>Trending</span>
-                <div className="hidden z-50 absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
-                  <Trending />
-                </div>
+              <span className={isActive("/trending")}>Trending</span>
+              <div className="hidden z-50 absolute bg-white w-[1080px] top-full -left-[520px] group-hover:block">
+                <Trending />
               </div>
             </li>
             <li>
-              <Link href="/about-us">About US</Link>
+              <Link href="/about-us" className={isActive("/about-us")}>
+                About Us
+              </Link>
             </li>
             <li>
-              <Link href="/contactUs">Contact US</Link>
+              <Link href="/contactUs" className={isActive("/contactUs")}>
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
+
+        {/* ---------- Navbar End ---------- */}
         <div className="navbar-end pe-5">
-          <ul className="flex gap-4">
+          <ul className="flex gap-4 items-center">
             <li className="text-xl cursor-pointer hover:text-[#40B884] transition-all duration-700">
               <Link href="/search">
                 <CiSearch />
@@ -173,7 +180,8 @@ const NavBar = () => {
             >
               <MdOutlineAccountCircle />
             </li>
-            {/* Drawer  */}
+
+            {/* Cart Drawer */}
             <div className="drawer drawer-end">
               <input
                 id="my-drawer-4"
@@ -181,7 +189,6 @@ const NavBar = () => {
                 className="drawer-toggle"
               />
               <div className="drawer-content">
-                {/* Page content here */}
                 <label htmlFor="my-drawer-4" className="drawer-button">
                   <li className="text-xl cursor-pointer">
                     <div className="indicator hover:text-[#40B884] transition-all duration-700">
@@ -193,6 +200,7 @@ const NavBar = () => {
                   </li>
                 </label>
               </div>
+
               <div className="drawer-side z-50">
                 <label
                   htmlFor="my-drawer-4"
@@ -222,5 +230,4 @@ const NavBar = () => {
   );
 };
 
-// export default NavBar;
 export default dynamic(() => Promise.resolve(NavBar), { ssr: false });

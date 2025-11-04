@@ -6,9 +6,10 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useGetPaymentsQuery } from "../redux/features/paymentApi/PaymentApi";
 import { useGetCartsQuery } from "../redux/features/cartsApi/CartsApi";
 import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
+import Loading from "./Loading/Loading";
 
 const OverView = () => {
-  const { data: products } = useGetProductsQuery();
+  const { data: products, isLoading } = useGetProductsQuery();
   // console.log(products);
   const { data } = useGetPaymentsQuery();
   const { data: orderOnCarts } = useGetCartsQuery();
@@ -22,6 +23,9 @@ const OverView = () => {
     (sum, item) => sum + item.quantity,
     0
   );
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="mt-5 p-3 md:p-0">
       <div className="flex justify-between">
