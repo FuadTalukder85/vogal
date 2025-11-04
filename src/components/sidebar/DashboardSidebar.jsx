@@ -3,20 +3,25 @@ import Link from "next/link";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
   MdOutlineAddShoppingCart,
+  MdOutlineKeyboardDoubleArrowRight,
   MdOutlineProductionQuantityLimits,
+  MdOutlineWallet,
 } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
+import { HiOutlineDocumentReport } from "react-icons/hi";
 import Image from "next/image";
 import logo from "../../assets/images/vogal_white.png";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import avatar from "../../assets/images/avatar.png";
+import { useState } from "react";
 
 const DashboardSidebar = () => {
   const pathname = usePathname();
+  const [openMenu, setOpenMenu] = useState(null);
   const closeDrawer = (id) => {
     if (typeof window !== "undefined") {
       const drawerCheckbox = document.getElementById(id);
@@ -31,7 +36,7 @@ const DashboardSidebar = () => {
   const menu = [
     {
       href: "/dashboard",
-      label: "Dashboard Home",
+      label: "Dashboard",
       icon: <LuLayoutDashboard />,
     },
     {
@@ -59,6 +64,38 @@ const DashboardSidebar = () => {
       label: "Message",
       icon: <TiMessages />,
     },
+    {
+      href: "",
+      label: "Reports",
+      icon: <HiOutlineDocumentReport />,
+      subMenu: [
+        { href: "/dashboard/reports", label: "Profit / Loss Report" },
+        { href: "/dashboard/reports/sale", label: "Sale Report" },
+        { href: "/dashboard/reports/orders", label: "Order Report" },
+        { href: "/dashboard/reports/cancel", label: "Cancel Report" },
+        { href: "/dashboard/reports/cancel", label: "Stock Report" },
+      ],
+    },
+    {
+      href: "",
+      label: "Accounts",
+      icon: <MdOutlineWallet />,
+      subMenu: [
+        { href: "/dashboard/account/income", label: "Income" },
+        { href: "/dashboard/account/expense", label: "Expense" },
+        { href: "/dashboard/account/salary", label: "Employee Salary" },
+      ],
+    },
+    {
+      href: "",
+      label: "Orders",
+      icon: <IoMdCheckboxOutline />,
+      subMenu: [
+        { href: "/dashboard/orders/all-orders", label: "Total Orders" },
+        { href: "/dashboard/orders/packaging", label: "Packaging" },
+        { href: "/dashboard/orders/courier", label: "Courier" },
+      ],
+    },
   ];
 
   return (
@@ -75,19 +112,51 @@ const DashboardSidebar = () => {
           </Link>
         </div>
         <ul className="text-[#9097A7] py-4">
-          {menu?.map((item, index) => (
+          {menu.map((item, index) => (
             <li key={index} className="mt-3">
-              <Link
-                href={item.href}
-                className={`flex gap-3 justify-center items-center hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 ${isActive(
-                  item.href
-                )}`}
-              >
-                <span className="text-xl">{item.icon}</span>
-                <p className="w-full hover:text-white transition-all duration-700">
-                  {item.label}
-                </p>
-              </Link>
+              {!item.subMenu ? (
+                <Link
+                  href={item.href}
+                  className={`flex gap-3 justify-center items-center hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 ${isActive(
+                    item.href
+                  )}`}
+                >
+                  <span className="text-xl">{item.icon}</span>
+                  <p className="w-full">{item.label}</p>
+                </Link>
+              ) : (
+                <div>
+                  <button
+                    onClick={() =>
+                      setOpenMenu(openMenu === index ? null : index)
+                    }
+                    className={`flex gap-3 justify-center items-center w-full text-left hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 ${isActive(
+                      item.href
+                    )}`}
+                  >
+                    <span className="text-xl">{item.icon}</span>
+                    <p className="w-full">{item.label}</p>
+                  </button>
+                  {openMenu === index && (
+                    <ul className="ps-9 text-sm text-gray-400 space-y-2 mt-2">
+                      {item.subMenu.map((sub, subIdx) => (
+                        <li key={subIdx}>
+                          <Link
+                            href={sub.href}
+                            className={`block hover:text-white transition-all duration-500 ${isActive(
+                              sub.href
+                            )}`}
+                          >
+                            <span className="flex items-center gap-4">
+                              <MdOutlineKeyboardDoubleArrowRight /> {sub.label}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -129,20 +198,50 @@ const DashboardSidebar = () => {
                 </span>
               </div>
               {/* Sidebar content here */}
-              {menu?.map((item, index) => (
+              {menu.map((item, index) => (
                 <li
                   key={index}
                   className="py-5 border-b border-gray-300 uppercase text-sm"
                 >
-                  <Link
-                    href={item.href}
-                    className="flex gap-3 justify-center items-center hover:text-white transition-all duration-700"
-                  >
-                    <span className="text-xl">{item.icon}</span>
-                    <p className="w-full hover:text-white transition-all duration-700">
-                      {item.label}
-                    </p>
-                  </Link>
+                  {!item.subMenu ? (
+                    <Link
+                      href={item.href}
+                      onClick={() => closeDrawer("my-dashboard-drawer")}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="text-xl">{item.icon}</span>
+                      <p className="w-full">{item.label}</p>
+                    </Link>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() =>
+                          setOpenMenu(openMenu === index ? null : index)
+                        }
+                        className="flex items-center gap-3 w-full text-left"
+                      >
+                        <span className="text-xl">{item.icon}</span>
+                        <p className="w-full">{item.label}</p>
+                      </button>
+                      {openMenu === index && (
+                        <ul className="pl-10 mt-2 space-y-2 text-gray-600">
+                          {item.subMenu.map((sub, subIdx) => (
+                            <li key={subIdx}>
+                              <Link
+                                href={sub.href}
+                                onClick={() =>
+                                  closeDrawer("my-dashboard-drawer")
+                                }
+                                className="block hover:text-black"
+                              >
+                                {sub.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -177,5 +276,4 @@ const DashboardSidebar = () => {
   );
 };
 
-// export default DashboardSidebar;
 export default dynamic(() => Promise.resolve(DashboardSidebar), { ssr: false });
