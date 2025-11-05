@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FiPrinter } from "react-icons/fi";
+import { FiEdit, FiPrinter } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { useGetPaymentsQuery } from "../../../../redux/features/paymentApi/PaymentApi";
 // import { MdOutlineReviews } from "react-icons/md";
@@ -46,10 +46,11 @@ const AllOrder = () => {
               <th className="p-2">SL</th>
               <th className="p-2">Invoice No</th>
               <th className="p-2">Order Time</th>
-              <th className="p-2">Customer Name</th>
-              <th className="p-2">Customer Number</th>
+              <th className="p-2">Customer Info</th>
+              <th className="p-2">Product</th>
               <th className="p-2">Total Item</th>
               <th className="p-2">Amount</th>
+              <th className="p-2">Currier</th>
               <th className="p-2">Invoice</th>
             </tr>
           </thead>
@@ -60,16 +61,22 @@ const AllOrder = () => {
                 key={index}
                 className="text-sm border border-gray-200 text-left"
               >
-                <td className="p-2">{index + 1}.</td>
-                <td className="p-2">{order.invoiceNumber}</td>
-                <td className="p-2">
+                <td className="px-2 p-1">{index + 1}.</td>
+                <td className="px-2 p-1">{order.invoiceNumber}</td>
+                <td className="px-2 p-1">
                   {order.date} {order.time}
                 </td>
-                <td className="p-2">{order.name}</td>
-                <td className="p-2">{order.number}</td>
-                <td className="p-2">{order.quantity}</td>
-                <td className="p-2">${order.price}</td>
-                <td className="p-2 gap-3 text-xl">
+                <td className="px-2 p-1">
+                  {order.name}
+                  <p>{order.number}</p>
+                </td>
+                <td className="px-2 p-1">Product</td>
+                <td className="px-2 p-1">{order.quantity}</td>
+                <td className="px-2 p-1">${order.price}</td>
+                <td className="px-2 p-1">
+                  <FiEdit className="text-xl" />
+                </td>
+                <td className="px-2 p-1 gap-3 text-xl">
                   <p className="flex items-center gap-3">
                     <Link href={`/dashboard/all-orders/${order._id}`}>
                       <FiPrinter className="cursor-pointer text-xl hover:text-[#E85363] duration-700" />

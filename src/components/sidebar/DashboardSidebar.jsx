@@ -2,11 +2,12 @@
 import Link from "next/link";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
-  MdOutlineAddShoppingCart,
+  MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardDoubleArrowRight,
   MdOutlineProductionQuantityLimits,
   MdOutlineWallet,
 } from "react-icons/md";
+import { TbTruckDelivery } from "react-icons/tb";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
@@ -40,42 +41,44 @@ const DashboardSidebar = () => {
       icon: <LuLayoutDashboard />,
     },
     {
-      href: "/dashboard/all-product",
-      label: "All Product",
-      icon: <MdOutlineProductionQuantityLimits />,
-    },
-    {
-      href: "/dashboard/addProduct",
-      label: "Add Product",
-      icon: <MdOutlineAddShoppingCart />,
-    },
-    {
-      href: "/dashboard/all-users",
-      label: "Users & Role",
-      icon: <FaRegUser />,
-    },
-    {
-      href: "/dashboard/all-orders",
-      label: "Total Order",
-      icon: <IoMdCheckboxOutline />,
-    },
-    {
-      href: "/dashboard/message",
-      label: "Message",
-      icon: <TiMessages />,
-    },
-    {
       href: "",
-      label: "Reports",
-      icon: <HiOutlineDocumentReport />,
+      label: "Products",
+      icon: <MdOutlineProductionQuantityLimits />,
       subMenu: [
-        { href: "/dashboard/reports", label: "Profit / Loss Report" },
-        { href: "/dashboard/reports/sale", label: "Sale Report" },
-        { href: "/dashboard/reports/orders", label: "Order Report" },
-        { href: "/dashboard/reports/cancel", label: "Cancel Report" },
-        { href: "/dashboard/reports/cancel", label: "Stock Report" },
+        { href: "/dashboard/all-product", label: "All Product" },
+        { href: "/dashboard/addProduct", label: "Add Product" },
       ],
     },
+    // {
+    //   href: "/dashboard/all-product",
+    //   label: "All Product",
+    //   icon: <MdOutlineProductionQuantityLimits />,
+    // },
+    // {
+    //   href: "/dashboard/addProduct",
+    //   label: "Add Product",
+    //   icon: <MdOutlineAddShoppingCart />,
+    // },
+    {
+      href: "",
+      label: "Orders",
+      icon: <IoMdCheckboxOutline />,
+      subMenu: [
+        { href: "/dashboard/all-orders", label: "Total Orders" },
+        { href: "/dashboard/orders/packaging", label: "Packaging" },
+      ],
+    },
+    {
+      href: "/dashboard/courier",
+      label: "Currier",
+      icon: <TbTruckDelivery />,
+    },
+
+    // {
+    //   href: "/dashboard/all-orders",
+    //   label: "Total Order",
+    //   icon: <IoMdCheckboxOutline />,
+    // },
     {
       href: "",
       label: "Accounts",
@@ -87,13 +90,25 @@ const DashboardSidebar = () => {
       ],
     },
     {
+      href: "/dashboard/message",
+      label: "Message",
+      icon: <TiMessages />,
+    },
+    {
+      href: "/dashboard/all-users",
+      label: "Users & Role",
+      icon: <FaRegUser />,
+    },
+    {
       href: "",
-      label: "Orders",
-      icon: <IoMdCheckboxOutline />,
+      label: "Reports",
+      icon: <HiOutlineDocumentReport />,
       subMenu: [
-        { href: "/dashboard/orders/all-orders", label: "Total Orders" },
-        { href: "/dashboard/orders/packaging", label: "Packaging" },
-        { href: "/dashboard/orders/courier", label: "Courier" },
+        { href: "/dashboard/reports", label: "Profit / Loss Report" },
+        { href: "/dashboard/reports/sale", label: "Sale Report" },
+        { href: "/dashboard/reports/orders", label: "Order Report" },
+        { href: "/dashboard/reports/cancel", label: "Cancel Report" },
+        { href: "/dashboard/reports/cancel", label: "Stock Report" },
       ],
     },
   ];
@@ -130,12 +145,19 @@ const DashboardSidebar = () => {
                     onClick={() =>
                       setOpenMenu(openMenu === index ? null : index)
                     }
-                    className={`flex gap-3 justify-center items-center w-full text-left hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 ${isActive(
+                    className={`flex gap-3 justify-center items-center w-full text-left hover:text-white transition-all duration-700 border-b border-gray-500 pb-3 ps-6 pr-4 ${isActive(
                       item.href
                     )}`}
                   >
                     <span className="text-xl">{item.icon}</span>
                     <p className="w-full">{item.label}</p>
+                    <span
+                      className={`text-2xl transition-transform duration-300 ${
+                        openMenu === index ? "rotate-180" : "rotate-0"
+                      }`}
+                    >
+                      <MdOutlineKeyboardArrowDown />
+                    </span>
                   </button>
                   {openMenu === index && (
                     <ul className="ps-9 text-sm text-gray-400 space-y-2 mt-2">
