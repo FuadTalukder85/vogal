@@ -1,18 +1,19 @@
 "use client";
-import Container from "../../../components/Container";
-import { useGetProductsQuery } from "../../../redux/features/productApi/ProductApi";
+import Container from "../../../../../components/Container";
+import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
 import { useEffect, useState } from "react";
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Image from "next/image";
 import Link from "next/link";
-import sellImg from "../../../assets/images/sell.png";
+import sellImg from "../../../../../assets/images/sell.png";
 import { MdFilterListOff } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
 import dynamic from "next/dynamic";
-import Loading from "../../../components/Loading/Loading";
+import Loading from "../../../../../components/Loading/Loading";
 
-const ShopPage = () => {
-  const { data, isLoading, refetch } = useGetProductsQuery(undefined);
+const PartyDress = () => {
+  const { data, isLoading } = useGetProductsQuery(undefined);
+  const men = data?.filter((dt) => dt.category === "partyDress");
   const [isFixed, setIsFixed] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState({
     men: false,
@@ -23,12 +24,6 @@ const ShopPage = () => {
     accessories: false,
   });
   // console.log(data);
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      refetch();
-    }, 5000);
-    return () => clearInterval(intervalId);
-  }, [refetch]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +47,7 @@ const ShopPage = () => {
     }));
   };
 
-  const filteredProducts = data?.filter((product) => {
+  const filteredProducts = men?.filter((product) => {
     if (
       selectedCategories.men ||
       selectedCategories.women ||
@@ -356,5 +351,5 @@ const ShopPage = () => {
   );
 };
 
-// export default ShopPage;
-export default dynamic(() => Promise.resolve(ShopPage), { ssr: false });
+// export default PartyDress;
+export default dynamic(() => Promise.resolve(PartyDress), { ssr: false });

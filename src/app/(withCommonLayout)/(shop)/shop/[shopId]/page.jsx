@@ -1,5 +1,5 @@
 "use client";
-import { useGetSingleProductQuery } from "../../../../redux/features/productApi/ProductApi";
+import { useGetSingleProductQuery } from "../../../../../redux/features/productApi/ProductApi";
 import React, { useState } from "react";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
@@ -7,13 +7,14 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import Container from "../../../../components/Container";
-import ProductDescription from "../../../../components/tabs/ProductDescription";
-import Shipping from "../../../../components/tabs/Shipping";
-import { useAddCartsMutation } from "../../../../redux/features/cartsApi/CartsApi";
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { setCarts } from "../../../../redux/features/cartsApi/CartsSlice";
-import { useCurrentUser } from "../../../../redux/features/auth/authSlice";
+import Container from "../../../../../components/Container";
+import ProductDescription from "../../../../../components/tabs/ProductDescription";
+import Shipping from "../../../../../components/tabs/Shipping";
+import { useAddCartsMutation } from "../../../../../redux/features/cartsApi/CartsApi";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
+import { setCarts } from "../../../../../redux/features/cartsApi/CartsSlice";
+import { useCurrentUser } from "../../../../../redux/features/auth/authSlice";
+import Loading from "../../../../../components/Loading/Loading";
 
 const ProductDetailsById = ({ params }) => {
   const { data: productDetails, isLoading } = useGetSingleProductQuery(
@@ -26,11 +27,7 @@ const ProductDetailsById = ({ params }) => {
   const user = useAppSelector(useCurrentUser);
   const router = useRouter();
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   const images = [

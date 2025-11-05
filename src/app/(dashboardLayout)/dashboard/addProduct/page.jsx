@@ -94,6 +94,9 @@ const AddProducts = () => {
                 { value: "partyDress", label: "Party Dress" },
                 { value: "accessories", label: "Accessories" },
                 { value: "bestSeller", label: "Best Sellers" },
+                { value: "kids", label: "Kids Collection" },
+                { value: "gadget", label: "Gadget" },
+                { value: "gift", label: "Gift Item" },
               ]}
               register={register("category", {
                 required: "Category is required",

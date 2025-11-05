@@ -45,23 +45,25 @@ const Category = () => {
     },
   ];
   return (
-    <div className="max-w-[1300px] mx-auto p-5 md:p-0 md:mt-16">
-      <h5 className="text-2xl font-medium text-center">Categories</h5>
-      <div>
-        <ul className="grid grid-cols-8 mt-7">
-          {category?.map((cat, index) => (
-            <li key={index} className="flex flex-col items-center">
-              <Image
-                src={cat.image}
-                alt="men"
-                height={100}
-                width={100}
-                className="rounded-md"
-              />
-              <span className="mt-2 uppercase font-light">{cat.title}</span>
-            </li>
-          ))}
-        </ul>
+    <div className="bg-[#F7F7F7] md:mt-16 py-7">
+      <div className="max-w-[1300px] mx-auto p-5 md:p-0">
+        <h5 className="text-2xl font-medium text-center">Categories</h5>
+        <div>
+          <ul className="grid grid-cols-8 mt-7">
+            {category?.map((cat, index) => (
+              <li key={index} className="flex flex-col items-center">
+                <Image
+                  src={cat.image}
+                  alt="men"
+                  height={100}
+                  width={100}
+                  className="rounded-md"
+                />
+                <span className="mt-2 uppercase font-light">{cat.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

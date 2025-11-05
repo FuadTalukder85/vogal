@@ -24,12 +24,10 @@ const Cart = () => {
 
   const handleDecrement = async (id) => {
     const currentQuantity = quantities[id] || 1;
-    // Prevent decrementing if the quantity is already 1
     if (currentQuantity <= 1) {
       return;
     }
     const newQuantity = (quantities[id] || 1) - 1;
-    // Find the specific cart item by its id
     const cart = carts.find((cart) => cart._id === id);
     if (!cart) {
       console.error("Cart item not found");
@@ -39,9 +37,7 @@ const Cart = () => {
     const totalPrice = newQuantity * cart.price;
     const originalProductPrice = newQuantity * cart.originalPrice;
     const totalProfit = totalPrice - originalProductPrice;
-    // Construct the cartItem object
     const cartItem = { totalPrice, totalProfit };
-    // Update the local quantities state
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
       [id]: newQuantity,
@@ -63,7 +59,6 @@ const Cart = () => {
       console.log("Cart item updated successfully:", result);
     } catch (error) {
       console.error("Error updating quantity:", error);
-      // Revert to the previous quantity in case of an error
       setQuantities((prevQuantities) => ({
         ...prevQuantities,
         [id]: (prevQuantities[id] || 1) - 1,
@@ -73,7 +68,6 @@ const Cart = () => {
 
   const handleIncrement = async (id) => {
     const newQuantity = (quantities[id] || 1) + 1;
-    // Find the specific cart item by its id
     const cart = carts.find((cart) => cart._id === id);
     if (!cart) {
       console.error("Cart item not found");
@@ -83,9 +77,7 @@ const Cart = () => {
     const totalPrice = newQuantity * cart.price;
     const originalProductPrice = newQuantity * cart.originalPrice;
     const totalProfit = totalPrice - originalProductPrice;
-    // Construct the cartItem object
     const cartItem = { totalPrice, totalProfit };
-    // Update the local quantities state
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
       [id]: newQuantity,
