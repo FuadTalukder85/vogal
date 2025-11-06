@@ -1,13 +1,11 @@
 "use client";
 import { useState } from "react";
-import { FiEdit, FiPrinter } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { useGetPaymentsQuery } from "../../../../redux/features/paymentApi/PaymentApi";
-import Link from "next/link";
 const AllOrder = () => {
   const { data } = useGetPaymentsQuery();
   const [searchTerm, setSearchTerm] = useState("");
-  // const filteredDate = data.sort
   // search
   const search = data?.filter((dt) => {
     const term = searchTerm.toLowerCase();
@@ -42,17 +40,16 @@ const AllOrder = () => {
         <table className="w-full">
           <thead>
             <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
-              <th className="p-2">SL</th>
-              <th className="p-2">Invoice No</th>
-              <th className="p-2">Order Time</th>
-              <th className="p-2">Product</th>
-              <th className="p-2">Customer Info</th>
-              <th className="p-2">Total Item</th>
-              <th className="p-2">Amount</th>
-              <th className="p-2">Process By</th>
-              <th className="p-2">Currier</th>
-              <th className="p-2">Note</th>
-              <th className="p-2">Invoice</th>
+              <th className="p-2">SN</th>
+              <th className="p-2">Name</th>
+              <th className="p-2">Number</th>
+              <th className="p-2">Email</th>
+              <th className="p-2">Address</th>
+              <th className="p-2">Emergency Contact</th>
+              <th className="p-2">Salary</th>
+              <th className="p-2">Remarks</th>
+              <th className="p-2">Status</th>
+              <th className="p-2">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -75,27 +72,10 @@ const AllOrder = () => {
                 <td className="px-2 p-1">{order.quantity}</td>
                 <td className="px-2 p-1">${order.price}</td>
                 <td className="px-2 p-1">Korim Ali</td>
-                <td className="px-2 p-1">
-                  <select
-                    name=""
-                    id=""
-                    className="outline-none border-2 border-gray-200"
-                  >
-                    <option value="steadfast">Steadfast</option>
-                    <option value="sundarban">Sundarban</option>
-                    <option value="redx">RedX</option>
-                    <option value="pathao">Pathao</option>
-                    <option value="sa_paribahan">S A Paribahan</option>
-                  </select>
-                </td>
-                <td className="px-2 p-1">
-                  <FiEdit className="text-xl" />
-                </td>
+                <td className="px-2 p-1">Active</td>
                 <td className="px-2 p-1 gap-3 text-xl">
                   <p className="flex items-center gap-3">
-                    <Link href={`/dashboard/all-orders/${order._id}`}>
-                      <FiPrinter className="cursor-pointer text-xl hover:text-[#E85363] duration-700" />
-                    </Link>
+                    <FiEdit className="text-xl" />
                   </p>
                 </td>
               </tr>

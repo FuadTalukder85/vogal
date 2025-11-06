@@ -8,7 +8,7 @@ import {
   MdOutlineWallet,
 } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaUserTie } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
 import { HiOutlineDocumentReport } from "react-icons/hi";
@@ -49,22 +49,12 @@ const DashboardSidebar = () => {
         { href: "/dashboard/addProduct", label: "Add Product" },
       ],
     },
-    // {
-    //   href: "/dashboard/all-product",
-    //   label: "All Product",
-    //   icon: <MdOutlineProductionQuantityLimits />,
-    // },
-    // {
-    //   href: "/dashboard/addProduct",
-    //   label: "Add Product",
-    //   icon: <MdOutlineAddShoppingCart />,
-    // },
     {
       href: "",
       label: "Orders",
       icon: <IoMdCheckboxOutline />,
       subMenu: [
-        { href: "/dashboard/all-orders", label: "Total Orders" },
+        { href: "/dashboard/all-orders", label: "Manage Order" },
         { href: "/dashboard/orders/packaging", label: "Packaging" },
       ],
     },
@@ -73,12 +63,6 @@ const DashboardSidebar = () => {
       label: "Currier",
       icon: <TbTruckDelivery />,
     },
-
-    // {
-    //   href: "/dashboard/all-orders",
-    //   label: "Total Order",
-    //   icon: <IoMdCheckboxOutline />,
-    // },
     {
       href: "",
       label: "Accounts",
@@ -87,6 +71,15 @@ const DashboardSidebar = () => {
         { href: "/dashboard/account/income", label: "Income" },
         { href: "/dashboard/account/expense", label: "Expense" },
         { href: "/dashboard/account/salary", label: "Employee Salary" },
+      ],
+    },
+    {
+      href: "",
+      label: "Employee",
+      icon: <FaUserTie />,
+      subMenu: [
+        { href: "/dashboard/employee", label: "Manage employee" },
+        { href: "/dashboard/addEmployee", label: "Add employee" },
       ],
     },
     {
@@ -126,7 +119,7 @@ const DashboardSidebar = () => {
             </p>
           </Link>
         </div>
-        <ul className="text-[#9097A7] py-4">
+        <ul className="text-[#9097A7] py-4 capitalize">
           {menu.map((item, index) => (
             <li key={index} className="mt-3">
               {!item.subMenu ? (
@@ -160,16 +153,16 @@ const DashboardSidebar = () => {
                     </span>
                   </button>
                   {openMenu === index && (
-                    <ul className="ps-9 text-sm text-gray-400 space-y-2 mt-2">
+                    <ul className="ps-8 text-gray-400 space-y-3 mt-4">
                       {item.subMenu.map((sub, subIdx) => (
                         <li key={subIdx}>
                           <Link
                             href={sub.href}
-                            className={`block hover:text-white transition-all duration-500 ${isActive(
+                            className={`block hover:text-white transition-all duration-500 border-b border-gray-500 pb-3  ${isActive(
                               sub.href
                             )}`}
                           >
-                            <span className="flex items-center gap-4">
+                            <span className="flex items-center gap-3">
                               <MdOutlineKeyboardDoubleArrowRight /> {sub.label}
                             </span>
                           </Link>
