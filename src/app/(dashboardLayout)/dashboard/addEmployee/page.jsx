@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAddProductMutation } from "../../../../redux/features/productApi/ProductApi";
 import FormInput from "../../../../components/ReusableForm/FormInput";
 import FormSelect from "../../../../components/ReusableForm/FormSelect";
-import FormTextArea from "../../../../components/ReusableForm/FormTextArea";
-import FormFileUpload from "../../../../components/ReusableForm/FormFileUpload";
-import axios from "axios";
+import { useAddEmployeeMutation } from "../../../../redux/features/employeeApi/EmployeeApi";
 
 const AddEmployee = () => {
   const {
@@ -16,11 +12,11 @@ const AddEmployee = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const [addProduct] = useAddProductMutation();
+  const [addEmployee] = useAddEmployeeMutation();
 
   const onSubmit = async (data) => {
     try {
-      await addProduct(productData);
+      await addEmployee(data);
       reset();
     } catch (error) {
       console.error("Add employee failed:", error);
@@ -78,7 +74,7 @@ const AddEmployee = () => {
               required
               type="number"
               placeholder="emergency_contact"
-              register={register("price", {
+              register={register("emergency_contact", {
                 required: "Emergency Contact is required",
               })}
               error={errors.emergency_contact}

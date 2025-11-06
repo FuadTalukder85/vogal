@@ -1,32 +1,71 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
-import { useGetPaymentsQuery } from "../../../../redux/features/paymentApi/PaymentApi";
+import {
+  useGetEmployeeQuery,
+  useRemoveEmployeeMutation,
+} from "../../../../redux/features/employeeApi/EmployeeApi";
+import { AiFillDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
 const AllOrder = () => {
-  const { data } = useGetPaymentsQuery();
+  const { data, refetch } = useGetEmployeeQuery();
   const [searchTerm, setSearchTerm] = useState("");
+  const [removeEmployee] = useRemoveEmployeeMutation();
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     refetch();
+  //   }, 2000);
+  //   return () => clearInterval(intervalId);
+  // }, [refetch]);
   // search
   const search = data?.filter((dt) => {
     const term = searchTerm.toLowerCase();
     return (
-      dt.invoiceNumber.toString().toLowerCase().includes(term) ||
       dt.name.toLowerCase().includes(term) ||
+      dt.number.toString().toLowerCase().includes(term) ||
       dt.email.toLowerCase().includes(term) ||
-      dt.number.toLowerCase().includes(term)
+      dt.emergency_contact.toLowerCase().includes(term) ||
+      dt.address.toLowerCase().includes(term)
     );
   });
+  // handle delete employee
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to delete this employee?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await removeEmployee(id);
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your employee has been deleted.",
+            icon: "success",
+          });
+        } catch (error) {
+          console.error("Error deleting employee:", error);
+        }
+      }
+    });
+  };
   return (
     <div className="p-3 md:p-10">
       <div className="md:flex justify-between">
         <div className="hidden md:flex justify-center">
-          <h5 className="text-xl font-semibold">All orders</h5>
+          <h5 className="text-xl font-semibold">All Employee</h5>
         </div>
         <div className="flex items-center mt-2 md:mt-0">
           <input
             type="text"
             className="py-3 px-2 md:px-5 w-[280px] rounded-s-md focus:outline-none"
-            placeholder="Search orders..."
+            placeholder="Search employee..."
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
@@ -54,28 +93,28 @@ const AllOrder = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {search?.map((order, index) => (
+            {search?.map((employee, index) => (
               <tr
                 key={index}
                 className="text-sm border border-gray-200 text-left"
               >
                 <td className="px-2 p-1">{index + 1}.</td>
-                <td className="px-2 p-1">{order.invoiceNumber}</td>
-                <td className="px-2 p-1">
-                  {order.date} {order.time}
-                </td>
-                <td className="px-2 p-1">Product</td>
-                <td className="px-2 p-1">
-                  {order.name}
-                  <p>{order.number}</p>
-                </td>
-                <td className="px-2 p-1">{order.quantity}</td>
-                <td className="px-2 p-1">${order.price}</td>
-                <td className="px-2 p-1">Korim Ali</td>
-                <td className="px-2 p-1">Active</td>
+                <td className="px-2 p-1">{employee.name}</td>
+                <td className="px-2 p-1">{employee.number}</td>
+                <td className="px-2 p-1">{employee.email}</td>
+                <td className="px-2 p-1">{employee.address}</td>
+                <td className="px-2 p-1">{employee.emergency_contact}</td>
+                <td className="px-2 p-1">${employee.salary}</td>
+                <td className="px-2 p-1">{employee.remarks}</td>
+                <td className="px-2 p-1">{employee.status}</td>
                 <td className="px-2 p-1 gap-3 text-xl">
                   <p className="flex items-center gap-3">
                     <FiEdit className="text-xl" />
+                    <p className="cursor-pointer text-2xl hover:text-[#E85363] duration-700">
+                      <AiFillDelete
+                        onClick={() => handleDelete(employee?._id)}
+                      />
+                    </p>
                   </p>
                 </td>
               </tr>
