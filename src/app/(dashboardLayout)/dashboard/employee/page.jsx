@@ -12,12 +12,6 @@ const AllOrder = () => {
   const { data, refetch } = useGetEmployeeQuery();
   const [searchTerm, setSearchTerm] = useState("");
   const [removeEmployee] = useRemoveEmployeeMutation();
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     refetch();
-  //   }, 2000);
-  //   return () => clearInterval(intervalId);
-  // }, [refetch]);
   // search
   const search = data?.filter((dt) => {
     const term = searchTerm.toLowerCase();
