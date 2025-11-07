@@ -4,6 +4,7 @@ import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
+import Loading from "../../../../../components/Loading/Loading";
 
 const Accessories = () => {
   const { data, isLoading } = useGetProductsQuery();
@@ -11,8 +12,9 @@ const Accessories = () => {
     (accessories) =>
       accessories.category === "accessories" && accessories.tag === "trending"
   );
+
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <>

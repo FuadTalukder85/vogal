@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 import { useEffect } from "react";
 import Link from "next/link";
+import Loading from "./Loading/Loading";
 
 const TopSeller = () => {
   const { data, isLoading, refetch } = useGetProductsQuery(undefined);
@@ -17,7 +18,7 @@ const TopSeller = () => {
   }, [refetch]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   // console.log(data);
 

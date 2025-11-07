@@ -60,22 +60,11 @@ const DashboardSidebar = () => {
     },
     {
       href: "",
-      label: "Currier",
+      label: "Courier",
       icon: <TbTruckDelivery />,
       subMenu: [
         { href: "/dashboard/courier", label: "Manage Courier" },
         { href: "/dashboard/addCourier", label: "Add Courier" },
-      ],
-    },
-
-    {
-      href: "",
-      label: "Accounts",
-      icon: <MdOutlineWallet />,
-      subMenu: [
-        { href: "/dashboard/account/income", label: "Income" },
-        { href: "/dashboard/account/expense", label: "Expense" },
-        { href: "/dashboard/account/salary", label: "Employee Salary" },
       ],
     },
     {
@@ -88,14 +77,14 @@ const DashboardSidebar = () => {
       ],
     },
     {
-      href: "/dashboard/message",
-      label: "Message",
-      icon: <TiMessages />,
-    },
-    {
-      href: "/dashboard/all-users",
-      label: "Users & Role",
-      icon: <FaRegUser />,
+      href: "",
+      label: "Accounts",
+      icon: <MdOutlineWallet />,
+      subMenu: [
+        { href: "/dashboard/account/income", label: "Income" },
+        { href: "/dashboard/account/expense", label: "Expense" },
+        { href: "/dashboard/account/salary", label: "Employee Salary" },
+      ],
     },
     {
       href: "",
@@ -108,6 +97,16 @@ const DashboardSidebar = () => {
         { href: "/dashboard/reports/cancel", label: "Cancel Report" },
         { href: "/dashboard/reports/cancel", label: "Stock Report" },
       ],
+    },
+    {
+      href: "/dashboard/message",
+      label: "Message",
+      icon: <TiMessages />,
+    },
+    {
+      href: "/dashboard/all-users",
+      label: "Users & Role",
+      icon: <FaRegUser />,
     },
   ];
 

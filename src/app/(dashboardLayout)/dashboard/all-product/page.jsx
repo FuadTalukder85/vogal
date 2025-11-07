@@ -12,6 +12,7 @@ import UpdatePoductModal from "../../../../components/modal/updatePoductModal/Up
 import Image from "next/image";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import Loading from "../../../../components/Loading/Loading";
 
 const ITEMS_PER_PAGE = 20;
 
@@ -101,7 +102,7 @@ const AllProduct = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center mt-5">Loading...</p>;
+    return <Loading />;
   }
   return (
     <div className="md:p-10">

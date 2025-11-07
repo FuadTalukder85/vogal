@@ -5,11 +5,12 @@ import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../redux/features/productApi/ProductApi";
+import Loading from "../../../components/Loading/Loading";
 const FeaturesPage = () => {
   const { data, isLoading } = useGetProductsQuery();
   const features = data?.filter((features) => features.tag === "features");
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <div>

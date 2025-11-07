@@ -4,15 +4,15 @@ import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
+import Loading from "../../../../../components/Loading/Loading";
 
 const Men = () => {
   const { data, isLoading } = useGetProductsQuery();
   const men = data?.filter(
     (men) => men.category === "men" && men.tag === "trending"
   );
-  console.log(men);
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <>

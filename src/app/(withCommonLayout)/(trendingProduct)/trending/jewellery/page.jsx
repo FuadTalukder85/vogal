@@ -4,6 +4,7 @@ import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
+import Loading from "../../../../../components/Loading/Loading";
 
 const Jewellery = () => {
   const { data, isLoading } = useGetProductsQuery();
@@ -11,9 +12,9 @@ const Jewellery = () => {
     (jewellerys) =>
       jewellerys.category === "jewellery" && jewellerys.tag === "trending"
   );
-  // console.log(jewellery);
+
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <>

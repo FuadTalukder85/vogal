@@ -5,6 +5,7 @@ import { useGetProductsQuery } from "../../../redux/features/productApi/ProductA
 import { CiHeart, CiSearch, CiShoppingCart } from "react-icons/ci";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Loading from "../../../components/Loading/Loading";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,11 +17,6 @@ const SearchPage = () => {
       setFilteredData(data);
     }
   }, [data]);
-
-  if (isLoading) {
-    return <div className="text-center">Loading...</div>;
-  }
-
   const handleSearch = () => {
     if (searchQuery.trim() === "") {
       setFilteredData(data);
@@ -38,7 +34,9 @@ const SearchPage = () => {
     setSearchQuery(e.target.value);
     handleSearch();
   };
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <Container>
       <h1 className="text-2xl text-center mt-10">What are you looking for?</h1>

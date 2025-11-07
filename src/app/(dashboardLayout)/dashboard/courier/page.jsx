@@ -9,8 +9,9 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
+import Loading from "../../../../components/Loading/Loading";
 const Courier = () => {
-  const { data, refetch } = useGetCourierQuery();
+  const { data, isLoading, refetch } = useGetCourierQuery();
   const [searchTerm, setSearchTerm] = useState("");
   const [removeCourier] = useRemoveCourierMutation();
   // search
@@ -44,6 +45,9 @@ const Courier = () => {
       }
     });
   };
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="p-3 md:p-10">
       <div className="md:flex justify-between">

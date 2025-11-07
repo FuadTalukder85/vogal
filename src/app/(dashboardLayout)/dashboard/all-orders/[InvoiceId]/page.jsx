@@ -6,18 +6,10 @@ import { LuPrinterCheck } from "react-icons/lu";
 import { useGetSinglePaymentQuery } from "../../../../../redux/features/paymentApi/PaymentApi";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import Loading from "../../../../../components/Loading/Loading";
 
 const Invoice = ({ params }) => {
   const { data, isLoading } = useGetSinglePaymentQuery(params?.InvoiceId);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
   const {
     name,
     email,
@@ -94,7 +86,9 @@ const Invoice = ({ params }) => {
   const handlePrint = () => {
     window.print();
   };
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="p-3 md:p-10">
       {/* ✅ Header (Not in print) */}

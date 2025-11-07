@@ -9,6 +9,7 @@ import { useGetProductsQuery } from "../redux/features/productApi/ProductApi";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Loading from "../components/Loading/Loading";
 // custom button
 const NextArrow = ({ onClick }) => {
   return (
@@ -71,7 +72,7 @@ const LookBook = () => {
   };
   const { data, isLoading } = useGetProductsQuery();
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <Container>

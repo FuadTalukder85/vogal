@@ -4,15 +4,16 @@ import Container from "../../../../../components/Container";
 import Link from "next/link";
 import Image from "next/image";
 import { useGetProductsQuery } from "../../../../../redux/features/productApi/ProductApi";
+import Loading from "../../../../../components/Loading/Loading";
 const PartyDress = () => {
   const { data, isLoading } = useGetProductsQuery();
   const partyDress = data?.filter(
     (partyDress) =>
       partyDress.category === "partyDress" && partyDress.tag === "trending"
   );
-  //   console.log(partyDress);
+
   if (isLoading) {
-    return <p className="text-center">Loading...</p>;
+    return <Loading />;
   }
   return (
     <>
