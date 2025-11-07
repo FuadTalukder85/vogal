@@ -29,10 +29,10 @@ const Courier = () => {
           <thead>
             <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
               <th className="p-2">SN</th>
-              <th className="p-2">Name</th>
               <th className="p-2">Image</th>
+              <th className="p-2">Name</th>
               <th className="p-2">Total Delivery</th>
-              <th className="p-2">Total Cancel</th>
+              <th className="p-2">Total Return</th>
               <th className="p-2">Status</th>
               <th className="p-2">Action</th>
             </tr>
@@ -40,8 +40,8 @@ const Courier = () => {
           <tbody>
             <tr className="text-sm border border-gray-200 text-left">
               <td className="px-2 p-1">1.</td>
-              <td className="px-2 p-1">Stead Fast</td>
               <td className="px-2 p-1">N/A</td>
+              <td className="px-2 p-1">Stead Fast</td>
               <td className="px-2 p-1">55</td>
               <td className="px-2 p-1">7</td>
               <td className="px-2 p-1">Active</td>
@@ -51,8 +51,8 @@ const Courier = () => {
             </tr>
             <tr className="text-sm border border-gray-200 text-left">
               <td className="px-2 p-1">2.</td>
-              <td className="px-2 p-1">Sundarban</td>
               <td className="px-2 p-1">N/A</td>
+              <td className="px-2 p-1">Sundarban</td>
               <td className="px-2 p-1">55</td>
               <td className="px-2 p-1">7</td>
               <td className="px-2 p-1">Active</td>

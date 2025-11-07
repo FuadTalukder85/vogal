@@ -13,8 +13,8 @@ const page = () => {
     <div>
       <Banner />
       <Category />
-      <TopCategory />
       <NewArrivals />
+      <TopCategory />
       <MoreExplore />
       <CompanyLogo />
       <TopSeller />

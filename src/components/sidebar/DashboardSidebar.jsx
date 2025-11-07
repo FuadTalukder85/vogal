@@ -45,7 +45,7 @@ const DashboardSidebar = () => {
       label: "Products",
       icon: <MdOutlineProductionQuantityLimits />,
       subMenu: [
-        { href: "/dashboard/all-product", label: "All Product" },
+        { href: "/dashboard/all-product", label: "Manage Product" },
         { href: "/dashboard/addProduct", label: "Add Product" },
       ],
     },
@@ -59,10 +59,15 @@ const DashboardSidebar = () => {
       ],
     },
     {
-      href: "/dashboard/courier",
+      href: "",
       label: "Currier",
       icon: <TbTruckDelivery />,
+      subMenu: [
+        { href: "/dashboard/courier", label: "Manage Courier" },
+        { href: "/dashboard/addCourier", label: "Add Courier" },
+      ],
     },
+
     {
       href: "",
       label: "Accounts",
