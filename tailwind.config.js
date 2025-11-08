@@ -20,17 +20,17 @@ module.exports = {
           800: "#1f2937",
           900: "#111827",
         },
-        purple: {
-          700: "#6b21a8",
-          800: "#581c87",
-        },
-        teal: {
-          500: "#14b8a6",
-          600: "#0d9488",
-        },
-        red: {
-          600: "#dc2626",
-        },
+        // purple: {
+        //   700: "#6b21a8",
+        //   800: "#581c87",
+        // },
+        // teal: {
+        //   500: "#14b8a6",
+        //   600: "#0d9488",
+        // },
+        // red: {
+        //   600: "#dc2626",
+        // },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

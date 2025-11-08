@@ -84,6 +84,7 @@ const DashboardSidebar = () => {
         { href: "/dashboard/account/income", label: "Income" },
         { href: "/dashboard/account/expense", label: "Expense" },
         { href: "/dashboard/account/salary", label: "Employee Salary" },
+        { href: "/dashboard/account/paymentReceive", label: "Payment Receive" },
       ],
     },
     {

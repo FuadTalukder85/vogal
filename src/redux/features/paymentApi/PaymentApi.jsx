@@ -20,6 +20,13 @@ const PaymentApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    updatePayment: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/payments/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -27,4 +34,5 @@ export const {
   useAddPaymentsMutation,
   useGetPaymentsQuery,
   useGetSinglePaymentQuery,
+  useUpdatePaymentMutation,
 } = PaymentApi;
