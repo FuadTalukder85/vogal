@@ -55,7 +55,7 @@ const DashboardSidebar = () => {
       icon: <IoMdCheckboxOutline />,
       subMenu: [
         { href: "/dashboard/all-orders", label: "Manage Order" },
-        { href: "/dashboard/orders/packaging", label: "Packaging" },
+        { href: "/dashboard/packaging", label: "Packaging" },
       ],
     },
     {
@@ -92,11 +92,11 @@ const DashboardSidebar = () => {
       label: "Reports",
       icon: <HiOutlineDocumentReport />,
       subMenu: [
-        { href: "/dashboard/reports", label: "Profit / Loss Report" },
+        { href: "/dashboard/reports/reports", label: "Profit / Loss Report" },
         { href: "/dashboard/reports/sale", label: "Sale Report" },
-        { href: "/dashboard/reports/orders", label: "Order Report" },
+        { href: "/dashboard/reports/order", label: "Order Report" },
         { href: "/dashboard/reports/cancel", label: "Cancel Report" },
-        { href: "/dashboard/reports/cancel", label: "Stock Report" },
+        { href: "/dashboard/reports/stock", label: "Stock Report" },
       ],
     },
     {
