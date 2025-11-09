@@ -144,7 +144,7 @@ const ProductDetailsById = ({ params }) => {
               </div>
               <button
                 onClick={handleAddTocarts}
-                className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase "
+                className="mt-8 w-full bg-[#333333] text-white hover:bg-[#40B884] transition-all duration-500 py-3 rounded-md text-sm uppercase"
               >
                 Add Product
               </button>

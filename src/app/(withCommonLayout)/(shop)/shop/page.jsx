@@ -283,8 +283,8 @@ const ShopPage = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-9 p-5 md:p-0">
-            <div className="grid grid-cols-12 gap-5 mt-10">
+          <div className="col-span-12 md:col-span-9 p-3 md:p-0">
+            <div className="grid grid-cols-12 gap-3 md:gap-5 mt-10">
               {/* card */}
               {filteredProducts?.map((product, index) => (
                 <div
@@ -341,7 +341,10 @@ const ShopPage = () => {
                       )}
                     </h5>
                   </Link>
-                  <Link href={`/shop/${product._id}`}>
+                  <Link
+                    href={`/shop/${product._id}`}
+                    className="hidden md:block"
+                  >
                     <button className="w-full mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
                       Buy Now
                     </button>

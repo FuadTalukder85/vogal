@@ -120,11 +120,11 @@ const CheckoutForm = ({ carts, price, quantity }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="px-5 md:px-0 mt-5">
-        <div className="grid grid-cols-6 gap-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
+        <div className="md:grid grid-cols-6 gap-5">
           <div className="col-span-4 bg-[#F5F5F5] p-5">
             <h3>Delivery Information</h3>
-            <div className="flex gap-5">
+            <div className="md:flex gap-5">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">
@@ -162,7 +162,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
                 )}
               </div>
             </div>
-            <div className="flex gap-5">
+            <div className="md:flex gap-5">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">
@@ -200,7 +200,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
                 )}
               </div>
             </div>
-            <div className="flex gap-5">
+            <div className="md:flex gap-5">
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">

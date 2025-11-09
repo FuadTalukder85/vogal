@@ -230,16 +230,13 @@ const AllOrder = () => {
                 <td className="px-2 p-1">
                   <select
                     className={`outline-none border-2 border-gray-200 rounded-md px-1 ${
-                      !order.status ? "text-red-500" : ""
+                      order.status === "Pending" ? "text-red-500" : ""
                     }`}
                     defaultValue={order.status || ""}
                     onChange={(e) =>
                       handleUpdate(order._id, "status", e.target.value)
                     }
                   >
-                    <option value="" className="text-red-500">
-                      <span className="text-red-500">Select status</span>
-                    </option>
                     <option value="Pending">Pending</option>
                     <option value="Cancel">Cancel</option>
                     <option value="Processing">Processing</option>

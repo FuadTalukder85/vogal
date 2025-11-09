@@ -35,7 +35,7 @@ const OverView = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 md:gap-5 mt-5 bg-white md:p-3">
         <div className="bg-base-300 p-3">
           <div className="flex gap-2 md:gap-10 items-center">
             <p className="bg-[#CBD5E1] text-3xl text-white w-12 h-12 rounded-tr-xl rounded-b-xl flex items-center justify-center">

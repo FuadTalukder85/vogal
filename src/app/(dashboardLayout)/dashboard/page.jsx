@@ -14,12 +14,12 @@ const DashboardPage = () => {
       <div className="">
         <div className="md:px-10 pb-10">
           <OverView />
-          <div className="md:flex items-center justify-between">
+          <div className="md:flex items-center justify-between bg-white md:p-3 md:mt-5">
             <Charts />
             <PieChart />
           </div>
           <MonthlySalesChart />
-          <div className="grid grid-cols-12 mt-28 md:gap-16">
+          <div className="grid grid-cols-12 mt-28 md:gap-5">
             <div className="col-span-12 md:col-span-6">
               <TrendingProduct />
             </div>

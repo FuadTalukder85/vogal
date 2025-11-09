@@ -30,7 +30,7 @@ const Charts = () => {
   }, []);
 
   return (
-    <div className="mt-10">
+    <div className="">
       <div className="flex justify-between mb-7">
         <div>
           <h1 className="text-xl capitalize">Stock products</h1>

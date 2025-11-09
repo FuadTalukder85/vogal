@@ -63,7 +63,7 @@ const MonthlySalesChart = () => {
   }, [payments, currentYear, prevYear]);
 
   return (
-    <div className="w-full h-[400px] my-5">
+    <div className="w-full h-[400px] my-5 bg-white md:p-3">
       <div className="flex justify-between mb-7">
         <div>
           <h1 className="text-xl capitalize">Monthly sales chart</h1>
