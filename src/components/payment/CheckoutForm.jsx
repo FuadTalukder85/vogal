@@ -92,6 +92,7 @@ const CheckoutForm = ({ carts, price, quantity }) => {
         price,
         quantity,
         totalProfit,
+        status: "Pending",
         cartsId: carts.map((item) => item._id),
         items: {},
       };

@@ -11,6 +11,7 @@ import Loading from "../../../../components/Loading/Loading";
 import { useGetCourierQuery } from "../../../../redux/features/courierApi/CourierApi";
 import { useGetEmployeeQuery } from "../../../../redux/features/employeeApi/EmployeeApi";
 import toast, { Toaster } from "react-hot-toast";
+import ReactPaginate from "react-paginate";
 
 const AllOrder = () => {
   const { data, isLoading, refetch } = useGetPaymentsQuery();
@@ -21,6 +22,10 @@ const AllOrder = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [newNote, setNewNote] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  // filter
+  const [selectedFilter, setSelectedFilter] = useState("all");
+  // pagination
+  const [currentPage, setCurrentPage] = useState(0);
 
   const sortedDate = data
     ?.slice()
@@ -30,8 +35,8 @@ const AllOrder = () => {
     const term = searchTerm.toLowerCase();
     return (
       dt.invoiceNumber.toString().toLowerCase().includes(term) ||
-      dt.name.toLowerCase().includes(term) ||
-      dt.email.toLowerCase().includes(term) ||
+      // dt.name.toLowerCase().includes(term) ||
+      // dt.email.toLowerCase().includes(term) ||
       dt.number.toLowerCase().includes(term)
     );
   });
@@ -64,8 +69,29 @@ const AllOrder = () => {
     }
   };
 
-  if (isLoading) return <Loading />;
+  // filter
+  const itemsPerPage = 10;
+  const newOrder = search?.filter((dt) => dt.status === "Pending");
+  const cancelOrder = search?.filter((dt) => dt.status === "Cancel");
+  const returnOrder = search?.filter((dt) => dt.status === "Return");
+  const completeOrder = search?.filter((dt) => dt.status === "Completed");
+  const shipmentOrder = search?.filter((dt) => dt.status === "Shipment");
+  const processingOrder = search?.filter((dt) => dt.status === "Processing");
+  const filteredOrders =
+    selectedFilter === "all"
+      ? search
+      : search?.filter((order) => order.status === selectedFilter);
 
+  // pagination
+  const offset = currentPage * itemsPerPage;
+  const currentItems = filteredOrders?.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(filteredOrders?.length / itemsPerPage);
+
+  // handle page click
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+  if (isLoading) return <Loading />;
   return (
     <div className="p-3 md:p-10">
       <Toaster />
@@ -73,19 +99,60 @@ const AllOrder = () => {
         <div className="hidden md:flex justify-center">
           <h5 className="text-xl font-semibold">All orders</h5>
         </div>
+
         <div className="flex items-center mt-2 md:mt-0">
           <input
             type="text"
-            className="py-3 px-2 md:px-5 w-[280px] rounded-s-md focus:outline-none border border-gray-200"
-            placeholder="Search orders..."
+            className="py-3 px-2 md:px-5 w-[300px] rounded-s-md focus:outline-none border border-gray-200 text-sm"
+            placeholder="Type invoice or customer phone..."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] transition-all duration-500 py-3 px-3 md:px-7 rounded-e-md cursor-pointer">
+          <span className="bg-[#333333] text-white text-2xl hover:bg-[#40B884] transition-all duration-500 py-[10px] px-3 md:px-7 rounded-e-md cursor-pointer">
             <CiSearch />
           </span>
         </div>
       </div>
-
+      {/* filter */}
+      <div>
+        <ul className="flex gap-5 items-center py-5 capitalize">
+          {[
+            { label: "All", value: "all", count: search?.length || 0 },
+            { label: "Pending", value: "Pending", count: newOrder.length },
+            {
+              label: "Processing",
+              value: "Processing",
+              count: processingOrder.length,
+            },
+            {
+              label: "Shipment",
+              value: "Shipment",
+              count: shipmentOrder.length,
+            },
+            {
+              label: "Completed",
+              value: "Completed",
+              count: completeOrder.length,
+            },
+            { label: "Return", value: "Return", count: returnOrder.length },
+            { label: "Cancel", value: "Cancel", count: cancelOrder.length },
+          ].map((item) => (
+            <li
+              key={item.value}
+              onClick={() => setSelectedFilter(item.value)}
+              className={`px-3 py-1 border border-[#40B884] rounded-md cursor-pointer transition-all duration-300 ${
+                selectedFilter === item.value
+                  ? "bg-[#40B884] text-white"
+                  : "bg-white text-[#333333]"
+              }`}
+            >
+              {item.label}
+              <span className="ml-2 bg-gray-200 px-2 rounded-md text-[#333333] font-semibold">
+                {item.count}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="overflow-x-auto mt-3 bg-white md:p-5">
         <table className="w-full">
           <thead>
@@ -105,7 +172,7 @@ const AllOrder = () => {
           </thead>
 
           <tbody>
-            {search?.map((order, index) => (
+            {currentItems?.map((order, index) => (
               <tr
                 key={index}
                 className="text-sm border border-gray-200 text-left hover:bg-gray-50"
@@ -176,6 +243,8 @@ const AllOrder = () => {
                     <option value="Pending">Pending</option>
                     <option value="Cancel">Cancel</option>
                     <option value="Processing">Processing</option>
+                    <option value="Shipment">Shipment</option>
+                    <option value="Return">Return</option>
                     <option value="Completed">Completed</option>
                   </select>
                 </td>
@@ -263,6 +332,22 @@ const AllOrder = () => {
           </div>
         </div>
       )}
+      <div className="flex justify-end mt-5 md:mt-10">
+        <ReactPaginate
+          previousLabel={"← Previous"}
+          nextLabel={"Next →"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={3}
+          onPageChange={handlePageClick}
+          containerClassName={"flex items-center space-x-2"}
+          pageClassName={"px-3 py-1 border rounded-md cursor-pointer"}
+          previousClassName={"px-3 py-1 border rounded-md cursor-pointer"}
+          nextClassName={"px-3 py-1 border rounded-md cursor-pointer"}
+          activeClassName={"bg-[#40B884] text-white"}
+        />
+      </div>
     </div>
   );
 };
