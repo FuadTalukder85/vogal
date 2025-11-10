@@ -74,6 +74,7 @@ const DashboardSidebar = () => {
       subMenu: [
         { href: "/dashboard/employee", label: "Manage employee" },
         { href: "/dashboard/addEmployee", label: "Add employee" },
+        { href: "/dashboard/attendance", label: "Attendance" },
       ],
     },
     {

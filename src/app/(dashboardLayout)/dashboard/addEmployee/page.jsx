@@ -51,11 +51,21 @@ const AddEmployee = () => {
               label="Email"
               required
               type="email"
-              placeholder="email"
+              placeholder="Email"
               register={register("email", {
                 required: "Email is required",
               })}
               error={errors.email}
+            />
+            <FormInput
+              label="Designation"
+              required
+              type="text"
+              placeholder="Designation"
+              register={register("designation", {
+                required: "Designation is required",
+              })}
+              error={errors.designation}
             />
           </div>
 
@@ -73,7 +83,7 @@ const AddEmployee = () => {
               label="Emergency Contact"
               required
               type="number"
-              placeholder="emergency_contact"
+              placeholder="Emergency Contact"
               register={register("emergency_contact", {
                 required: "Emergency Contact is required",
               })}
@@ -83,7 +93,7 @@ const AddEmployee = () => {
               label="Salary"
               required
               type="number"
-              placeholder="salary"
+              placeholder="Salary"
               register={register("salary", {
                 required: "Salary is required",
               })}

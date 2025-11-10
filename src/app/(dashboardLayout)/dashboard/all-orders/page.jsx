@@ -86,7 +86,7 @@ const AllOrder = () => {
   const offset = currentPage * itemsPerPage;
   const currentItems = filteredOrders?.slice(offset, offset + itemsPerPage);
   const pageCount = Math.ceil(filteredOrders?.length / itemsPerPage);
-
+  console.log("currentItems", currentItems);
   // handle page click
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
@@ -194,7 +194,7 @@ const AllOrder = () => {
                     className={`outline-none border-2 border-gray-200 rounded-md px-1 ${
                       !order.processBy ? "text-red-500" : ""
                     }`}
-                    defaultValue={order.processBy || ""}
+                    value={order.processBy || ""}
                     onChange={(e) =>
                       handleUpdate(order._id, "processBy", e.target.value)
                     }
@@ -213,7 +213,7 @@ const AllOrder = () => {
                     className={`outline-none border-2 border-gray-200 rounded-md px-1 ${
                       !order.courier ? "text-red-500" : " "
                     }`}
-                    defaultValue={order.courier || ""}
+                    value={order.courier || ""}
                     onChange={(e) =>
                       handleUpdate(order._id, "courier", e.target.value)
                     }
@@ -232,7 +232,7 @@ const AllOrder = () => {
                     className={`outline-none border-2 border-gray-200 rounded-md px-1 ${
                       order.status === "Pending" ? "text-red-500" : ""
                     }`}
-                    defaultValue={order.status || ""}
+                    value={order.status || ""}
                     onChange={(e) =>
                       handleUpdate(order._id, "status", e.target.value)
                     }

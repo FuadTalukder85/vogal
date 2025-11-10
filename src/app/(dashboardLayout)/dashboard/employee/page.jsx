@@ -9,7 +9,7 @@ import {
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import Loading from "../../../../components/Loading/Loading";
-const AllOrder = () => {
+const AllEmployee = () => {
   const { data, isLoading, refetch } = useGetEmployeeQuery();
   const [searchTerm, setSearchTerm] = useState("");
   const [removeEmployee] = useRemoveEmployeeMutation();
@@ -124,4 +124,4 @@ const AllOrder = () => {
   );
 };
 
-export default AllOrder;
+export default AllEmployee;
