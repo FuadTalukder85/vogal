@@ -114,7 +114,7 @@ const AllOrder = () => {
       </div>
       {/* filter */}
       <div>
-        <ul className="flex gap-5 items-center py-5 capitalize">
+        <ul className="grid grid-cols-2 md:flex gap-2 md:gap-5 items-center py-5 capitalize">
           {[
             { label: "All", value: "all", count: search?.length || 0 },
             { label: "Pending", value: "Pending", count: newOrder.length },

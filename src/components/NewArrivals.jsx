@@ -79,7 +79,7 @@ const NewArrivals = () => {
                 )}
               </h5>
             </Link>
-            <Link href={`/shop/${product._id}`}>
+            <Link href={`/shop/${product._id}`} className="hidden md:block">
               <button className="w-full mt-3 border bg-[#333333] text-white hover:bg-[#40B884] hover:text-white hover:bg transition-all duration-500 py-3 px-7 rounded-md text-xs uppercase">
                 Buy Now
               </button>
