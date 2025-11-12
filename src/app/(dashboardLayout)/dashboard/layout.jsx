@@ -1,6 +1,6 @@
 import DashboardSidebar from "../../../components/sidebar/DashboardSidebar";
 import AdminRoute from "../../../components/adminRoute/AdminRoute";
-import DashNav from "../../../components/Shared/DashNav";
+import DashNav from "../../../components/shared/DashNav";
 
 const layout = ({ children }) => {
   return (
