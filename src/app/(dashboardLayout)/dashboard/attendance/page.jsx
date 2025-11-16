@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useGetEmployeeQuery } from "../../../../redux/features/employeeApi/EmployeeApi";
-import { useAddAttendanceMutation } from "../../../../redux/features/attendanceApi/AttendanceApi";
+import {
+  useAddAttendanceMutation,
+  useGetAttendanceQuery,
+} from "../../../../redux/features/attendanceApi/AttendanceApi";
 import Loading from "../../../../components/Loading/Loading";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -10,104 +13,95 @@ const Attendance = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [attendanceData, setAttendanceData] = useState({});
-  const { data: employees, isLoading, refetch } = useGetEmployeeQuery();
+  const { data: employees, isLoading } = useGetEmployeeQuery();
   const [addAttendance] = useAddAttendanceMutation();
+  const { data: attendanceRecords, refetch } = useGetAttendanceQuery();
 
-  // Initialize attendance data when employees or date changes
+  // initialize attendance data for selected date
   useEffect(() => {
-    if (employees && selectedDate) {
+    if (employees && selectedDate && attendanceRecords) {
       const initialData = {};
       employees.forEach((emp) => {
-        const existingRecord = emp.attendanceRecords?.find(
-          (a) => a.date.split("T")[0] === selectedDate
+        const existingRecord = attendanceRecords.find(
+          (a) => a.number === emp.number && a.date === selectedDate
         );
+
         initialData[emp.number] = {
           present: existingRecord?.present || false,
           absent: existingRecord?.absent || false,
+          tempPresent: false,
+          tempAbsent: false,
         };
       });
       setAttendanceData(initialData);
     }
-  }, [employees, selectedDate]);
+  }, [employees, selectedDate, attendanceRecords]);
 
-  // Filter by search
+  // search
   const search = employees?.filter((emp) => {
     const term = searchTerm.toLowerCase();
     return (
-      emp.name.toLowerCase().includes(term) ||
-      emp.number.toString().toLowerCase().includes(term)
+      emp.name?.toLowerCase().includes(term) ||
+      emp.id_no?.toString().toLowerCase().includes(term) ||
+      emp.number?.toString().toLowerCase().includes(term)
     );
   });
-
-  // Handle checkbox
   const handleCheckboxChange = (number, field) => {
     setAttendanceData((prev) => ({
       ...prev,
       [number]: {
         ...prev[number],
-        [field]: !prev[number]?.[field],
-        ...(field === "present"
-          ? { absent: false }
-          : field === "absent"
-          ? { present: false }
-          : {}),
+        [field === "present" ? "tempPresent" : "tempAbsent"]:
+          !prev[number][field === "present" ? "tempPresent" : "tempAbsent"],
       },
     }));
   };
 
-  // Handle save
+  // save attendance
   const handleSave = async () => {
     if (!selectedDate) {
       toast.error("Please select a date!");
       return;
     }
-
     const anySelected = Object.values(attendanceData).some(
-      (record) => record.present || record.absent
+      (record) => record.tempPresent || record.tempAbsent
     );
     if (!anySelected) {
-      toast.error("Please select at least one employee");
+      toast.error("Please select at least one employee to update", {
+        position: "top-right",
+      });
       return;
     }
-
     try {
-      let duplicateFound = false;
-
+      let savedCount = 0;
       for (const [number, record] of Object.entries(attendanceData)) {
-        const emp = employees.find((e) => e.number === Number(number));
+        const emp = employees.find((e) => e.number.toString() === number);
         if (!emp) continue;
-
-        // Skip if nothing selected
-        if (!record.present && !record.absent) continue;
-
-        // Prevent duplicate attendance
-        const alreadyRecorded = emp.attendanceRecords?.some(
-          (a) => a.date.split("T")[0] === selectedDate
-        );
-
-        if (alreadyRecorded) {
-          duplicateFound = true;
-          toast.error(
-            `Attendance for ${emp.name} already recorded for this date`
-          );
-          continue;
-        }
-
-        // Post new attendance
+        const present = record.tempPresent;
+        const absent = record.tempAbsent;
+        if (!present && !absent) continue;
         await addAttendance({
           date: selectedDate,
           name: emp.name,
           number: emp.number,
-          present: record.present,
-          absent: record.absent,
+          present,
+          absent,
         }).unwrap();
+
+        savedCount++;
       }
 
-      if (!duplicateFound) toast.success("Attendance saved successfully!");
-      refetch();
+      if (savedCount > 0) {
+        toast.success("Attendance saved successfully!", {
+          position: "top-right",
+        });
+        refetch();
+      }
     } catch (err) {
       console.error(err);
-      toast.error("Failed to save attendance");
+      toast.error("Failed to save attendance", {
+        position: "top-right",
+      });
     }
   };
 
@@ -121,7 +115,7 @@ const Attendance = () => {
           Employee Attendance
         </h5>
 
-        <div className="flex gap-3 items-center mt-2 md:mt-0">
+        <div className="flex items-center mt-2 md:mt-0">
           <input
             type="date"
             value={selectedDate}
@@ -129,15 +123,15 @@ const Attendance = () => {
               setSelectedDate(e.target.value);
               refetch();
             }}
-            className="border border-gray-300 rounded-md px-2 py-2 text-sm"
+            className="border border-gray-300 rounded-md px-2 py-2 text-sm mr-3"
           />
           <input
             type="text"
-            className="py-2 px-3 w-[250px] rounded-md border border-gray-200 text-sm focus:outline-none"
-            placeholder="Search employee..."
+            className="py-2 px-3 w-[250px] rounded-l-md border border-gray-200 text-sm focus:outline-none"
+            placeholder="Search by Name, ID No., Number"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <span className="bg-[#333333] text-white text-2xl py-[6px] px-3 rounded-md">
+          <span className="bg-[#333333] text-white text-2xl py-[6px] px-3 rounded-r-md">
             <CiSearch />
           </span>
         </div>
@@ -148,6 +142,7 @@ const Attendance = () => {
           <thead>
             <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
               <th className="p-2">SN</th>
+              <th className="p-2">Id No.</th>
               <th className="p-2">Name</th>
               <th className="p-2">Number</th>
               <th className="p-2">Present</th>
@@ -155,33 +150,48 @@ const Attendance = () => {
             </tr>
           </thead>
           <tbody>
-            {search?.map((emp, index) => (
-              <tr
-                key={emp._id}
-                className="text-sm border border-gray-200 text-left"
-              >
-                <td className="px-2 p-1">{index + 1}.</td>
-                <td className="px-2 p-1">{emp.name}</td>
-                <td className="px-2 p-1">{emp.number}</td>
-                <td className="px-2 p-1 text-center">
-                  <input
-                    type="checkbox"
-                    checked={attendanceData[emp.number]?.present || false}
-                    onChange={() => handleCheckboxChange(emp.number, "present")}
-                  />
-                </td>
-                <td className="px-2 p-1 text-center">
-                  <input
-                    type="checkbox"
-                    checked={attendanceData[emp.number]?.absent || false}
-                    onChange={() => handleCheckboxChange(emp.number, "absent")}
-                  />
-                </td>
-              </tr>
-            ))}
+            {search?.map((emp, index) => {
+              const record = attendanceData[emp.number];
+              return (
+                <tr
+                  key={emp._id}
+                  className="text-sm border border-gray-200 text-left"
+                >
+                  <td className="px-2 p-1">{index + 1}.</td>
+                  <td className="px-2 p-1">{emp.id_no}</td>
+                  <td className="px-2 p-1">{emp.name}</td>
+                  <td className="px-2 p-1">{emp.number}</td>
+                  <td className="px-2 p-1">
+                    {record?.present ? (
+                      "Present"
+                    ) : (
+                      <input
+                        type="checkbox"
+                        checked={record?.tempPresent || false}
+                        onChange={() =>
+                          handleCheckboxChange(emp.number, "present")
+                        }
+                      />
+                    )}
+                  </td>
+                  <td className="px-2 p-1">
+                    {record?.absent ? (
+                      "Absent"
+                    ) : (
+                      <input
+                        type="checkbox"
+                        checked={record?.tempAbsent || false}
+                        onChange={() =>
+                          handleCheckboxChange(emp.number, "absent")
+                        }
+                      />
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-
         <div className="md:flex justify-end">
           <button
             onClick={handleSave}
@@ -194,5 +204,4 @@ const Attendance = () => {
     </div>
   );
 };
-
 export default Attendance;

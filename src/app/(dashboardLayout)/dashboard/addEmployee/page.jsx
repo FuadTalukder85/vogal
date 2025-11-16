@@ -25,10 +25,17 @@ const AddEmployee = () => {
 
   return (
     <div className=" md:p-10">
-      <h1 className="text-4xl py-5 px-3 md:px-0">Add Employee</h1>
+      <h1 className="text-xl font-semibold py-5 px-3 md:px-0">Add Employee</h1>
       <div className="mx-auto bg-base-100 p-5">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="md:flex gap-5">
+            <FormInput
+              label="Employee ID"
+              required
+              placeholder="ID here"
+              register={register("id_no", { required: "Id no is required" })}
+              error={errors.title}
+            />
             <FormInput
               label="Name"
               required

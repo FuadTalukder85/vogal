@@ -10,6 +10,13 @@ const AttendanceApi = baseApi.injectEndpoints({
       }),
       providesTags: ["attendance"],
     }),
+    getAttendance: builder.query({
+      query: () => ({
+        url: "/attendance",
+        method: "GET",
+      }),
+    }),
   }),
 });
-export const { useAddAttendanceMutation } = AttendanceApi;
+export const { useAddAttendanceMutation, useGetAttendanceQuery } =
+  AttendanceApi;
