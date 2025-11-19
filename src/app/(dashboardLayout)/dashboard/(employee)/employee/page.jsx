@@ -1,14 +1,15 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import {
   useGetEmployeeQuery,
   useRemoveEmployeeMutation,
-} from "../../../../redux/features/employeeApi/EmployeeApi";
+} from "../../../../../redux/features/employeeApi/EmployeeApi";
 import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
-import Loading from "../../../../components/Loading/Loading";
+import Loading from "../../../../../components/Loading/Loading";
+import Link from "next/link";
 const AllEmployee = () => {
   const { data, isLoading, refetch } = useGetEmployeeQuery();
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,11 +18,12 @@ const AllEmployee = () => {
   const search = data?.filter((dt) => {
     const term = searchTerm.toLowerCase();
     return (
-      dt.name.toLowerCase().includes(term) ||
-      dt.number.toString().toLowerCase().includes(term) ||
-      dt.email.toLowerCase().includes(term) ||
-      dt.emergency_contact.toLowerCase().includes(term) ||
-      dt.address.toLowerCase().includes(term)
+      dt.id_no?.toLowerCase().includes(term) ||
+      dt.name?.toLowerCase().includes(term) ||
+      dt.number?.toString().toLowerCase().includes(term) ||
+      dt.email?.toLowerCase().includes(term) ||
+      dt.emergency_contact?.toLowerCase().includes(term) ||
+      dt.address?.toLowerCase().includes(term)
     );
   });
   // handle delete employee
@@ -78,6 +80,8 @@ const AllEmployee = () => {
           <thead>
             <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
               <th className="p-2">SN</th>
+              <th className="p-2">Employee ID</th>
+              <th className="p-2">Designation</th>
               <th className="p-2">Name</th>
               <th className="p-2">Number</th>
               <th className="p-2">Email</th>
@@ -97,6 +101,8 @@ const AllEmployee = () => {
                 className="text-sm border border-gray-200 text-left"
               >
                 <td className="px-2 p-1">{index + 1}.</td>
+                <td className="px-2 p-1">{employee.id_no}</td>
+                <td className="px-2 p-1">{employee.designation}</td>
                 <td className="px-2 p-1">{employee.name}</td>
                 <td className="px-2 p-1">{employee.number}</td>
                 <td className="px-2 p-1">{employee.email}</td>
@@ -107,7 +113,9 @@ const AllEmployee = () => {
                 <td className="px-2 p-1">{employee.status}</td>
                 <td className="px-2 p-1 gap-3 text-xl">
                   <p className="flex items-center gap-3">
-                    <FiEdit className="text-xl" />
+                    <Link href={`employee/${employee._id}`}>
+                      <FiEdit className="text-xl" />
+                    </Link>
                     <p className="cursor-pointer text-2xl hover:text-[#E85363] duration-700">
                       <AiFillDelete
                         onClick={() => handleDelete(employee?._id)}

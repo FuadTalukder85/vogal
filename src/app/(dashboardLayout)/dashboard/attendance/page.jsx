@@ -47,14 +47,22 @@ const Attendance = () => {
     );
   });
   const handleCheckboxChange = (number, field) => {
-    setAttendanceData((prev) => ({
-      ...prev,
-      [number]: {
-        ...prev[number],
-        [field === "present" ? "tempPresent" : "tempAbsent"]:
-          !prev[number][field === "present" ? "tempPresent" : "tempAbsent"],
-      },
-    }));
+    if (!selectedDate) {
+      toast.error("Please select a date first!", { position: "top-right" });
+      return;
+    }
+    setAttendanceData((prev) => {
+      if (!prev[number]) return prev;
+
+      return {
+        ...prev,
+        [number]: {
+          ...prev[number],
+          [field === "present" ? "tempPresent" : "tempAbsent"]:
+            !prev[number][field === "present" ? "tempPresent" : "tempAbsent"],
+        },
+      };
+    });
   };
 
   // save attendance
