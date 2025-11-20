@@ -11,7 +11,7 @@ export default function FormInput({
     <div className="form-control w-full">
       <label className="label">
         <span className="label-text">
-          {label} {required && <span className="text-red-500 text-lg">*</span>}
+          {label} {required && <span className="text-red-500">*</span>}
         </span>
       </label>
       <input

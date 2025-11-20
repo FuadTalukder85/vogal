@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useGetEmployeeQuery } from "../../../../redux/features/employeeApi/EmployeeApi";
+import { useGetEmployeeQuery } from "../../../../../../redux/features/employeeApi/EmployeeApi";
 import {
   useAddAttendanceMutation,
   useGetAttendanceQuery,
-} from "../../../../redux/features/attendanceApi/AttendanceApi";
-import Loading from "../../../../components/Loading/Loading";
+} from "../../../../../../redux/features/attendanceApi/AttendanceApi";
+import Loading from "../../../../../../components/Loading/Loading";
 import toast, { Toaster } from "react-hot-toast";
 
 const Attendance = () => {

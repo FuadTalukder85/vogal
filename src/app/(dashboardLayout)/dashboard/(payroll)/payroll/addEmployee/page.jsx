@@ -1,9 +1,9 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import FormInput from "../../../../components/ReusableForm/FormInput";
-import FormSelect from "../../../../components/ReusableForm/FormSelect";
-import { useAddEmployeeMutation } from "../../../../redux/features/employeeApi/EmployeeApi";
+import FormInput from "../../../../../../components/ReusableForm/FormInput";
+import FormSelect from "../../../../../../components/ReusableForm/FormSelect";
+import { useAddEmployeeMutation } from "../../../../../../redux/features/employeeApi/EmployeeApi";
 
 const AddEmployee = () => {
   const {

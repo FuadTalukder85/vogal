@@ -8,7 +8,7 @@ import {
   MdOutlineWallet,
 } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
-import { FaRegUser, FaUserTie } from "react-icons/fa";
+import { FaBusinessTime, FaRegUser } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { TiMessages } from "react-icons/ti";
 import { HiOutlineDocumentReport } from "react-icons/hi";
@@ -69,12 +69,13 @@ const DashboardSidebar = () => {
     },
     {
       href: "",
-      label: "Employee",
-      icon: <FaUserTie />,
+      label: "Payroll",
+      icon: <FaBusinessTime />,
       subMenu: [
         { href: "/dashboard/employee", label: "Manage employee" },
-        { href: "/dashboard/addEmployee", label: "Add employee" },
-        { href: "/dashboard/attendance", label: "Attendance" },
+        { href: "/dashboard/payroll/addEmployee", label: "Add employee" },
+        { href: "/dashboard/payroll/attendance", label: "Attendance" },
+        { href: "/dashboard/payroll/salary", label: "Generate Salary" },
       ],
     },
     {
@@ -84,7 +85,6 @@ const DashboardSidebar = () => {
       subMenu: [
         { href: "/dashboard/account/income", label: "Income" },
         { href: "/dashboard/account/expense", label: "Expense" },
-        { href: "/dashboard/account/salary", label: "Employee Salary" },
         { href: "/dashboard/account/paymentReceive", label: "Payment Receive" },
       ],
     },
