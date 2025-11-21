@@ -30,11 +30,11 @@ const Salary = () => {
           <thead>
             <tr className="text-[14px] text-[#333] bg-gray-200 text-left">
               <th className="p-2">SN</th>
+              <th className="p-2">Generate date</th>
               <th className="p-2">Employee ID</th>
               <th className="p-2">Designation</th>
               <th className="p-2">Name</th>
               <th className="p-2">Number</th>
-              <th className="p-2">Email</th>
               <th className="p-2">Salary</th>
               <th className="p-2">Payable Salary</th>
               <th className="p-2">Remarks</th>
@@ -45,11 +45,11 @@ const Salary = () => {
           <tbody>
             <tr className="text-sm border-b">
               <td className="px-2 p-1">1</td>
+              <td className="px-2 p-1">21/11/2025</td>
               <td className="px-2 p-1">12125</td>
               <td className="px-2 p-1">Manager</td>
               <td className="px-2 p-1">Korim Ali</td>
               <td className="px-2 p-1">01756867585</td>
-              <td className="px-2 p-1">email@gmail.com</td>
               <td className="px-2 p-1">$1000</td>
               <td className="px-2 p-1">$900</td>
               <td className="px-2 p-1">N/A</td>
@@ -59,8 +59,8 @@ const Salary = () => {
                   <button onClick={() => setOpenModal(true)}>
                     <FiEdit className="cursor-pointer hover:text-[#40B884] duration-200" />
                   </button>
-                  <span className="text-sm uppercase bg-[#40B884] text-white px-1 rounded-sm cursor-pointer hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500">
-                    Pay clip
+                  <span className="text-sm bg-[#40B884] text-white px-1 rounded-sm cursor-pointer hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500">
+                    Payslip
                   </span>
                 </div>
               </td>

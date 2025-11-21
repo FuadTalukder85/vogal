@@ -1,117 +1,92 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useGetEmployeeQuery } from "../../../../../../redux/features/employeeApi/EmployeeApi";
-import {
-  useAddAttendanceMutation,
-  useGetAttendanceQuery,
-} from "../../../../../../redux/features/attendanceApi/AttendanceApi";
+import { useGetAttendanceQuery } from "../../../../../../redux/features/attendanceApi/AttendanceApi";
 import Loading from "../../../../../../components/Loading/Loading";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { LuScanEye } from "react-icons/lu";
+import { FaPlus } from "react-icons/fa";
+import Link from "next/link";
 
 const Attendance = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const currentMonthName = months[new Date().getMonth()];
+  const [selectedMonth, setSelectedMonth] = useState(currentMonthName);
   const [searchTerm, setSearchTerm] = useState("");
-  const [attendanceData, setAttendanceData] = useState({});
-  const { data: employees, isLoading } = useGetEmployeeQuery();
-  const [addAttendance] = useAddAttendanceMutation();
-  const { data: attendanceRecords, refetch } = useGetAttendanceQuery();
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const { data, isLoading } = useGetAttendanceQuery();
 
-  // initialize attendance data for selected date
-  useEffect(() => {
-    if (employees && selectedDate && attendanceRecords) {
-      const initialData = {};
-      employees.forEach((emp) => {
-        const existingRecord = attendanceRecords.find(
-          (a) => a.number === emp.number && a.date === selectedDate
-        );
+  const cleanData = useMemo(() => {
+    if (!data) return [];
+    return data.filter(
+      (item) =>
+        item &&
+        item.name &&
+        item.number &&
+        item.date &&
+        (item.present !== undefined || item.absent !== undefined)
+    );
+  }, [data]);
 
-        initialData[emp.number] = {
-          present: existingRecord?.present || false,
-          absent: existingRecord?.absent || false,
-          tempPresent: false,
-          tempAbsent: false,
-        };
+  const monthFiltered = useMemo(() => {
+    if (!cleanData.length) return [];
+
+    return cleanData.filter((item) => {
+      const month = new Date(item.date).toLocaleString("en-US", {
+        month: "long",
       });
-      setAttendanceData(initialData);
-    }
-  }, [employees, selectedDate, attendanceRecords]);
+      return month === selectedMonth;
+    });
+  }, [cleanData, selectedMonth]);
 
-  // search
-  const search = employees?.filter((emp) => {
-    const term = searchTerm.toLowerCase();
+  const grouped = useMemo(() => {
+    const map = {};
+    monthFiltered.forEach((rec) => {
+      if (!map[rec.number]) {
+        map[rec.number] = {
+          id_no: rec.id_no || "",
+          name: rec.name,
+          number: rec.number,
+          totalPresent: 0,
+          totalAbsent: 0,
+        };
+      }
+      if (rec.present) map[rec.number].totalPresent++;
+      if (rec.absent) map[rec.number].totalAbsent++;
+    });
+    return Object.values(map);
+  }, [monthFiltered]);
+
+  const search = grouped.filter((emp) => {
+    const t = searchTerm.toLowerCase();
     return (
-      emp.name?.toLowerCase().includes(term) ||
-      emp.id_no?.toString().toLowerCase().includes(term) ||
-      emp.number?.toString().toLowerCase().includes(term)
+      emp?.name?.toLowerCase().includes(t) ||
+      emp?.id_no?.toString().toLowerCase().includes(t) ||
+      emp?.number?.toString().toLowerCase().includes(t)
     );
   });
-  const handleCheckboxChange = (number, field) => {
-    if (!selectedDate) {
-      toast.error("Please select a date first!", { position: "top-right" });
-      return;
-    }
-    setAttendanceData((prev) => {
-      if (!prev[number]) return prev;
 
-      return {
-        ...prev,
-        [number]: {
-          ...prev[number],
-          [field === "present" ? "tempPresent" : "tempAbsent"]:
-            !prev[number][field === "present" ? "tempPresent" : "tempAbsent"],
-        },
-      };
-    });
-  };
-
-  // save attendance
-  const handleSave = async () => {
-    if (!selectedDate) {
-      toast.error("Please select a date!");
-      return;
-    }
-    const anySelected = Object.values(attendanceData).some(
-      (record) => record.tempPresent || record.tempAbsent
+  // modal
+  const modalRecords = useMemo(() => {
+    if (!selectedEmployee) return [];
+    return monthFiltered.filter(
+      (rec) => rec.number === selectedEmployee.number
     );
-    if (!anySelected) {
-      toast.error("Please select at least one employee to update", {
-        position: "top-right",
-      });
-      return;
-    }
-    try {
-      let savedCount = 0;
-      for (const [number, record] of Object.entries(attendanceData)) {
-        const emp = employees.find((e) => e.number.toString() === number);
-        if (!emp) continue;
-        const present = record.tempPresent;
-        const absent = record.tempAbsent;
-        if (!present && !absent) continue;
-        await addAttendance({
-          date: selectedDate,
-          name: emp.name,
-          number: emp.number,
-          present,
-          absent,
-        }).unwrap();
-
-        savedCount++;
-      }
-
-      if (savedCount > 0) {
-        toast.success("Attendance saved successfully!", {
-          position: "top-right",
-        });
-        refetch();
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to save attendance", {
-        position: "top-right",
-      });
-    }
-  };
+  }, [selectedEmployee, monthFiltered]);
 
   if (isLoading) return <Loading />;
 
@@ -120,19 +95,21 @@ const Attendance = () => {
       <Toaster />
       <div className="md:flex justify-between items-center">
         <h5 className="hidden md:flex text-xl font-semibold">
-          Employee Attendance
+          Attendance Month: {selectedMonth}
         </h5>
-
         <div className="flex items-center mt-2 md:mt-0">
-          <input
-            type="date"
-            value={selectedDate}
-            onChange={(e) => {
-              setSelectedDate(e.target.value);
-              refetch();
-            }}
-            className="border border-gray-300 rounded-md px-2 py-2 text-sm mr-3"
-          />
+          <select
+            className="w-full py-2 px-3 rounded-md mr-5"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+          >
+            <option value="">Select Month</option>
+            {months.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
           <input
             type="text"
             className="py-2 px-3 w-[250px] rounded-l-md border border-gray-200 text-sm focus:outline-none"
@@ -142,6 +119,15 @@ const Attendance = () => {
           <span className="bg-[#333333] text-white text-2xl py-[6px] px-3 rounded-r-md">
             <CiSearch />
           </span>
+          <Link
+            href="/dashboard/payroll/addAttendance"
+            className="flex gap-2 items-center ml-5 w-full md:w-auto bg-[#40B884] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-2 px-7 rounded-md text-sm uppercase"
+          >
+            <span className="text-xl">
+              <FaPlus />
+            </span>
+            Attendance
+          </Link>
         </div>
       </div>
 
@@ -150,66 +136,127 @@ const Attendance = () => {
           <thead>
             <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
               <th className="p-2">SN</th>
-              <th className="p-2">Id No.</th>
+              <th className="p-2">ID No.</th>
               <th className="p-2">Name</th>
               <th className="p-2">Number</th>
-              <th className="p-2">Present</th>
-              <th className="p-2">Absent</th>
+              <th className="p-2">Total Present</th>
+              <th className="p-2">Total Absent</th>
+              <th className="p-2">Action</th>
             </tr>
           </thead>
+
           <tbody>
-            {search?.map((emp, index) => {
-              const record = attendanceData[emp.number];
-              return (
-                <tr
-                  key={emp._id}
-                  className="text-sm border border-gray-200 text-left"
-                >
+            {search.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="text-center p-4 text-gray-500">
+                  No data found
+                </td>
+              </tr>
+            ) : (
+              search.map((emp, index) => (
+                <tr key={index} className="text-sm border border-gray-200">
                   <td className="px-2 p-1">{index + 1}.</td>
-                  <td className="px-2 p-1">{emp.id_no}</td>
+                  <td className="px-2 p-1">{emp.id_no || "-"}</td>
                   <td className="px-2 p-1">{emp.name}</td>
                   <td className="px-2 p-1">{emp.number}</td>
+                  <td className="px-2 p-1">{emp.totalPresent}</td>
+                  <td className="px-2 p-1">{emp.totalAbsent}</td>
                   <td className="px-2 p-1">
-                    {record?.present ? (
-                      "Present"
-                    ) : (
-                      <input
-                        type="checkbox"
-                        checked={record?.tempPresent || false}
-                        onChange={() =>
-                          handleCheckboxChange(emp.number, "present")
-                        }
-                      />
-                    )}
-                  </td>
-                  <td className="px-2 p-1">
-                    {record?.absent ? (
-                      "Absent"
-                    ) : (
-                      <input
-                        type="checkbox"
-                        checked={record?.tempAbsent || false}
-                        onChange={() =>
-                          handleCheckboxChange(emp.number, "absent")
-                        }
-                      />
-                    )}
+                    <button
+                      onClick={() => {
+                        setSelectedEmployee(emp);
+                        setOpenModal(true);
+                      }}
+                      className="text-xl cursor-pointer hover:text-[#40B884] duration-200"
+                    >
+                      <LuScanEye />
+                    </button>
                   </td>
                 </tr>
-              );
-            })}
+              ))
+            )}
           </tbody>
         </table>
-        <div className="md:flex justify-end">
-          <button
-            onClick={handleSave}
-            className="w-full md:w-auto mt-3 bg-[#333333] text-white hover:bg-[#EFEDEC] hover:text-[#333333] transition-all duration-500 py-2 px-7 rounded-md text-sm uppercase"
-          >
-            Save Change
-          </button>
-        </div>
       </div>
+
+      {/* attendance modal */}
+      {openModal && selectedEmployee && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white p-5 rounded-md w-[90%] md:w-[600px]">
+            <h2 className="text-xl font-semibold mb-3">
+              {selectedEmployee.name} - {selectedMonth} Attendance
+            </h2>
+            <table className="w-full mb-5">
+              <thead>
+                <tr className="md:text-[14px] text-[#333333] bg-gray-200 border border-gray-200 text-left">
+                  <th className="p-2">SN</th>
+                  <th className="p-2">Date</th>
+                  <th className="p-2">Present</th>
+                  <th className="p-2">Absent</th>
+                </tr>
+              </thead>
+              <tbody>
+                {modalRecords.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="text-center p-3">
+                      No attendance found
+                    </td>
+                  </tr>
+                ) : (
+                  <>
+                    {modalRecords.map((rec, index) => (
+                      <tr
+                        key={rec._id || index}
+                        className="text-sm border border-gray-200"
+                      >
+                        <td className="p-1">{index + 1}</td>
+                        <td className="p-1">
+                          {new Date(rec.date).toLocaleDateString("en-GB")}
+                        </td>
+                        <td className="p-1">{rec.present ? 1 : 0}</td>
+                        <td className="p-1">{rec.absent ? 1 : 0}</td>
+                      </tr>
+                    ))}
+
+                    {/* footer */}
+                    <tr className="bg-gray-100 font-semibold border border-gray-300">
+                      <td className="p-2 text-center" colSpan={2}>
+                        Total
+                      </td>
+                      <td className="p-2 text-green-700">
+                        {modalRecords.reduce(
+                          (sum, rec) => sum + (rec.present ? 1 : 0),
+                          0
+                        )}
+                      </td>
+                      <td className="p-2 text-red-700">
+                        {modalRecords.reduce(
+                          (sum, rec) => sum + (rec.absent ? 1 : 0),
+                          0
+                        )}
+                      </td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+
+            <div className="flex justify-between">
+              <button
+                onClick={() => setOpenModal(false)}
+                className="bg-gray-400 text-white px-5 py-2 rounded-md"
+              >
+                Close
+              </button>
+              <button className="bg-[#40B884] text-white px-5 py-2 rounded-md">
+                Approved for salary
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
+
 export default Attendance;
