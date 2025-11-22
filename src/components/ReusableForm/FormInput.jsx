@@ -4,6 +4,8 @@ export default function FormInput({
   type = "text",
   placeholder,
   defaultValue,
+  value,
+  onChange,
   register,
   error,
 }) {
@@ -18,6 +20,8 @@ export default function FormInput({
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        value={value}
+        onChange={onChange}
         {...register}
         className="input input-bordered"
       />

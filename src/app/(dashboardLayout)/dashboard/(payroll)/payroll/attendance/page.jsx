@@ -2,8 +2,9 @@
 import { useState, useMemo } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useGetAttendanceQuery } from "../../../../../../redux/features/attendanceApi/AttendanceApi";
+import { useAddSalaryMutation } from "../../../../../../redux/features/salaryApi/SalaryApi";
 import Loading from "../../../../../../components/Loading/Loading";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { LuScanEye } from "react-icons/lu";
 import { FaPlus } from "react-icons/fa";
 import Link from "next/link";
@@ -28,7 +29,8 @@ const Attendance = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const { data, isLoading } = useGetAttendanceQuery();
+  const { data, isLoading, refetch } = useGetAttendanceQuery();
+  const [addSalary] = useAddSalaryMutation();
 
   const cleanData = useMemo(() => {
     if (!data) return [];
@@ -44,7 +46,6 @@ const Attendance = () => {
 
   const monthFiltered = useMemo(() => {
     if (!cleanData.length) return [];
-
     return cleanData.filter((item) => {
       const month = new Date(item.date).toLocaleString("en-US", {
         month: "long",
@@ -59,10 +60,13 @@ const Attendance = () => {
       if (!map[rec.number]) {
         map[rec.number] = {
           id_no: rec.id_no || "",
+          salary: rec.salary,
+          designation: rec.designation,
           name: rec.name,
           number: rec.number,
           totalPresent: 0,
           totalAbsent: 0,
+          status: rec.status,
         };
       }
       if (rec.present) map[rec.number].totalPresent++;
@@ -79,7 +83,6 @@ const Attendance = () => {
       emp?.number?.toString().toLowerCase().includes(t)
     );
   });
-
   // modal
   const modalRecords = useMemo(() => {
     if (!selectedEmployee) return [];
@@ -87,6 +90,43 @@ const Attendance = () => {
       (rec) => rec.number === selectedEmployee.number
     );
   }, [selectedEmployee, monthFiltered]);
+  // approve for salary
+  const handleApproveSalary = async () => {
+    if (!selectedEmployee) return;
+    const totalPresent = modalRecords.reduce(
+      (sum, rec) => sum + (rec.present ? 1 : 0),
+      0
+    );
+    const totalAbsent = modalRecords.reduce(
+      (sum, rec) => sum + (rec.absent ? 1 : 0),
+      0
+    );
+    const monthIndex = months.indexOf(selectedMonth) + 1;
+    const formattedMonth =
+      new Date().getFullYear() + "-" + String(monthIndex).padStart(2, "0");
+    const payload = {
+      id_no: selectedEmployee.id_no,
+      name: selectedEmployee.name,
+      salary: selectedEmployee.salary,
+      number: selectedEmployee.number,
+      designation: selectedEmployee.designation,
+      month: formattedMonth,
+      totalPresent,
+      totalAbsent,
+      status: "Pending",
+    };
+    try {
+      await addSalary(payload).unwrap();
+      toast.success("Salary approved successfully", {
+        position: "top-right",
+      });
+      setOpenModal(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error approving salary");
+    }
+    refetch();
+  };
 
   if (isLoading) return <Loading />;
 
@@ -130,7 +170,6 @@ const Attendance = () => {
           </Link>
         </div>
       </div>
-
       <div className="overflow-x-auto mt-5 bg-white md:p-5">
         <table className="w-full">
           <thead>
@@ -141,10 +180,10 @@ const Attendance = () => {
               <th className="p-2">Number</th>
               <th className="p-2">Total Present</th>
               <th className="p-2">Total Absent</th>
+              <th className="p-2">Submit for Salary</th>
               <th className="p-2">Action</th>
             </tr>
           </thead>
-
           <tbody>
             {search.length === 0 ? (
               <tr>
@@ -161,6 +200,7 @@ const Attendance = () => {
                   <td className="px-2 p-1">{emp.number}</td>
                   <td className="px-2 p-1">{emp.totalPresent}</td>
                   <td className="px-2 p-1">{emp.totalAbsent}</td>
+                  <td className="px-2 p-1">{emp.status}</td>
                   <td className="px-2 p-1">
                     <button
                       onClick={() => {
@@ -178,7 +218,6 @@ const Attendance = () => {
           </tbody>
         </table>
       </div>
-
       {/* attendance modal */}
       {openModal && selectedEmployee && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
@@ -217,7 +256,6 @@ const Attendance = () => {
                         <td className="p-1">{rec.absent ? 1 : 0}</td>
                       </tr>
                     ))}
-
                     {/* footer */}
                     <tr className="bg-gray-100 font-semibold border border-gray-300">
                       <td className="p-2 text-center" colSpan={2}>
@@ -240,7 +278,6 @@ const Attendance = () => {
                 )}
               </tbody>
             </table>
-
             <div className="flex justify-between">
               <button
                 onClick={() => setOpenModal(false)}
@@ -248,7 +285,10 @@ const Attendance = () => {
               >
                 Close
               </button>
-              <button className="bg-[#40B884] text-white px-5 py-2 rounded-md">
+              <button
+                onClick={handleApproveSalary}
+                className="bg-[#40B884] text-white px-5 py-2 rounded-md"
+              >
                 Approved for salary
               </button>
             </div>
