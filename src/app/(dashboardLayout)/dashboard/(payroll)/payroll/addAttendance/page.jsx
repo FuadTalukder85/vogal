@@ -16,7 +16,6 @@ const AddAttendance = () => {
   const { data: employees, isLoading } = useGetEmployeeQuery();
   const [addAttendance] = useAddAttendanceMutation();
   const { data: attendanceRecords, refetch } = useGetAttendanceQuery();
-
   // select date first
   useEffect(() => {
     if (employees && selectedDate && attendanceRecords) {
@@ -25,7 +24,6 @@ const AddAttendance = () => {
         const existingRecord = attendanceRecords.find(
           (a) => a.number === emp.number && a.date === selectedDate
         );
-
         initialData[emp.number] = {
           present: existingRecord?.present || false,
           absent: existingRecord?.absent || false,
@@ -36,7 +34,6 @@ const AddAttendance = () => {
       setAttendanceData(initialData);
     }
   }, [employees, selectedDate, attendanceRecords]);
-
   // search
   const search = employees?.filter((emp) => {
     const term = searchTerm.toLowerCase();
@@ -51,19 +48,15 @@ const AddAttendance = () => {
       toast.error("Please select a date first!", { position: "top-right" });
       return;
     }
-
     setAttendanceData((prev) => {
       if (!prev[number]) return prev;
 
       const isPresent = field === "present";
       const isAbsent = field === "absent";
-
       return {
         ...prev,
         [number]: {
           ...prev[number],
-
-          // যে checkbox ক্লিক করা হয়েছে → ওটা toggle হবে
           tempPresent: isPresent ? !prev[number].tempPresent : false,
 
           tempAbsent: isAbsent ? !prev[number].tempAbsent : false,
@@ -71,11 +64,12 @@ const AddAttendance = () => {
       };
     });
   };
-
   // save attendance
   const handleSave = async () => {
     if (!selectedDate) {
-      toast.error("Please select a date!");
+      toast.error("Please select a date!", {
+        position: "top-right",
+      });
       return;
     }
     const anySelected = Object.values(attendanceData).some(
@@ -102,12 +96,13 @@ const AddAttendance = () => {
           id_no: emp.id_no,
           name: emp.name,
           number: emp.number,
+          salary: emp.salary,
+          designation: emp.designation,
           present,
           absent,
         }).unwrap();
         savedCount++;
       }
-
       if (savedCount > 0) {
         toast.success("Attendance saved successfully!", {
           position: "top-right",
@@ -131,7 +126,6 @@ const AddAttendance = () => {
         <h5 className="hidden md:flex text-xl font-semibold">
           Employee Attendance
         </h5>
-
         <div className="flex items-center mt-2 md:mt-0">
           <input
             type="date"
@@ -153,7 +147,6 @@ const AddAttendance = () => {
           </span>
         </div>
       </div>
-
       <div className="overflow-x-auto mt-5 bg-white md:p-5">
         <table className="w-full">
           <thead>
